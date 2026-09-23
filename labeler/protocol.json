@@ -1,0 +1,14 @@
+{
+  "version": "v0.1 (draft, before first labelling round)",
+  "definitions": {
+    "Credit reporting": "Problems with a credit report or the credit bureaus (Equifax, Experian, TransUnion): wrong or outdated entries, disputes the bureau didn't handle, accounts from identity theft appearing on the report, improper use of a report, credit repair or monitoring services.",
+    "Debt collection": "How someone is trying to collect a debt: collector calls, threats, harassment, being chased for a debt the person doesn't owe or has already paid, requests to verify the debt, lawsuits. Applies whatever the debt was for (medical, credit card, etc.).",
+    "Mortgage": "Home loans: applying, closing, making payments, escrow, loan changes, foreclosure, home equity loans and home equity lines of credit (HELOCs).",
+    "Credit card": "A credit card account: billing disputes, unauthorised charges, fees and interest, credit limits, rewards, applications, the account being closed.",
+    "Bank account or service": "Checking and savings accounts: opening or closing them, deposits and withdrawals, overdraft fees, frozen accounts or held funds, debit and ATM card problems.",
+    "Consumer loan": "Instalment loans that aren't mortgages: car loans and leases, personal loans, instalment loans. Payday and student loans may belong here too; check whether any appear.",
+    "Money transfer or service": "Sending or receiving money: wire transfers, payment apps (PayPal, Cash App, Zelle, Venmo), international remittances, money orders, and scams carried out through these services.",
+    "None / unclear": "The ticket fits none of the 7 categories, or is too vague to decide. Explain why in the reasoning. This is not a final golden-set label: the team resolves these later."
+  },
+  "tie_break": "Label the product or company the complaint is mainly about, not everything it mentions."
+}

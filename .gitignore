@@ -1,0 +1,12 @@
+# Individual annotators' label sheets (kept local until labelling is finished)
+labeler/labels/*.csv
+labeler/labels/*.tmp
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+Thumbs.db
+~$*
