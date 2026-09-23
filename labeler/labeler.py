@@ -203,10 +203,21 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--xlsx", default=str(DEFAULT_XLSX))
     ap.add_argument("--port", type=int, default=8765)
+    ap.add_argument("--rows", metavar="START-END",
+                    help="only label this range of row numbers, e.g. 3000-3099 (inclusive)")
     args = ap.parse_args()
 
-    Handler.tickets = load_tickets(args.xlsx)
-    print(f"Loaded {len(Handler.tickets)} tickets from {args.xlsx}")
+    tickets = load_tickets(args.xlsx)
+    if args.rows:
+        m = re.fullmatch(r"\s*(\d+)\s*-\s*(\d+)\s*", args.rows)
+        if not m:
+            ap.error("--rows must look like 3000-3099")
+        lo, hi = int(m.group(1)), int(m.group(2))
+        tickets = [t for t in tickets if lo <= t["row"] <= hi]
+        if not tickets:
+            ap.error(f"no tickets with row numbers {lo}-{hi} in {args.xlsx}")
+    Handler.tickets = tickets
+    print(f"Loaded {len(tickets)} tickets (rows {tickets[0]['row']}-{tickets[-1]['row']}) from {args.xlsx}")
     print(f"Labels are saved in {LABELS_DIR}")
     print(f"Open http://localhost:{args.port}  (Ctrl+C to stop)")
     ThreadingHTTPServer(("127.0.0.1", args.port), Handler).serve_forever()
