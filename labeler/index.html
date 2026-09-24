@@ -28,6 +28,13 @@
   .who { color: var(--muted); font-size: 14px; }
   .who a { color: var(--accent); cursor: pointer; }
   .spacer { flex: 1; }
+  .range { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
+  .range select, .range input { padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px;
+                                background: var(--panel); width: auto; }
+  .range input { width: 70px; }
+  .range .btn { padding: 4px 10px; }
+  .center select { width: 100%; padding: 10px 12px; border-radius: 8px; margin-bottom: 14px; }
+  .center label { display: block; text-align: left; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
   .progress { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
   .bar { width: 180px; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
   .bar > div { height: 100%; background: var(--done); transition: width .2s; }
@@ -105,6 +112,8 @@
      If you've started before, you'll pick up where you left off.</p>
   <form id="startForm">
     <input id="nameInput" placeholder="e.g. alice" autocomplete="off" required aria-label="Annotator name">
+    <label for="startRange">Rows you're labelling</label>
+    <select id="startRange" required></select>
     <button class="btn primary" style="width:100%">Start labelling</button>
   </form>
 </div>
@@ -121,6 +130,15 @@
   <header>
     <h1>Ticket Labeller</h1>
     <span class="who">Annotator: <b id="who"></b> · <a id="switchBtn">switch</a></span>
+    <span class="range">
+      <label for="rangeSel">Rows</label>
+      <select id="rangeSel"></select>
+      <span id="customRange" class="hidden">
+        <input id="rangeFrom" inputmode="numeric" aria-label="First row"> –
+        <input id="rangeTo" inputmode="numeric" aria-label="Last row">
+        <button class="btn" id="rangeApply">Apply</button>
+      </span>
+    </span>
     <span class="spacer"></span>
     <div class="progress"><span id="progText"></span><div class="bar"><div id="progBar"></div></div></div>
   </header>
@@ -177,6 +195,7 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, v); } catch {} },
 };
 
+let allTickets = [], rangeSpec = "all";  // tickets = the rows in the chosen range
 let tickets = [], categories = [], protocol = {}, labels = {}, annotator = "", idx = 0;
 let form = { label: "", secondary: "", reasoning: "" };
 
@@ -234,6 +253,52 @@ function buildStatic() {
   }
   $("secondary").innerHTML = '<option value="">None</option>' +
     categories.filter(c => c !== "None / unclear").map(c => `<option>${c}</option>`).join("");
+  fillRangeOptions($("rangeSel"), true);
+  fillRangeOptions($("startRange"), false);
+}
+
+// Range options: one per block of 100 rows in the data, plus all rows (and custom in the header).
+function fillRangeOptions(sel, withCustom) {
+  const blocks = [...new Set(allTickets.map(t => t.row - (t.row % 100)))].sort((a, b) => a - b);
+  const opts = withCustom ? [] : ['<option value="" disabled selected>Choose your rows…</option>'];
+  for (const b of blocks) {
+    const n = allTickets.filter(t => t.row >= b && t.row <= b + 99).length;
+    opts.push(`<option value="${b}-${b + 99}">${b}–${b + 99} (${n} tickets)</option>`);
+  }
+  opts.push(`<option value="all">All rows (${allTickets.length} tickets)</option>`);
+  if (withCustom) opts.push('<option value="custom">Custom range…</option>');
+  sel.innerHTML = opts.join("");
+}
+
+function parseRange(spec) {
+  const m = /^(\d+)-(\d+)$/.exec(spec || "");
+  return m ? [Number(m[1]), Number(m[2])] : null;
+}
+
+// Switch the working set of tickets to a range ("3000-3099" or "all").
+function applyRange(spec, keepPosition = false) {
+  const r = parseRange(spec);
+  const subset = r ? allTickets.filter(t => t.row >= r[0] && t.row <= r[1]) : allTickets;
+  if (!subset.length) { setStatus("No tickets in that range.", "err"); return false; }
+  rangeSpec = r ? spec : "all";
+  tickets = subset;
+  store.set("labeller.range." + annotator, rangeSpec);
+  const sel = $("rangeSel");
+  if (![...sel.options].some(o => o.value === rangeSpec)) {
+    const o = new Option(`${r[0]}–${r[1]} (${subset.length} tickets)`, rangeSpec);
+    sel.insertBefore(o, sel.querySelector('option[value="custom"]'));
+  }
+  sel.value = rangeSpec;
+  $("customRange").classList.add("hidden");
+  buildGrid();
+  if (!keepPosition) {
+    const todo = firstUnlabelled();
+    idx = todo >= 0 ? todo : 0;
+  }
+  return true;
+}
+
+function buildGrid() {
   $("grid").innerHTML = "";
   tickets.forEach((t, i) => {
     const c = document.createElement("button");
@@ -351,13 +416,15 @@ async function loadLabels() {
   labels = d.labels;
 }
 
-async function begin(name) {
+async function begin(name, range) {
   annotator = name.trim().replace(/[^A-Za-z0-9_-]+/g, "_").slice(0, 40);
   if (!annotator) return;
   store.set("labeller.annotator", annotator);
   $("who").textContent = annotator;
   await loadLabels();
-  // Resume: last viewed ticket if it's still unlabelled, otherwise the first unlabelled one.
+  // Range: the one just chosen on the start screen, else this annotator's last one.
+  if (!applyRange(range || store.get("labeller.range." + annotator) || "all")) applyRange("all");
+  // Resume: last viewed ticket if it's still unlabelled and in range, otherwise the first unlabelled one.
   const lastRow = Number(store.get("labeller.pos." + annotator));
   const lastIdx = tickets.findIndex(t => t.row === lastRow);
   const todo = firstUnlabelled();
@@ -368,11 +435,33 @@ async function begin(name) {
 }
 
 // Events
-$("startForm").onsubmit = e => { e.preventDefault(); begin($("nameInput").value); };
+$("startForm").onsubmit = e => { e.preventDefault(); begin($("nameInput").value, $("startRange").value); };
 $("switchBtn").onclick = () => {
   if (isDirty() && !confirm("Discard unsaved changes?")) return;
-  $("nameInput").value = ""; show("start"); $("nameInput").focus();
+  $("nameInput").value = ""; $("startRange").selectedIndex = 0; show("start"); $("nameInput").focus();
 };
+$("rangeSel").onchange = e => {
+  const v = e.target.value;
+  if (v === "custom") {
+    const r = parseRange(rangeSpec) || [allTickets[0].row, allTickets[allTickets.length - 1].row];
+    $("rangeFrom").value = r[0]; $("rangeTo").value = r[1];
+    $("customRange").classList.remove("hidden"); $("rangeFrom").focus();
+    return;
+  }
+  if (isDirty() && !confirm("You have unsaved changes on this ticket. Discard them?")) { e.target.value = rangeSpec; return; }
+  if (applyRange(v)) render();
+  e.target.blur();
+};
+$("rangeApply").onclick = () => {
+  let a = Number($("rangeFrom").value), b = Number($("rangeTo").value);
+  if (!Number.isInteger(a) || !Number.isInteger(b) || !$("rangeFrom").value || !$("rangeTo").value) {
+    setStatus("Enter a first and last row number.", "err"); return;
+  }
+  if (a > b) [a, b] = [b, a];
+  if (isDirty() && !confirm("You have unsaved changes on this ticket. Discard them?")) return;
+  if (applyRange(`${a}-${b}`)) render();
+};
+for (const id of ["rangeFrom", "rangeTo"]) $(id).onkeydown = e => { if (e.key === "Enter") $("rangeApply").click(); };
 $("resumeBtn").onclick = () => { show("app"); render(); };
 $("smallerBtn").onclick = () => applySize(-1);
 $("biggerBtn").onclick = () => applySize(1);
@@ -405,7 +494,7 @@ window.addEventListener("beforeunload", e => {
 
 (async () => {
   const d = await api("/api/tickets");
-  tickets = d.tickets; categories = d.categories; protocol = d.protocol || {};
+  allTickets = tickets = d.tickets; categories = d.categories; protocol = d.protocol || {};
   buildStatic();
   const last = store.get("labeller.annotator");
   if (last) begin(last); else { show("start"); $("nameInput").focus(); }
