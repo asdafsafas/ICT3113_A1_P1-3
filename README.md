@@ -1,15 +1,25 @@
 # ICT3113 Assignment 1: Ticket Triage (Team P1-3)
 
-Right now we're building the **golden test set** (Step 1 of the brief): 200 tickets labelled by hand, which we'll later use to measure how accurate each model is. Each ticket is labelled by **two people working independently**.
+A ticket classification service for a financial complaints desk, running on CPU-only models in Docker, plus the tests that decide which model the client should deploy.
+
+- **Who does what and when:** [docs/team-plan.md](docs/team-plan.md)
+- **All project docs** (setup, architecture, testing playbooks): [docs/README.md](docs/README.md)
+- **Quick start** (needs Docker Desktop): `cp .env.example .env`, then `docker compose up -d --build`, then `python scripts/pull_models.py`. Details in [docs/setup.md](docs/setup.md).
+
+---
+
+## Labelling the golden set
+
+Right now we're building the **golden test set** (Step 1 of the brief): 200 tickets labelled by hand, which we'll later use to measure how accurate each model is. Each ticket is labelled by **at least two people working independently**.
 
 ## Who labels what
 
-| Pair | Labellers | Tickets | Row numbers | `--rows` value |
-|---|---|---|---|---|
-| A | Zong Han, Ridwan | 1st–100th | 3000–3099 | `3000-3099` |
-| B | Tze Han, Kannan | 101st–200th | 3100–3199 | `3100-3199` |
+| Group | Labellers | Tickets | Rows to choose in the app |
+|---|---|---|---|
+| A | Zong Han, Ridwan | 1st–100th | **3000–3099** |
+| B | Tze Han, Kannan, Natalie | 101st–200th | **3100–3199** |
 
-Both people in a pair label **all 100 tickets** in their range.
+Everyone in a group labels **all 100 tickets** in their range.
 
 ## Setup (about 5 minutes)
 
@@ -22,16 +32,15 @@ You need **Python 3.7 or newer**. Nothing else to install.
    ```
    (No git? On the repo page, click **Code → Download ZIP** and unzip it.)
 
-2. **Start the labeller with your pair's rows:**
+2. **Start the labeller:**
    ```
-   python labeler/labeler.py --rows 3000-3099      # Pair A: Zong Han, Ridwan
-   python labeler/labeler.py --rows 3100-3199      # Pair B: Tze Han, Kannan
+   python labeler/labeler.py
    ```
    If `python` isn't recognised, try `py` (Windows) or `python3` (Mac).
 
 3. **Open http://localhost:8765** in your browser.
 
-4. **Enter your name exactly as below.** Your labels are saved under this name, so use the same one every time:
+4. **Enter your name exactly as below, and choose your group's rows** from the "Rows you're labelling" list. Your labels are saved under this name, so use the same one every time:
 
    | Person | Name to enter |
    |---|---|
@@ -39,6 +48,9 @@ You need **Python 3.7 or newer**. Nothing else to install.
    | Ridwan | `Ridwan` |
    | Tze Han | `Tze_Han` |
    | Kannan | `Kannan` |
+   | Natalie | `Natalie` |
+
+   The app remembers your rows. You can change them any time with the **Rows** menu at the top of the page (it also has a custom range), but stick to your group's rows.
 
 **Keep the terminal window open while you label.** Closing it stops the app. Your progress stays saved; run the same command again to continue.
 
@@ -63,7 +75,7 @@ For each ticket:
 
 The brief checks that our labels are **independent** and weren't influenced by any model. Breaking these rules weakens the golden set, and the marker will look closely at it.
 
-1. **Don't discuss tickets with anyone, including your partner, until both of you have finished.** No comparing, no screenshots, no "what did you put for row 3042?".
+1. **Don't discuss tickets with anyone, including the others in your group, until everyone in the group has finished.** No comparing, no screenshots, no "what did you put for row 3042?".
 2. **Don't ask ChatGPT, Claude or any other AI which category a ticket belongs to.** The models we're testing are AIs; if our labels copy an AI's answers, our accuracy results become meaningless. Looking up what a term or company is (e.g. "what is FCRA?", "who is Navient?") is fine.
 3. **Use only the definitions in the app** (from [labeler/protocol.json](labeler/protocol.json), currently **v0.1**). Don't edit that file. If a definition is missing or unclear, **note it in your reasoning**; we'll fix the protocol together after this round.
 4. **Don't look at the original labels** in the spreadsheet (the `source_label` column). They're known to be unreliable, and they'd bias you. The app hides them on purpose.
@@ -74,12 +86,12 @@ Your labels are saved to `labeler/labels/labels_<YourName>.csv` (e.g. `labels_Ri
 
 1. Check that the progress bar reads **100 / 100 labelled**.
 2. **Send your CSV file to Zong Han privately** (Telegram, Teams or email). Don't post it in the group chat.
-3. Once **both people in a pair** have sent their files, Zong Han commits them to the repo.
+3. Once **everyone in a group** has sent their file, Zong Han commits them to the repo.
 
 ## What happens next
 
-1. **Compare:** we calculate the agreement statistic (Cohen's kappa) for each pair and list every ticket where the two labels differ.
-2. **Resolve:** each pair meets and agrees a final label for each disagreement, recording why.
+1. **Compare:** we calculate the agreement statistics (Cohen's kappa for each pair of labellers, Fleiss' kappa for group B's three) and list every ticket where the labels differ.
+2. **Resolve:** each group meets and agrees a final label for each disagreement, recording why.
 3. **Revise the protocol:** where a disagreement shows a missing rule, we add it to the protocol as v0.2 and record the change.
 4. **Freeze:** the agreed labels become the golden set, which is committed **before any model is tested on it**. Every test and benchmark run waits for this step.
 
@@ -90,5 +102,5 @@ Your labels are saved to `labeler/labels/labels_<YourName>.csv` (e.g. `labels_Ri
 | `python` is not recognised | Use `py labeler/labeler.py …` (Windows) or `python3 labeler/labeler.py …` (Mac). If neither works, install Python from python.org. |
 | `Address already in use` | The app is probably already running in another terminal. Use that one, or add `--port 8766` and open http://localhost:8766. |
 | The page shows someone else's name | Click **switch** next to the name and enter yours. |
-| The page shows 200 tickets | You forgot `--rows`. Stop the app (Ctrl+C) and start it again with your pair's range. |
+| The page shows 200 tickets, or the wrong rows | Pick your group's rows from the **Rows** menu at the top of the page. |
 | I labelled a ticket outside my range | That's fine, it doesn't hurt anything. Just make sure every ticket in your range is labelled. |
