@@ -1,0 +1,5 @@
+# Candidate models, one Ollama tag per line (3 to 5, spanning at least two size classes).
+# PLACEHOLDERS: the team still has to choose and justify these (see docs/models.md).
+# After editing, run: python scripts/pull_models.py
+qwen2.5:0.5b
+qwen2.5:1.5b
