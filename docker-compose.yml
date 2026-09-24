@@ -1,0 +1,47 @@
+# System under test: triage service + Ollama (CPU only).
+# The load generator (JMeter) must run on a DIFFERENT machine; see docs/load-testing.md.
+name: triage
+
+services:
+  ollama:
+    image: ${OLLAMA_IMAGE:-ollama/ollama:0.34.3}
+    # No GPU is requested here, so Ollama runs on CPU only (a client requirement).
+    # Do not add `gpus:` or `deploy.resources.reservations.devices`.
+    environment:
+      OLLAMA_NUM_PARALLEL: ${OLLAMA_NUM_PARALLEL:-1}
+      OLLAMA_MAX_LOADED_MODELS: ${OLLAMA_MAX_LOADED_MODELS:-1}
+      OLLAMA_MAX_QUEUE: ${OLLAMA_MAX_QUEUE:-512}
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_KEEP_ALIVE:-30m}
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "127.0.0.1:11434:11434"   # local only: used by scripts/pull_models.py
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  triage:
+    build: ./service
+    env_file: .env
+    environment:
+      OLLAMA_URL: http://ollama:11434
+      DB_PATH: /data/tickets.db
+      LOG_DIR: /logs
+      PROMPT_FILE: /app/prompts/${PROMPT_FILE:-classify_v1.txt}
+    volumes:
+      - triage-data:/data
+      - ./logs/service:/logs
+      - ./service/prompts:/app/prompts:ro
+    ports:
+      - "8000:8000"   # all interfaces, so the JMeter machine can reach it
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  ollama-models:
+  triage-data:
