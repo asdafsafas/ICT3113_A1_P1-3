@@ -10,5 +10,13 @@
     "Money transfer or service": "Sending or receiving money: wire transfers, payment apps (PayPal, Cash App, Zelle, Venmo), international remittances, money orders, and scams carried out through these services.",
     "None / unclear": "The ticket fits none of the 7 categories, or is too vague to decide. Explain why in the reasoning. This is not a final golden-set label: the team resolves these later."
   },
-  "tie_break": "Label the product or company the complaint is mainly about, not everything it mentions."
+  "tie_break": "Label the product or company the complaint is mainly about, not everything it mentions.",
+  "revisions": [
+    {
+      "version": "v0.1",
+      "date": "2026-09-23",
+      "change": "Initial draft definitions and tie-break rule",
+      "triggered_by_rows": []
+    }
+  ]
 }
