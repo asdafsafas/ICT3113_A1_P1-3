@@ -1,0 +1,105 @@
+﻿row,label,secondary_label,reasoning,labelled_at
+3000,Money transfer or service,,"Sending money over, but it is more of a scam",2026-09-23T09:27:32+00:00
+3001,Credit card,,Credit card fees,2026-09-23T09:28:29+00:00
+3002,Credit reporting,,Credit reporting,2026-09-23T09:32:43+00:00
+3003,Money transfer or service,,,2026-09-23T10:23:53+00:00
+3004,Credit reporting,,,2026-09-23T10:24:13+00:00
+3005,Consumer loan,,,2026-09-23T15:39:56+00:00
+3006,Bank account or service,,,2026-09-23T15:41:16+00:00
+3007,Credit reporting,,,2026-09-23T15:45:15+00:00
+3008,Debt collection,,,2026-09-23T15:45:33+00:00
+3009,Money transfer or service,,,2026-09-23T15:46:26+00:00
+3010,Credit reporting,,,2026-09-23T15:47:43+00:00
+3011,Credit reporting,,,2026-09-23T15:48:48+00:00
+3012,Bank account or service,,,2026-09-23T15:49:01+00:00
+3013,Consumer loan,,,2026-09-23T15:50:09+00:00
+3014,Money transfer or service,,,2026-09-23T15:50:33+00:00
+3015,Credit reporting,,,2026-09-23T15:50:46+00:00
+3016,Mortgage,,,2026-09-23T15:51:15+00:00
+3017,Credit card,,,2026-09-23T15:52:22+00:00
+3018,Bank account or service,,,2026-09-23T15:52:42+00:00
+3019,Mortgage,,,2026-09-23T15:52:53+00:00
+3020,Mortgage,,"Chase froze funds and closed checking account after depositing a joint tax refund cheque, so Bank account or service.",2026-09-23T16:13:27+00:00
+3021,Credit reporting,,"Background is a VA/university billing mix-up that went to collections, but the complaint is about Experian mishandling two disputes. Tie-break: the credit bureau.",2026-09-23T16:13:14+00:00
+3022,Credit reporting,,"Paid collection account still on report after 7 years; wants it removed. Harm is the report entry, not collection activity. Collector is only the company reporting it.",2026-09-23T16:11:55+00:00
+3023,Credit reporting,,Dispute letter to a credit bureau about how a Credit Acceptance car loan is reported; asks for correction or deletion. Loan is background only,2026-09-23T16:12:42+00:00
+3024,Consumer loan,Credit reporting,"Car-loan application at a dealer (Westlake); deal cancelled with no adverse action notice. FCRA cited, but no report correction requested, so Consumer loan.",2026-09-23T16:11:28+00:00
+3025,Credit reporting,Debt collection,Collection on TransUnion report; debt verification unanswered; demands bureaus delete it. Fix requested is removal from credit report → Credit reporting. Collector's lack of reply is secondary.,2026-09-23T16:11:05+00:00
+3026,Consumer loan,,Navient student loan servicer; wrong and unclear info about payment change after interest-only period.,2026-09-23T16:17:06+00:00
+3027,Credit card,,Balance transfer 0% promo; payments applied to lowest APR first so purchases accrue 26% interest. Credit card terms/interest.,2026-09-23T16:17:58+00:00
+3028,Money transfer or service,,,2026-09-23T16:18:31+00:00
+3029,Money transfer or service,,,2026-09-23T16:25:26+00:00
+3030,Mortgage,,"The customer applied to their servicer for a ""workout solution"", which is a loan modification to avoid foreclosure. They were denied because the reviewers decided they ""could not afford my mortgage"", and the complaint is about keeping their home.",2026-09-24T04:04:38+00:00
+3031,Credit reporting,,"Although it talks about credit report in the beginning, the main point of it is debt collection",2026-09-24T13:37:14+00:00
+3032,Bank account or service,,Unauthorized account creation,2026-09-25T01:48:49+00:00
+3033,Mortgage,,Cardinal Financial is a refinancing/mortgage company. Delays and poor communication,2026-09-25T01:58:15+00:00
+3034,Credit reporting,,"The last paragraph talks about how the CRA (Consumer Reporting Agency) couldn't merely parrot information, so this most likely is talking about credit reporting",2026-09-25T02:56:08+00:00
+3035,Consumer loan,,,2026-09-25T03:44:50+00:00
+3036,Bank account or service,,"Keywords: Bank, account
+Guy purchased a business from the previous owner, but seems like the handover process wasn't done right so ex-owner still receives billing while new owner can't get it to pay the bills",2026-09-25T03:48:04+00:00
+3037,Mortgage,,Keyword: Mortgage,2026-09-25T04:04:05+00:00
+3038,Credit reporting,,"Keyword: Trans. Union, Credit report, credit bureaus",2026-09-25T04:05:28+00:00
+3039,Debt collection,,"Original cause was fraudulent account creation which has been resolved, but now the main issue is that one of the companies is now doing a debt collection even though other companies understood that the account was fraudulently created, and if this company decides to forward the debt record to the credit bureau, his score will be affected.",2026-09-25T04:19:50+00:00
+3040,Bank account or service,,"CD = Certificate of Deposit, bank service",2026-09-25T04:28:52+00:00
+3041,Bank account or service,,"Though the first part talks about personal loan and etc, the main issue the complainant is targeting is the bank's hotline.",2026-09-25T04:29:55+00:00
+3042,Bank account or service,,Chime is a fintech company that provides banking-as-a-service,2026-09-25T04:42:35+00:00
+3043,Mortgage,Bank account or service,Narrative talks about mortgage and bank,2026-09-25T04:56:50+00:00
+3044,Consumer loan,Credit card,"Upstart and Upgrade offers personal loans.
+Keyword: Loans, card",2026-09-25T05:09:04+00:00
+3045,Credit card,,,2026-09-25T05:29:57+00:00
+3046,Consumer loan,,Climb in this narrative probably refers to Climb Credit which loans out money for education purposes.,2026-09-25T05:37:17+00:00
+3047,Mortgage,,,2026-09-25T05:54:58+00:00
+3048,Money transfer or service,,,2026-09-25T05:55:38+00:00
+3049,Money transfer or service,,,2026-09-25T05:56:17+00:00
+3050,Credit reporting,,,2026-09-25T05:56:31+00:00
+3051,Bank account or service,,,2026-09-25T08:12:25+00:00
+3052,Credit reporting,,,2026-09-25T08:50:33+00:00
+3053,Credit reporting,,,2026-09-25T08:50:41+00:00
+3054,Money transfer or service,,,2026-09-25T16:04:25+00:00
+3055,Credit reporting,,,2026-09-25T16:05:05+00:00
+3056,Bank account or service,,,2026-09-25T16:12:08+00:00
+3057,Bank account or service,,,2026-09-25T16:12:39+00:00
+3058,Bank account or service,,,2026-09-25T16:12:56+00:00
+3059,Money transfer or service,,,2026-09-25T16:13:01+00:00
+3060,Mortgage,,,2026-09-25T16:13:20+00:00
+3061,Consumer loan,,,2026-09-25T16:47:59+00:00
+3062,Credit reporting,,,2026-09-25T16:48:08+00:00
+3063,Credit reporting,,,2026-09-25T16:48:44+00:00
+3064,Debt collection,,,2026-09-25T16:49:15+00:00
+3065,Debt collection,,,2026-09-25T16:49:30+00:00
+3066,Credit reporting,,,2026-09-25T16:49:47+00:00
+3067,Mortgage,,PMI = Private mortgage insurance,2026-09-25T16:51:34+00:00
+3068,Credit reporting,,,2026-09-25T16:51:42+00:00
+3069,Credit card,,,2026-09-26T00:40:11+00:00
+3070,Credit card,,,2026-09-26T00:42:45+00:00
+3071,Debt collection,Credit reporting,,2026-09-26T00:43:59+00:00
+3072,Debt collection,Credit reporting,,2026-09-26T00:45:51+00:00
+3073,Bank account or service,,,2026-09-26T00:47:01+00:00
+3074,Money transfer or service,,,2026-09-26T00:47:09+00:00
+3075,Mortgage,,Bayview Loan Servicing (now operating as Community Loan Servicing) manages and services residential and small-balance commercial mortgage loans,2026-09-26T00:48:24+00:00
+3076,Bank account or service,,,2026-09-26T01:23:42+00:00
+3077,Consumer loan,,,2026-09-26T01:31:11+00:00
+3078,Credit reporting,,,2026-09-26T03:20:43+00:00
+3079,Debt collection,,,2026-09-26T03:20:47+00:00
+3080,Credit reporting,,,2026-09-26T03:21:08+00:00
+3081,Consumer loan,,,2026-09-26T05:31:49+00:00
+3082,Debt collection,,,2026-09-26T05:32:20+00:00
+3083,Bank account or service,,,2026-09-26T05:32:41+00:00
+3084,Money transfer or service,,,2026-09-26T05:32:50+00:00
+3085,Money transfer or service,,,2026-09-26T05:33:02+00:00
+3086,Bank account or service,,"Robinhood, brokerage service",2026-09-26T05:33:49+00:00
+3087,Credit reporting,,,2026-09-26T05:34:28+00:00
+3088,Consumer loan,,"Approved and was to receive funding
+
+Seems like a loan",2026-09-26T05:35:18+00:00
+3089,Credit reporting,,,2026-09-26T05:36:36+00:00
+3090,Bank account or service,,,2026-09-26T05:39:02+00:00
+3091,Mortgage,,,2026-09-26T05:39:21+00:00
+3092,Credit reporting,,,2026-09-26T05:42:43+00:00
+3093,Money transfer or service,,,2026-09-26T05:42:49+00:00
+3094,Money transfer or service,,,2026-09-26T05:43:47+00:00
+3095,Bank account or service,,,2026-09-26T05:50:09+00:00
+3096,Money transfer or service,,,2026-09-26T06:16:09+00:00
+3097,Credit reporting,,,2026-09-26T06:16:24+00:00
+3098,Mortgage,,,2026-09-26T06:17:32+00:00
+3099,Bank account or service,,,2026-09-26T06:17:44+00:00
