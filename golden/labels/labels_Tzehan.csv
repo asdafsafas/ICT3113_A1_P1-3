@@ -1,0 +1,101 @@
+﻿row,label,secondary_label,reasoning,labelled_at
+3100,Debt collection,,the complaint is about contact from a debt collector,2026-09-25T13:51:42+00:00
+3101,Consumer loan,,is about the lender loan balance,2026-09-25T13:52:54+00:00
+3102,Credit card,,disputed charges?,2026-09-25T14:13:00+00:00
+3103,Bank account or service,,Account was closed,2026-09-25T13:56:09+00:00
+3104,Debt collection,,Collection company,2026-09-25T13:56:41+00:00
+3105,Credit reporting,,no access to credit report,2026-09-25T14:09:12+00:00
+3106,Consumer loan,,student loan,2026-09-25T14:09:48+00:00
+3107,Credit reporting,,,2026-09-25T14:14:58+00:00
+3108,Money transfer or service,,,2026-09-25T14:15:19+00:00
+3109,Credit reporting,,,2026-09-25T14:15:38+00:00
+3110,Credit card,,,2026-09-25T14:16:14+00:00
+3111,Money transfer or service,,,2026-09-25T14:16:53+00:00
+3112,Money transfer or service,,,2026-09-25T14:17:08+00:00
+3113,Mortgage,,,2026-09-25T14:17:23+00:00
+3114,Money transfer or service,,,2026-09-25T14:17:41+00:00
+3115,Credit card,,,2026-09-25T14:18:03+00:00
+3116,Credit card,,,2026-09-25T14:18:19+00:00
+3117,Mortgage,,,2026-09-25T14:18:47+00:00
+3118,Money transfer or service,,,2026-09-25T14:19:03+00:00
+3119,Credit card,,,2026-09-25T14:19:33+00:00
+3120,Credit reporting,,,2026-09-25T14:19:47+00:00
+3121,Bank account or service,,,2026-09-25T14:20:12+00:00
+3122,Credit reporting,,,2026-09-25T14:20:35+00:00
+3123,Credit reporting,,,2026-09-25T14:20:49+00:00
+3124,Money transfer or service,,cash app,2026-09-25T14:21:10+00:00
+3125,Bank account or service,,reverse a disputed debit card payment after seller was paid twice,2026-09-25T14:22:05+00:00
+3126,Consumer loan,,high interest rate for loan,2026-09-25T14:22:28+00:00
+3127,Credit reporting,,removing fraud accounts,2026-09-25T14:24:13+00:00
+3128,Money transfer or service,,money transfer?,2026-09-25T14:24:51+00:00
+3129,Mortgage,,2nd mortgage,2026-09-25T14:26:00+00:00
+3130,Credit reporting,,review of credit report,2026-09-25T14:26:38+00:00
+3131,Mortgage,,home owner bill,2026-09-25T14:27:11+00:00
+3132,Credit card,,bank of america credit card,2026-09-25T14:27:50+00:00
+3133,Credit reporting,,I have called this company several time to have this company taken off my credit report,2026-09-25T14:28:26+00:00
+3134,Bank account or service,,Bank employee,2026-09-25T14:29:23+00:00
+3135,Money transfer or service,,transfers money,2026-09-25T14:29:41+00:00
+3136,Debt collection,,collection agency,2026-09-25T14:30:06+00:00
+3137,Bank account or service,,TD Bank,2026-09-25T14:30:30+00:00
+3138,Mortgage,,refinancing mortgage,2026-09-25T14:30:58+00:00
+3139,Mortgage,,property tax payments,2026-09-25T14:31:15+00:00
+3140,Money transfer or service,,prepaid card transaction?,2026-09-25T14:32:04+00:00
+3141,Consumer loan,,,2026-09-25T14:32:25+00:00
+3142,Consumer loan,,,2026-09-25T14:34:46+00:00
+3143,Consumer loan,,loan interest rate,2026-09-25T14:35:35+00:00
+3144,Bank account or service,,"overdraft, returned payments and fees on bank accounts",2026-09-25T14:36:15+00:00
+3145,Bank account or service,,bank accounts,2026-09-25T14:36:57+00:00
+3146,Bank account or service,,jpmc business account,2026-09-25T14:37:17+00:00
+3147,Credit card,,credit card,2026-09-25T14:37:38+00:00
+3148,Money transfer or service,,cash appp,2026-09-25T14:38:00+00:00
+3149,Mortgage,,mortgage,2026-09-25T14:38:14+00:00
+3150,Credit reporting,,credit bureaus,2026-09-25T14:38:45+00:00
+3151,Bank account or service,,money stolen from bank,2026-09-25T14:39:16+00:00
+3152,Mortgage,,,2026-09-25T14:40:23+00:00
+3153,Mortgage,,HELOC loan,2026-09-25T14:40:56+00:00
+3154,Credit reporting,,,2026-09-25T14:41:12+00:00
+3155,Credit reporting,,credit bureaus,2026-09-25T14:41:40+00:00
+3156,Bank account or service,,HSBC bank,2026-09-25T14:41:53+00:00
+3157,Money transfer or service,,money transger,2026-09-25T14:42:12+00:00
+3158,Bank account or service,,chase bank,2026-09-25T14:42:31+00:00
+3159,Bank account or service,,JPMC bank,2026-09-25T14:42:49+00:00
+3160,Debt collection,,debt collector,2026-09-25T14:43:12+00:00
+3161,Money transfer or service,,deposit may have been rejected,2026-09-26T05:09:23+00:00
+3162,Mortgage,,mortgage servicing,2026-09-26T05:10:19+00:00
+3163,Money transfer or service,,cash app,2026-09-26T05:10:33+00:00
+3164,Bank account or service,,open and close account,2026-09-26T05:11:19+00:00
+3165,Consumer loan,,furniture loan,2026-09-26T05:11:43+00:00
+3166,Consumer loan,,refund on loan,2026-09-26T05:12:03+00:00
+3167,Mortgage,,mortgage servicing company,2026-09-26T05:12:17+00:00
+3168,Bank account or service,,atm deposit,2026-09-26T05:12:39+00:00
+3169,Mortgage,,mortgage payment,2026-09-26T05:13:02+00:00
+3170,Credit card,,credit card upgrade card,2026-09-26T05:13:17+00:00
+3171,Money transfer or service,,cash app,2026-09-26T05:13:28+00:00
+3172,Bank account or service,,opening account,2026-09-26T05:14:10+00:00
+3173,Credit reporting,,credit disputes,2026-09-26T05:14:39+00:00
+3174,Credit reporting,,transunion credit reporting,2026-09-26T05:14:56+00:00
+3175,Debt collection,,credit card debt,2026-09-26T05:15:23+00:00
+3176,Money transfer or service,,gemini crypto currency,2026-09-26T05:15:47+00:00
+3177,Credit reporting,,credit report,2026-09-26T05:17:25+00:00
+3178,Credit reporting,,fraud items on credit report,2026-09-26T05:17:40+00:00
+3179,Credit card,,atnt credit card,2026-09-26T05:17:59+00:00
+3180,Consumer loan,,loan,2026-09-26T05:18:30+00:00
+3181,Bank account or service,,bank fraud?,2026-09-26T05:19:44+00:00
+3182,Credit card,,barclays credit card,2026-09-26T05:20:36+00:00
+3183,Consumer loan,,,2026-09-26T07:02:32+00:00
+3184,Mortgage,,mortgage payment,2026-09-26T07:03:22+00:00
+3185,Consumer loan,,loan,2026-09-26T07:03:48+00:00
+3186,Bank account or service,,bank of america?,2026-09-26T07:04:17+00:00
+3187,Credit card,,elan credit card,2026-09-26T07:04:38+00:00
+3188,Credit card,,discover credit card,2026-09-26T07:05:18+00:00
+3189,Mortgage,,mortgage,2026-09-26T07:07:24+00:00
+3190,Bank account or service,,USAA bank account,2026-09-26T07:08:04+00:00
+3191,Credit reporting,,fair credit reporting,2026-09-26T07:08:17+00:00
+3192,Debt collection,,debt collector,2026-09-26T07:08:41+00:00
+3193,Bank account or service,,wells fargo bank,2026-09-26T07:09:06+00:00
+3194,Credit reporting,,credit report,2026-09-26T07:09:25+00:00
+3195,Credit reporting,,credit report,2026-09-26T07:09:48+00:00
+3196,Money transfer or service,,cash app,2026-09-26T07:10:04+00:00
+3197,Bank account or service,,chase bank,2026-09-26T07:10:50+00:00
+3198,Debt collection,,debt,2026-09-26T07:11:10+00:00
+3199,Consumer loan,,loan servicing,2026-09-26T07:11:56+00:00

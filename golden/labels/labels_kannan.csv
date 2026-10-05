@@ -1,0 +1,101 @@
+﻿row,label,secondary_label,reasoning,labelled_at
+3100,Debt collection,,Customer raises issue about cease and desist and to stop all communications.,2026-09-24T06:29:52+00:00
+3101,Consumer loan,,The customer disputes the remaining loan balance and alleges overpayment and concerns about the lender’s licensing.,2026-09-24T06:54:05+00:00
+3102,None / unclear,,Insufficient information,2026-09-24T06:58:46+00:00
+3103,None / unclear,,"The customer reports account closure and suspected unauthorized changes, but the account type is not specified, so the financial category cannot be determined.",2026-09-24T07:20:25+00:00
+3104,Debt collection,,The customer reports repeated collection calls and threats intended to obtain payment after they disclosed having filed for bankruptcy,2026-09-24T07:38:02+00:00
+3105,Credit reporting,,"The customer cannot access their TransUnion credit report, manage fraud alerts or freezes, or obtain updates and corrections relating to identity-theft disputes.",2026-09-24T08:04:47+00:00
+3106,Consumer loan,,"The customer disputes a $2,100 increase in their student-loan principal, stating that no additional funds were requested or received and no notice was provided.",2026-09-24T08:06:11+00:00
+3107,Credit reporting,,The customer reports unanswered credit-report,2026-09-24T08:08:38+00:00
+3108,Money transfer or service,,"The customer cannot transfer $1,200 from PayPal to their checking account despite repeated attempts and requests for assistance.",2026-09-24T08:09:20+00:00
+3109,Credit reporting,,The customer reports an unauthorized account and fraudulent credit inquiries and disputes their inclusion in the credit report.,2026-09-24T08:09:52+00:00
+3110,Credit card,,The customer alleges that unclear credit-card marketing led them to make purchases that did not qualify for the expected no-interest financing.,2026-09-24T08:10:33+00:00
+3111,Money transfer or service,,The customer cannot withdraw GBP funds from their Gemini exchange account because it remains frozen despite contacting support.,2026-09-24T08:11:57+00:00
+3112,Money transfer or service,,"The customer alleges inadequate fraud protection and poor handling of transaction disputes by Cash App, resulting in financial loss.",2026-09-24T08:12:55+00:00
+3113,Mortgage,,The customer reports repeated unwanted emails from Better Mortgage despite asking them to stop and blocking a previous senders.,2026-09-24T08:14:25+00:00
+3114,Money transfer or service,,"The customer cannot verify or trace Western Union transfers because the supplied tracking number cannot be found, despite the transfers showing as picked up.",2026-09-24T08:14:52+00:00
+3115,Credit card,,"The customer disputes approximately $24,000 in scam-related credit-card charges and says the issuer failed to address concerns about the credit limit, balance information and suspected fraud.",2026-09-24T08:15:18+00:00
+3116,Credit card,,The customer says someone else used their Discover credit card and disputes being held responsible for those charges after their fraud claim was rejected.,2026-09-24T08:16:04+00:00
+3117,Mortgage,,"The customer alleges discrimination in mortgage lending for an affordable-home purchase, including denial of financing for eligible homes and unfair pricing.",2026-09-24T08:17:10+00:00
+3118,Money transfer or service,,"The customer alleges inadequate fraud protection and unfair handling of transaction disputes on Cash App, resulting in financial loss.",2026-09-24T08:17:56+00:00
+3119,Credit card,,"The customer disputes a substantial credit-limit reduction following COVID-19 payment relief, which increased their credit utilization despite a history of timely payments.",2026-09-24T08:18:50+00:00
+3120,Credit reporting,,"The customer disputes the reporting of several accounts, alleging unauthorized use and disclosure of their personal credit information.",2026-09-24T08:20:06+00:00
+3121,Bank account or service,,"The customer disputes the rejection of a payroll check after it initially cleared, the resulting amount owed, and closure of their bank account.",2026-09-24T08:21:23+00:00
+3122,None / unclear,,"The customer disputes medical-service charges and asks for an account to be removed, but the narrative does not identify credit reporting or collection activity.",2026-09-24T08:24:30+00:00
+3123,Credit reporting,,The customer reports identity-theft accounts on their credit report and requests that the credit reporting agencies block or remove those entries.,2026-09-24T08:25:06+00:00
+3124,Money transfer or service,,The customer reports fraud-related losses on Cash App and says the company failed to protect the account or resolve the dispute fairly.,2026-09-24T08:25:25+00:00
+3125,Bank account or service,,"The customer disputes payments to a credit-repair seller, including a duplicate payment, and says their bank refused to return the funds.",2026-09-24T08:26:22+00:00
+3126,Consumer loan,,The customer says the final loan terms required a much higher repayment amount than they understood before accepting the loan.,2026-09-24T08:26:55+00:00
+3127,Credit reporting,,The customer disputes allegedly fraudulent accounts and incorrect personal information on their credit report and requests their removal.,2026-09-24T08:27:23+00:00
+3128,None / unclear,,The customer reports losing money through an alleged investment scam. The narrative does not identify a complaint about one of the seven financial products or services being labelled.,2026-09-24T08:28:01+00:00
+3129,Mortgage,,The customer disputes repeated changes to the due date of their second-mortgage payments and the servicer’s handling of their inquiries.,2026-09-24T08:28:23+00:00
+3130,Credit reporting,,The customer disputes allegedly inaccurate or fraudulent credit-report entries and asks the reporting agency to investigate and remove any it cannot verify.,2026-09-24T08:30:37+00:00
+3131,Mortgage,,The customer says Ocwen scheduled a trustee sale while their mortgage loan modification application was still under review.,2026-09-24T08:31:16+00:00
+3132,Credit card,,"The customer says the card’s travel cash-back promotion did not clearly explain that they had to select the travel category before purchasing, and Bank of America refused to award the rewards.",2026-09-24T08:32:08+00:00
+3133,Credit reporting,,The customer disputes an allegedly fraudulent account that remains on their credit report and seeks its removal.,2026-09-24T08:32:30+00:00
+3134,Bank account or service,,The customer felt unsafe and intrusively watched by a bank employee during an ATM withdrawal and wants the bank to address that conduct.,2026-09-24T08:33:07+00:00
+3135,Money transfer or service,,The customer disputes a duplicate $250 money transfer and says Chase and the transfer service did not adequately investigate or recover the funds.,2026-09-24T08:33:30+00:00
+3136,Debt collection,,"The customer says ongoing garnishments reduced the debt to about $270, but the collection agency continues to pursue more than $4,200 and has not provided a clear accounting.",2026-09-24T08:34:04+00:00
+3137,Bank account or service,,The customer reports unauthorized transactions on their bank account and disputes the bank’s refusal to return the money and reverse the resulting fees.,2026-09-24T08:34:27+00:00
+3138,Mortgage,,The customer objects to receiving mortgage refinancing documents for a loan they say they never authorized or agreed to pursue.,2026-09-24T08:34:46+00:00
+3139,Mortgage,,"The customer disputes the servicer’s early property-tax payment, the amount charged to their mortgage account, and the related delinquency and foreclosure notices.",2026-09-24T08:35:15+00:00
+3140,Money transfer or service,,The customer disputes the deactivation of a newly purchased prepaid card and the fee to replace its compromised card number.,2026-09-24T08:37:47+00:00
+3141,Credit reporting,,The customer asks for a repossession entry to be removed from their credit record because it is affecting their ability to obtain a home loan.,2026-09-24T09:11:26+00:00
+3142,None / unclear,,"The customer says a company will take a second monthly payment and has removed the option to suspend the debit, but the underlying account or service is not identified.",2026-09-24T08:40:21+00:00
+3143,Consumer loan,,The customer cannot meet the loan’s current repayment terms after a loss of income and requests further hardship assistance and revised terms.,2026-09-24T08:41:00+00:00
+3144,Bank account or service,,"The customer says banks continue allowing payments while their accounts are overdrawn, then return the payments and charge additional fees.",2026-09-24T08:41:44+00:00
+3145,Bank account or service,,The customer disputes SoFi’s failure to provide a promotional bonus after opening a checking and savings account and completing a qualifying direct deposit.,2026-09-24T08:42:32+00:00
+3146,Bank account or service,,The customer disputes being removed from their business checking account without an explanation and losing access to account funds.,2026-09-24T08:42:54+00:00
+3147,None / unclear,,"The customer reports an impersonation scam and possible exposure of personal information, but does not identify a complaint about one of the seven financial products or services.",2026-09-24T08:43:59+00:00
+3148,Money transfer or service,,The customer reports financial loss and says Cash App failed to address fraud and resolve their dispute.,2026-09-24T08:44:22+00:00
+3149,Mortgage,,"The customer says they reached the threshold for requesting PMI removal, but the mortgage servicer refused unless they paid a fee or met a different threshold.",2026-09-24T08:44:44+00:00
+3150,Credit reporting,,Customer facing issue where their credit on all 3 bureaus got pulled and also did not request any credit to be pulled.,2026-09-24T09:42:38+00:00
+3151,Bank account or service,,"Customer account have been hacked, and this is their 3rd time reaching out to fraud department, they want there to be an proper investigation.",2026-09-24T10:00:29+00:00
+3152,None / unclear,,does not say which type of loan and didnt mention the loan provider company name,2026-09-25T08:33:09+00:00
+3153,Consumer loan,,Truist never provide statements and a tax form,2026-09-25T14:32:19+00:00
+3154,Credit reporting,,customer filed a complaint about an error on the credit report. claims the account is being reported inaccurately on the credit reports and it affects customer credit score,2026-09-25T14:43:50+00:00
+3155,Credit reporting,,"customer dispute collection account on their  credit report that says balance resolved, and the investigation is not resolved.",2026-09-25T14:55:01+00:00
+3156,Bank account or service,,Customer reports unauthorised spending link to their checking account. They think the card details maybe leaked from the bank side,2026-09-25T15:01:33+00:00
+3157,Money transfer or service,,customer claims transfer did not go through.,2026-09-25T17:14:47+00:00
+3158,Bank account or service,,"Customer requesting bank statement, its have not received it yet.",2026-09-25T17:16:50+00:00
+3159,Bank account or service,,"Customer got notified that their bank account will be closing, and do not have any information on why its being closed.",2026-09-25T17:23:19+00:00
+3160,Debt collection,,The customer disputes the amount the debt collector is trying to recover and payments the collector claims were made. They say the collector refuses to provide supporting records.,2026-09-25T17:25:22+00:00
+3161,Money transfer or service,,The customer say Coinbase restricted deposits and withdrawals on their account and did not explain the restriction after an investigation.,2026-09-25T17:27:51+00:00
+3162,Mortgage,,"the customer say their mortgage was not return after a loan modification attempt, they did not received the servicing information that they requested and want foreclosure paused while the issue is being reviewed",2026-09-25T17:31:08+00:00
+3163,Money transfer or service,,"The customer reports a refund dispute through Cash App, difficulty getting support, and account restrictions that prevented them from sending money",2026-09-25T17:33:09+00:00
+3164,Credit reporting,,"no company mentioned, but customer mentions the account supposed to show as bankruptcy and closed.",2026-09-25T17:35:41+00:00
+3165,Consumer loan,,"The customer says they cancelled a furniture purchase, but the loan company still took a payment from their account. They say they did't received the bed",2026-09-25T17:44:18+00:00
+3166,Consumer loan,,"customer got charged 2 times for the loan, they have filled a complaint and want to get refunded in a timely manner",2026-09-25T17:46:50+00:00
+3167,Mortgage,,customer is saying their mortgage company is commiting fraud,2026-09-25T17:49:26+00:00
+3168,Bank account or service,,Customer complaint about not being able to pay their payment and will incur late charges.,2026-09-26T02:39:01+00:00
+3169,Mortgage,,The customer disputes four months of mortgage late fees and says BSI has not explained or rectify the issue despite.,2026-09-26T03:04:35+00:00
+3170,Credit card,,"Customer disputes a large reduction in their credit-card limit, which they say made their existing balance appear over the limit and is affecting their credit.",2026-09-26T03:10:39+00:00
+3171,Money transfer or service,,"customer made a claims of Cash App not protecting their consumers, and did not take any action to resolve any of the issues, any customer account was closed for no reason.",2026-09-26T03:14:25+00:00
+3172,Bank account or service,,The customer says they opened checking and savings accounts to qualify for a bonus but have not received the promised payment.,2026-09-26T03:15:02+00:00
+3173,Credit reporting,,"customer despite that the company did not prove of their verification methods, after sending 4 letters and received no responds. The bureaus have fail to respond within the timeframe.",2026-09-26T03:20:13+00:00
+3174,Credit reporting,,"The customer disputes accounts, collections and inquiries on their TransUnion credit report as identity theft and requests that those entries be blocked.",2026-09-26T03:41:50+00:00
+3175,Debt collection,,The customer says the original card balance was $86. They dispute why the collector now demands $390 after previously stating a $340 balance and receiving a $50 payment.,2026-09-26T04:10:06+00:00
+3176,Money transfer or service,,"customer is missing money from their gemini crypto account, and asking to return the money back",2026-09-26T04:12:18+00:00
+3177,Credit reporting,,The customer says the inaccurate account and late-payment information furnished by Nelnet to credit reporting agencies and wants the entries corrected or removed.,2026-09-26T04:13:02+00:00
+3178,Credit reporting,,The customer disputes items on their credit report that they say resulted from identity theft and does not belong to them.,2026-09-26T04:23:53+00:00
+3179,Credit card,,customer disputes a pending credit card charge that they say should have been removed and want the amount to be released back to their credit,2026-09-26T04:43:21+00:00
+3180,Consumer loan,Debt collection,"The customer disputes the amount and interest charged on a $1,000 loan and says the lender took money from their wages without notice.",2026-09-26T04:45:39+00:00
+3181,None / unclear,,"The customer disputes changes to account access and the required phone or text process, but does not identify the type of financial account involved.",2026-09-26T04:50:27+00:00
+3182,Credit card,,"the customer says they didnt apply for Barclays credit card, and the charges are not made by them.",2026-09-26T04:53:44+00:00
+3183,Consumer loan,,The customer asks whether their subsidized loans qualify for discharge after filing for bankruptcy,2026-09-26T04:57:08+00:00
+3184,Mortgage,,"customer say they were not credited for the mortgage payment, and the payment made are not being processed.",2026-09-26T04:59:56+00:00
+3185,None / unclear,,"The customer says Chase repeatedly failed to process a loan payoff, but the narrative does not identify the type of loan.",2026-09-26T05:00:44+00:00
+3186,Bank account or service,,"The customer reports difficulty reaching Bank of America about an earlier complaint, but does not describe the underlying account or issue.",2026-09-26T05:01:14+00:00
+3187,Credit card,,The customer say the Elan card are being rejected when trying to add it to their phone wallets and tells them to contact the card issuer,2026-09-26T05:03:40+00:00
+3188,Credit card,,"The customer says Discover cancelled their credit card application because they could not complete phone verification, and did not offer another way to verify their identity despite their speech difficulties.",2026-09-26T05:05:41+00:00
+3189,Mortgage,,"The customer says M&T increased their mortgage payment after an escrow adjustment, refused a payment, and cancelled their loan modification application while pursuing foreclosure.",2026-09-26T05:06:29+00:00
+3190,Money transfer or service,,The customer said that a scammer gain access to their USSA account and sent wire transfer without permission.,2026-09-26T05:13:09+00:00
+3191,Credit reporting,,"The customer is reporting the torrid account, saying they did not authorised it. They did not identify a specific incorrect entry.",2026-09-26T05:17:07+00:00
+3192,Debt collection,,The customer is wondering how their payment is being recorded if there is no proof of payment document. The balance is increasing even though they are paying it.,2026-09-26T05:19:10+00:00
+3193,None / unclear,,"The customer reports unprofessional phone service, but does not identify the underlying financial product or issue.",2026-09-26T05:20:03+00:00
+3194,Credit reporting,,"The customer disputes LVNV Funding entries on their credit reports, says they do not recognize the debt, and has been unable to get the entries removed",2026-09-26T05:22:43+00:00
+3195,Credit card,Money transfer or service,"The customer disputes a late-payment entry on their credit report, saying they believed the hotel charge had been refunded and did not know a card balance remained.",2026-09-26T05:23:32+00:00
+3196,Money transfer or service,,The customer says a Cash App card was issued in their name without their request and they cannot get help confirming whether an account was opened or not,2026-09-26T05:24:26+00:00
+3197,Bank account or service,,"Customer says her account was closed without authorisation, and did not receive any warning.",2026-09-26T05:26:00+00:00
+3198,Debt collection,,The customer disputes a debt Glass Mountain Capital contacted them about and objects to the collection letter.,2026-09-26T05:30:55+00:00
+3199,Consumer loan,,The customer says FedLoan Servicing’s callback option repeatedly failed and the phone system disconnected them before they could ask about their student loan.,2026-09-26T05:31:41+00:00
