@@ -74,9 +74,9 @@ Use this file as the working checklist. The detailed procedure remains in [load-
 
 ## 3. Perform a synthetic dry run before the dataset arrives
 
-- [ ] Create a temporary TSV containing 5–10 made-up tickets.
-- [ ] Keep the synthetic file outside the official result folders.
-- [ ] Do not use unfinished golden-set narratives.
+- [x] Create a temporary TSV containing 5–10 made-up tickets (`loadtest/data/dry-run-tickets.tsv`).
+- [x] Keep the synthetic input separate from the official `tickets.tsv` file.
+- [x] Do not use unfinished golden-set narratives.
 - [ ] Start the service with one development model.
 - [ ] From the load-generator machine, run:
 
