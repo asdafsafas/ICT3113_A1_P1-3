@@ -15,7 +15,8 @@ Use this file as the working checklist. The detailed procedure remains in [load-
 - [x] JMeter-to-service-log reconciliation script exists at `scripts/reconcile.py`.
 - [ ] Separate load-generator machine is prepared.
 - [ ] System-under-test address is confirmed.
-- [ ] Synthetic dry run has passed.
+- [x] Local mock dry run has passed with JMeter 5.6.3.
+- [ ] Separate-machine dry run against the real service has passed.
 - [ ] Final dataset has been exported.
 - [ ] Golden set and prediction record have been frozen in Git.
 - [ ] Official load tests have been completed.
@@ -77,7 +78,14 @@ Use this file as the working checklist. The detailed procedure remains in [load-
 - [x] Create a temporary TSV containing 5–10 made-up tickets (`loadtest/data/dry-run-tickets.tsv`).
 - [x] Keep the synthetic input separate from the official `tickets.tsv` file.
 - [x] Do not use unfinished golden-set narratives.
-- [ ] Start the service with one development model.
+- [x] Validate the plan locally against the bundled dry-run mock:
+
+  ```bash
+  python scripts/run_jmeter_dry_run.py --mock
+  ```
+
+- [x] Confirm that the local mock run produces a valid `.jtl`, zero failed samples and complete request-ID reconciliation.
+- [ ] Start the real service with one development model on the system-under-test machine.
 - [ ] From the load-generator machine, run:
 
   ```bash
@@ -85,18 +93,16 @@ Use this file as the working checklist. The detailed procedure remains in [load-
   ```
 
 - [ ] Confirm that the health response identifies the expected model.
-- [ ] Run JMeter at a very low rate for one minute:
+- [ ] Run the same harness from the load-generator machine against the real service:
 
   ```bash
-  jmeter -n -t loadtest/triage.jmx -q loadtest/triage.properties \
-    -Jhost=<SUT-IP> -Jrate=1 -Jduration=1 \
-    -Jdata=<path-to-synthetic.tsv> \
-    -l /tmp/triage-dry-run.jtl
+  python scripts/run_jmeter_dry_run.py \
+    --host <SUT-IP> --port 8000
   ```
 
-- [ ] Confirm that the `.jtl` file contains successful `POST /tickets` samples.
-- [ ] Confirm that the response categories are valid.
-- [ ] Confirm that request IDs appear in the `.jtl` file.
+- [x] Confirm that the local `.jtl` file contains successful `POST /tickets` samples.
+- [x] Confirm that the local response categories are valid.
+- [x] Confirm that request IDs appear in the local `.jtl` file.
 - [ ] Confirm that matching request IDs appear in the service log.
 - [ ] Run the reconciliation script against the dry-run file.
 - [ ] Fix all connectivity, CSV/TSV, JSON or assertion problems before official testing.

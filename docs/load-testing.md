@@ -34,6 +34,26 @@ Find the SUT's IP address: `ipconfig` (Windows) or `ipconfig getifaddr en0` (Mac
 
 For a dry run **before the freeze**, use a file of made-up tickets in the same format (`<row>\t<narrative as a JSON string>`), passed with `-Jdata=<path>`.
 
+### Validate the JMeter setup before the real service is available
+
+The repository includes synthetic input and a dry-run-only mock service. This verifies that JMeter can parse the open-loop plan, read the TSV safely, write the required JTL fields and reconcile request IDs. Its timings are not assignment evidence.
+
+```bash
+python scripts/run_jmeter_dry_run.py --mock
+```
+
+If JMeter is not on `PATH`, either set `JMETER_BIN` or pass its executable explicitly:
+
+```bash
+python scripts/run_jmeter_dry_run.py --mock --jmeter /path/to/jmeter
+```
+
+Dry-run output is written below `results/dry-run/` and ignored by Git. After the real service is reachable from the separate load-generator machine, repeat without `--mock`:
+
+```bash
+python scripts/run_jmeter_dry_run.py --host <SUT-IP> --port 8000
+```
+
 ## 3. JMeter settings
 
 Set on the command line with `-J<name>=<value>`:
