@@ -47,6 +47,7 @@ Use this file as the working checklist. The detailed procedure remains in [load-
 - [ ] Obtain the search-request rate for mixed-load testing, if required.
 - [ ] Obtain the response-time, throughput and error-rate requirements.
 - [ ] Agree on the duration of each official run.
+- [ ] Agree on a drain period long enough for in-flight CPU inference to finish.
 
 ### From the model and freeze owners
 
@@ -171,6 +172,7 @@ Fill this in before running tests.
 - [ ] Use the same official system-under-test machine for every candidate.
 - [ ] Use the same prompt, service version, dataset and measurement method for every candidate.
 - [ ] Decide whether the first 60 seconds will be excluded from analysis.
+- [ ] Use the same drain period for every comparable run and document it.
 - [ ] If using `--skip-s 60`, use it consistently and disclose it on the slide.
 
 ## 7. Run each official load-test configuration

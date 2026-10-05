@@ -98,6 +98,7 @@ def main():
     parser.add_argument("--port", type=int, default=18000)
     parser.add_argument("--rate", type=float, default=12, help="arrivals per minute")
     parser.add_argument("--duration", type=float, default=1, help="duration in minutes")
+    parser.add_argument("--drain", type=float, default=0.05, help="minutes allowed for in-flight requests to finish")
     parser.add_argument("--data", default=str(DEFAULT_DATA))
     parser.add_argument("--jmeter", help="JMeter executable; otherwise JMETER_BIN or PATH is used")
     parser.add_argument("--output-dir", help="must be empty; defaults below results/dry-run")
@@ -107,8 +108,8 @@ def main():
     data = Path(args.data).expanduser().resolve()
     if not data.exists():
         raise SystemExit(f"Dry-run input does not exist: {data}")
-    if args.rate <= 0 or args.duration <= 0:
-        raise SystemExit("--rate and --duration must be greater than zero")
+    if args.rate <= 0 or args.duration <= 0 or args.drain <= 0:
+        raise SystemExit("--rate, --duration and --drain must be greater than zero")
 
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     output = Path(args.output_dir).expanduser().resolve() if args.output_dir else REPO / "results" / "dry-run" / timestamp
@@ -150,8 +151,8 @@ def main():
             f"-Jrate={args.rate}",
             f"-Jrate_end={args.rate}",
             f"-Jduration={args.duration}",
+            f"-Jdrain={args.drain}",
             "-Jsearch_rate=0",
-            "-Jjmeterengine.force.system.exit=true",
             f"-Jdata={data}",
             "-l",
             str(jtl),

@@ -64,6 +64,7 @@ Set on the command line with `-J<name>=<value>`:
 | `rate` | POST /tickets arrivals per minute | 6 |
 | `rate_end` | Arrivals per minute at the end of the run (for a ramp); defaults to `rate` | = `rate` |
 | `duration` | Minutes of arrivals | 10 |
+| `drain` | Minutes after arrivals stop for in-flight requests to finish | 5 |
 | `search_rate` | GET /search arrivals per minute (mixed load) | 0 (off) |
 | `timeout_ms` | A request slower than this counts as an error | 300000 (5 min) |
 | `data` | Ticket file, relative to `loadtest/` | `data/tickets.tsv` |
@@ -104,7 +105,7 @@ Repeat for every (model, arrival rate) configuration, **three times**.
      -l results/load/<model>/<rate>rpm_run<N>.jtl
    ```
    Naming: `<model>` is the tag with `:` replaced by `-` (e.g. `qwen2.5-1.5b`). Mixed-load runs: `<rate>rpm_s<search_rate>_run<N>.jtl`.
-6. Wait for `... end of run`. In-flight requests finish before JMeter exits.
+6. Wait for `... end of run`. The configured drain period allows slow in-flight requests to finish before JMeter exits. Use the same drain value for every comparable run and record it in the playbook.
 
 **After the run:**
 
