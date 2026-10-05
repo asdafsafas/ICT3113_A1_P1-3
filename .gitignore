@@ -16,3 +16,4 @@ Thumbs.db
 
 # Non-reportable local JMeter dry-run output
 results/dry-run/
+/jmeter.log

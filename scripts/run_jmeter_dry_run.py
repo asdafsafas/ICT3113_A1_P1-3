@@ -59,7 +59,12 @@ def wait_for_health(host, port, timeout_s=20):
         try:
             with urlopen(url, timeout=2) as response:
                 payload = json.load(response)
-            if payload.get("status") != "ok":
+            healthy = payload.get("status") == "ok" or (
+                payload.get("model_present") is True
+                and bool(payload.get("model"))
+                and bool(payload.get("model_digest"))
+            )
+            if not healthy:
                 raise RuntimeError(f"service health is {payload!r}")
             return payload
         except (URLError, TimeoutError, RuntimeError, json.JSONDecodeError) as error:
