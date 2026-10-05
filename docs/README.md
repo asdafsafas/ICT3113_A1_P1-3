@@ -8,6 +8,7 @@
 | [golden-set.md](golden-set.md) | From label sheets to agreement statistic, resolutions and the frozen golden set | Zong Han |
 | [models.md](models.md) | Choosing, pinning and checking candidate models; prompt rules | Ridwan |
 | [load-testing.md](load-testing.md) | Two-machine JMeter setup, load-test playbook, stress test, run log, test environment | Tze Han |
+| [person3-jmeter-todo.md](person3-jmeter-todo.md) | Checkbox-based execution plan for Person 3's JMeter, evidence and slide work | Tze Han |
 | [accuracy-testing.md](accuracy-testing.md) | Accuracy test playbook and reading the report | Kannan |
 
 Planning documents (drafts to fill in) live in [`planning/`](../planning/):
