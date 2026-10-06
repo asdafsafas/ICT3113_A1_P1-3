@@ -45,6 +45,7 @@ Do not start official runs until every item below is confirmed.
 - [ ] Classification prompt and generation settings are committed.
 - [ ] Freeze commit or tag is recorded: `____________________________`.
 - [ ] `OLLAMA_NUM_PARALLEL=1` is confirmed inside the running container.
+- [ ] Every measured run will restart and warm Ollama using the procedure in Section 6.
 - [ ] Both Macs have pulled the same frozen commit.
 - [ ] Nobody will run an accuracy test against the service during JMeter testing.
 
@@ -164,12 +165,16 @@ Confirm `ollama ps` shows the intended model and `100% CPU`.
 
 ## 6. Reset before every measured run
 
-Resetting before every run gives each run the same empty starting database. It does not delete the downloaded Ollama models.
+Restart both runtime containers before **every** measured run. This gives each of the three repetitions the same empty database, freshly restarted Ollama process and invented warm-up request. Restarting the Ollama container does not delete the downloaded models because they are stored in `ollama-models`.
+
+The JMeter CSV reader starts at the first row on each run. Keeping the same ticket order is intentional so the repeated runs have the same workload; restarting Ollama prevents a later run from inheriting any in-memory model or prompt-prefix state from the earlier run.
 
 On the system-under-test Mac:
 
 ```bash
 docker compose stop triage
+docker compose restart ollama
+until docker compose exec -T ollama ollama list >/dev/null 2>&1; do sleep 2; done
 docker compose rm -f triage
 docker volume rm triage_triage-data
 docker compose up -d triage
@@ -184,7 +189,17 @@ curl -X POST http://localhost:8000/tickets \
   -d '{"narrative":"Synthetic warm-up ticket. Do not include this request in measured results."}'
 ```
 
-The warm-up remains in the database. If the team requires the measured database to start with exactly zero rows, reset once more after warming up. Ollama stays loaded because only the triage container and data volume are reset.
+After the warm-up completes, clear its database row while leaving the warmed Ollama process running:
+
+```bash
+docker compose stop triage
+docker compose rm -f triage
+docker volume rm triage_triage-data
+docker compose up -d triage
+curl http://localhost:8000/health
+```
+
+Do not send another request before starting JMeter. Repeat this complete restart, warm-up and database-clear sequence before run 1, run 2 and run 3—not only when changing models or configurations.
 
 ## 7. Start resource monitoring
 

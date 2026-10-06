@@ -10,7 +10,7 @@ The brief: send **every golden-set ticket through `POST /tickets`** for each can
 
 On the SUT machine ([setup.md](setup.md)):
 
-1. Set `MODEL=<tag>` in `.env`, then start fresh:
+1. Set `MODEL=<tag>` in `.env`, then start fresh. Do this before every full accuracy run or restarted attempt, even when the model is unchanged:
    ```bash
    docker compose down
    docker volume rm triage_triage-data
@@ -18,7 +18,19 @@ On the SUT machine ([setup.md](setup.md)):
    python scripts/pull_models.py --check
    curl http://localhost:8000/health      # "status": "ok", correct model and digest
    ```
-2. Run the test:
+2. Warm Ollama with invented text, then remove the warm-up row without restarting Ollama:
+   ```bash
+   curl -X POST http://localhost:8000/tickets \
+     -H "Content-Type: application/json" \
+     -d '{"narrative":"Synthetic accuracy warm-up ticket. It is not part of the golden set."}'
+   docker compose stop triage
+   docker compose rm -f triage
+   docker volume rm triage_triage-data
+   docker compose up -d triage
+   curl http://localhost:8000/health
+   ```
+   This gives every model a freshly restarted, equally warmed Ollama process and an empty measured database. Do not use a golden-set ticket for warm-up.
+3. Run the test:
    ```bash
    python scripts/accuracy_test.py
    ```
@@ -27,8 +39,8 @@ On the SUT machine ([setup.md](setup.md)):
    - `results/accuracy/<timestamp>_<model>.md`: overall accuracy, per-category accuracy, confusion matrix, most common mistakes
 
    If it stops part-way (e.g. laptop sleeps), continue with `--resume results/accuracy/<that file>.csv`.
-3. Don't run load tests on the SUT at the same time.
-4. Commit the results and `logs/service/`.
+4. Don't run load tests on the SUT at the same time.
+5. Commit the results and `logs/service/`.
 
 Repeat for every candidate model. The prompt, generation settings and golden set must be identical across models; the `startup` line in the service log records them.
 

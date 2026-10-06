@@ -187,11 +187,12 @@ Repeat this section for every model and arrival rate.
 - [ ] Connect both laptops to power.
 - [ ] Activate the intended Ollama model.
 - [ ] Record the exact model tag and digest.
-- [ ] Stop the old containers.
+- [ ] Restart Ollama, even when repeating the same model and configuration.
 - [ ] Clear the database according to the documented procedure.
 - [ ] Start the baseline service.
 - [ ] Check `GET /health` and confirm the correct model.
 - [ ] Send one made-up warm-up ticket.
+- [ ] Clear the warm-up row by recreating only triage and its data volume; leave Ollama warmed.
 - [ ] Start container CPU and memory monitoring.
 - [ ] Confirm nobody else is using the service.
 
@@ -204,6 +205,7 @@ Repeat this section for every model and arrival rate.
 - [ ] Matching container-stat files were retained for all three runs.
 - [ ] No GUI result listeners were enabled during measurement.
 - [ ] No accuracy test or other workload ran at the same time.
+- [ ] The complete restart/warm-up/reset sequence was repeated before each of the three runs.
 
 Command template:
 
