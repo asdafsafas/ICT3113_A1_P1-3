@@ -49,7 +49,7 @@ Check it works:
 
 ```bash
 curl http://localhost:8000/health
-# {"status":"ok","model":"qwen2.5:1.5b","model_digest":"...", ...}
+# {"status":"ok","model":"qwen2.5:0.5b","model_digest":"...", ...}
 ```
 
 `"status": "model_missing"` means the model in `.env` hasn't been pulled yet. Run `pull_models.py` or check the spelling of the tag.
@@ -68,7 +68,7 @@ While a model is loaded (just after a request):
 ```bash
 docker compose exec ollama ollama ps
 # NAME           ID              SIZE      PROCESSOR    ...
-# qwen2.5:1.5b   <id>            ...       100% CPU     ...
+# qwen2.5:0.5b   <id>            ...       100% CPU     ...
 ```
 
 The PROCESSOR column must say **100% CPU**. Screenshot this for the test environment slide.

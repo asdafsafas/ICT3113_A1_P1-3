@@ -1,6 +1,6 @@
 # Candidate models (Step 4, Slide 5)
 
-**Owner:** Ridwan
+**Owner:** Tze Han
 
 ## What the brief requires
 
@@ -10,14 +10,23 @@
 - **Justified:** why these models, and what trade-off they show (small = fast but less accurate; large = more accurate, slower, lower throughput).
 - Licences acknowledged on Slide 12.
 
-`models/candidates.txt` currently lists two **placeholders** (`qwen2.5:0.5b`, `qwen2.5:1.5b`) used to test the scaffold. Replace them with the team's choice.
+## Selected candidates
+
+| Ollama tag | Size class | Quantisation | Purpose in the comparison |
+|---|---:|---|---|
+| `qwen2.5:0.5b` | 0.49B | Q4_K_M | Smallest and fastest Qwen baseline |
+| `llama3.2:1b-instruct-q4_K_M` | 1.24B | Q4_K_M | A second family near the small-model class |
+| `qwen2.5:3b` | 3.1B | Q4_K_M | Middle point on the Qwen size curve |
+| `qwen2.5:7b` | 7.6B | Q4_K_M | Largest candidate that fits the SUT memory budget |
+
+The three Qwen sizes make the speed/accuracy/throughput effect of parameter count visible within one family. The similarly small Llama candidate shows whether model family matters as well as size. All four use Q4_K_M, avoiding quantisation as an extra uncontrolled variable.
 
 ## Choosing
 
 Things worth weighing (and writing down as the justification):
 
 - **Size classes:** at least one small model the CPU handles quickly, and at least one larger model that should be more accurate.
-- **Same family at different sizes** (e.g. one model family at 1.5B / 3B / 7B) isolates the effect of size. **Different families at the same size** shows whether training matters more than size. Either is defensible; say which you chose and why.
+- **Same family at different sizes** (Qwen 0.5B / 3B / 7B) isolates the effect of size. **Different families near the small-model class** (Qwen and Llama) shows whether training matters as well as size.
 - **Memory:** check the model fits in the SUT machine's Docker memory limit (see [setup.md](setup.md)).
 - **Quantisation:** Ollama's default tags are usually 4-bit (`Q4_K_M`). Keep it the same across candidates, or justify the difference.
 - **Instruction-tuned** models follow the "reply with one category" instruction much better than base models.
@@ -26,8 +35,7 @@ Things worth weighing (and writing down as the justification):
 ## Pinning
 
 ```bash
-# 1. list the chosen tags in models/candidates.txt, one per line
-# 2. with the stack running:
+# With the stack running on the system-under-test machine:
 python scripts/pull_models.py
 ```
 
