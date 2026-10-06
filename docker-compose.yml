@@ -4,7 +4,7 @@ name: triage
 
 services:
   ollama:
-    image: ${OLLAMA_IMAGE:-ollama/ollama:0.34.3}
+    image: ${OLLAMA_IMAGE:-ollama/ollama:0.35.1}
     # No GPU is requested here, so Ollama runs on CPU only (a client requirement).
     # Do not add `gpus:` or `deploy.resources.reservations.devices`.
     environment:

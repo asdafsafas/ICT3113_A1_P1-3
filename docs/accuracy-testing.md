@@ -1,6 +1,6 @@
 # Accuracy testing (Step 5, Slide 10)
 
-**Owner:** Kannan
+**Owner:** Zong Han
 
 The brief: send **every golden-set ticket through `POST /tickets`** for each candidate model, and report overall and per-category accuracy against the golden labels, with a confusion matrix.
 

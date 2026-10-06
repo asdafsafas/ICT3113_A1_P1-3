@@ -6,13 +6,14 @@
 | [setup.md](setup.md) | Installing Docker, running the service and Ollama (Windows and Mac), CPU-only check, troubleshooting | Zong Han |
 | [architecture.md](architecture.md) | Components, endpoints, baseline design, request log format | Zong Han |
 | [golden-set.md](golden-set.md) | From label sheets to agreement statistic, resolutions and the frozen golden set | Zong Han |
-| [models.md](models.md) | Choosing, pinning and checking candidate models; prompt rules | Ridwan |
-| [load-testing.md](load-testing.md) | Two-machine JMeter setup, load-test playbook, stress test, run log, test environment | Tze Han |
-| [person3-jmeter-todo.md](person3-jmeter-todo.md) | Checkbox-based execution plan for Person 3's JMeter, evidence and slide work | Tze Han |
-| [accuracy-testing.md](accuracy-testing.md) | Accuracy test playbook and reading the report | Kannan |
+| [models.md](models.md) | Choosing, pinning and checking candidate models; prompt rules | Tze Han |
+| [load-testing.md](load-testing.md) | Two-machine JMeter setup, load-test playbook, stress test, run log, test environment | Ridwan |
+| [person3-jmeter-todo.md](person3-jmeter-todo.md) | Checkbox-based execution plan for Person 3's JMeter, evidence and slide work | Ridwan |
+| [ridwan-branch-pr-plan.md](ridwan-branch-pr-plan.md) | Phased checklist for aligning, validating and merging Ridwan's branch | Ridwan |
+| [accuracy-testing.md](accuracy-testing.md) | Accuracy test playbook and reading the report | Zong Han |
 
-Planning documents (drafts to fill in) live in [`planning/`](../planning/):
-[workload model](../planning/workload-model.md) (Natalie), [requirements](../planning/requirements.md) (Natalie), [prediction record](../planning/prediction-record.md) (Ridwan compiles; frozen before benchmarks).
+Planning documents live in [`planning/`](../planning/):
+[workload model](../planning/workload-model.md) and [requirements](../planning/requirements.md) (Zong Han), plus the team [prediction record](../planning/prediction-record.md). Freeze all three before official benchmarks.
 
 ## Repository layout
 

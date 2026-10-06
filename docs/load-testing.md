@@ -1,6 +1,6 @@
 # Load and stress testing (Step 5, Slides 7–9)
 
-**Owner:** Tze Han
+**Owner:** Ridwan
 
 The rules the brief sets, which this setup already follows:
 
@@ -26,9 +26,12 @@ Find the SUT's IP address: `ipconfig` (Windows) or `ipconfig getifaddr en0` (Mac
 1. Install **Java 17+** ([Adoptium](https://adoptium.net)). Check with `java -version`.
 2. Download **Apache JMeter 5.6.3** (binaries zip) from [jmeter.apache.org](https://jmeter.apache.org/download_jmeter.cgi) and unzip it. The command is `apache-jmeter-5.6.3/bin/jmeter` (Mac) or `jmeter.bat` (Windows). The Open Model Thread Group needs JMeter **5.5 or newer**.
 3. Clone this repo on the LG too (it needs `loadtest/` and writes to `results/load/`).
-4. Get the ticket data file (Kannan exports it once, after the freeze, and commits it):
+4. Convert the committed 800-ticket non-golden dataset into the TSV used by JMeter:
    ```bash
-   python scripts/export_loadtest_data.py --source <course CSV> --rows 3000-3999
+   python scripts/export_loadtest_data.py \
+     --source loadtest/data/load-test-tickets.csv \
+     --rows 3200-3999 \
+     --out loadtest/data/tickets.tsv
    ```
    This writes `loadtest/data/tickets.tsv` (one ticket per line) and prints the ticket length distribution, which also feeds the workload model.
 
@@ -104,7 +107,7 @@ Repeat for every (model, arrival rate) configuration, **three times**.
      -Jhost=<SUT-IP> -Jrate=<rate> -Jduration=10 [-Jsearch_rate=<n>] \
      -l results/load/<model>/<rate>rpm_run<N>.jtl
    ```
-   Naming: `<model>` is the tag with `:` replaced by `-` (e.g. `qwen2.5-1.5b`). Mixed-load runs: `<rate>rpm_s<search_rate>_run<N>.jtl`.
+   Naming: `<model>` is the tag with `:` replaced by `-` (e.g. `qwen2.5-0.5b`). Mixed-load runs: `<rate>rpm_s<search_rate>_run<N>.jtl`.
 6. Wait for `... end of run`. The configured drain period allows slow in-flight requests to finish before JMeter exits. Use the same drain value for every comparable run and record it in the playbook.
 
 **After the run:**

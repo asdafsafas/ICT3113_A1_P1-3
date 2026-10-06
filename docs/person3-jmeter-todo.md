@@ -1,10 +1,10 @@
 # Person 3 JMeter Load and Stress Testing To Do
 
-**Owner:** Tze Han  
-**Due:** 23:59 Friday 9 October 2026  
+**Owner:** Ridwan
+**Due:** 23:59 Friday 9 October 2026
 **Assignment output:** Slides 7, 8 and 9, raw JMeter `.jtl` files, reconciled service logs, and stress-test evidence
 
-Use this file as the working checklist. The detailed procedure remains in [load-testing.md](load-testing.md).
+Use this file as the working checklist. The exact official commands and frozen matrix are in [actual-jmeter-test.md](actual-jmeter-test.md); supporting explanations remain in [load-testing.md](load-testing.md).
 
 ## Current status
 
@@ -16,7 +16,7 @@ Use this file as the working checklist. The detailed procedure remains in [load-
 - [ ] Separate load-generator machine is prepared.
 - [ ] System-under-test address is confirmed.
 - [x] Local mock dry run has passed with JMeter 5.6.3.
-- [ ] Separate-machine dry run against the real service has passed.
+- [x] Separate-machine dry run against the real service has passed.
 - [ ] Final dataset has been exported.
 - [ ] Golden set and prediction record have been frozen in Git.
 - [ ] Official load tests have been completed.
@@ -109,21 +109,22 @@ Use this file as the working checklist. The detailed procedure remains in [load-
 - [ ] Fix all connectivity, CSV/TSV, JSON or assertion problems before official testing.
 - [ ] Delete or clearly retain the dry-run output as non-reportable evidence.
 
-## 4. Prepare the final input when the dataset arrives
+## 4. Prepare the final 800-ticket input
 
-- [ ] Confirm that the source file is the course-provided CSV or XLSX.
-- [ ] Confirm the team row allocation is 3000–3999.
+- [x] Confirm that `loadtest/data/load-test-tickets.csv` contains team rows 3200–3999.
+- [x] Confirm that the golden rows 3000–3199 are not used as JMeter load traffic.
 - [ ] Export the JMeter input:
 
   ```bash
   python scripts/export_loadtest_data.py \
-    --source <course-file.csv-or-xlsx> \
-    --rows 3000-3999
+    --source loadtest/data/load-test-tickets.csv \
+    --rows 3200-3999 \
+    --out loadtest/data/tickets.tsv
   ```
 
 - [ ] Confirm that `loadtest/data/tickets.tsv` was created.
-- [ ] Confirm that exactly 1,000 allocated tickets were exported, or document why not.
-- [ ] Record the printed ticket-length distribution for the workload model.
+- [ ] Confirm that exactly 800 non-golden tickets were exported.
+- [ ] Record the printed ticket-length distribution for the test-environment notes.
 - [ ] Inspect several short, median-length and long tickets.
 - [ ] Check that quotation marks, commas, tabs, newlines and Unicode characters are safely encoded.
 - [ ] Run another five-request validation using the real exported input.
@@ -161,19 +162,19 @@ Use this file as the working checklist. The detailed procedure remains in [load-
 
 Fill this in before running tests.
 
-| Model tag | Model digest confirmed | Arrival rates per minute | Search rate per minute | Duration per run | Runs |
+| Model tag | Model digest confirmed | POST rates per minute | Matching search rates per minute | Duration per run | Runs per configuration |
 |---|---|---|---|---|---|
-| | [ ] | | | | 3 |
-| | [ ] | | | | 3 |
-| | [ ] | | | | 3 |
+| `qwen2.5:0.5b` | [ ] | 1.45, 1.73, 3.5 | 2.9, 3.5, 7 | 10 min | 3 |
+| `llama3.2:1b-instruct-q4_K_M` | [ ] | 1.45, 1.73, 3.5 | 2.9, 3.5, 7 | 10 min | 3 |
+| `qwen2.5:3b` | [ ] | 1.45, 1.73, 3.5 | 2.9, 3.5, 7 | 10 min | 3 |
+| `qwen2.5:7b` | [ ] | 1.45, 1.73, 3.5 | 2.9, 3.5, 7 | 10 min | 3 |
 
 - [ ] Include at least the workload-derived average and peak rates.
 - [ ] Include another rate if needed to expose capacity behaviour.
 - [ ] Use the same official system-under-test machine for every candidate.
 - [ ] Use the same prompt, service version, dataset and measurement method for every candidate.
-- [ ] Decide whether the first 60 seconds will be excluded from analysis.
+- [x] Include the complete measured 10-minute window; do not choose an exclusion after seeing results.
 - [ ] Use the same drain period for every comparable run and document it.
-- [ ] If using `--skip-s 60`, use it consistently and disclose it on the slide.
 
 ## 7. Run each official load-test configuration
 
@@ -208,8 +209,10 @@ Command template:
 
 ```bash
 jmeter -n -t loadtest/triage.jmx -q loadtest/triage.properties \
-  -Jhost=<SUT-IP> -Jrate=<rate> -Jduration=<minutes> \
-  -Jsearch_rate=<search-rate> \
+  -Jhost=<SUT-IP> -Jport=8000 \
+  -Jrate=<rate> -Jrate_end=<rate> -Jsearch_rate=<search-rate> \
+  -Jduration=10 -Jdrain=5 -Jtimeout_ms=600000 \
+  -Jdata=<absolute-path-to-loadtest/data/tickets.tsv> \
   -l results/load/<model>/<rate>rpm_run<N>.jtl
 ```
 
@@ -239,7 +242,8 @@ python scripts/reconcile.py results/load/<model>/<rate>rpm_run<N>.jtl
 
   ```bash
   jmeter -n -t loadtest/triage.jmx -q loadtest/triage.properties \
-    -Jhost=<SUT-IP> -Jrate=1 -Jrate_end=<high-rate> -Jduration=30 \
+    -Jhost=<SUT-IP> -Jrate=3.5 -Jrate_end=12 -Jsearch_rate=7 \
+    -Jduration=30 -Jdrain=10 -Jtimeout_ms=600000 \
     -l results/load/<model>/stress_ramp_run1.jtl
   ```
 
@@ -257,7 +261,6 @@ python scripts/reconcile.py results/load/<model>/<rate>rpm_run<N>.jtl
 
   ```bash
   python scripts/summarise_jtl.py results/load \
-    --skip-s 60 \
     --csv results/load/summary.csv
   ```
 
