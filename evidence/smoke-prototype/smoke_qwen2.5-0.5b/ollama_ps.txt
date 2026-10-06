@@ -1,0 +1,2 @@
+NAME            ID              SIZE      PROCESSOR    CONTEXT    UNTIL             
+qwen2.5:0.5b    a8b0c5157701    628 MB    100% CPU     4096       24 hours from now    

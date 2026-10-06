@@ -1,0 +1,63 @@
+{
+  "run_tag": "smoke-20261006T072321Z",
+  "golden_p50_chars": 811,
+  "golden_p95_chars": 1709,
+  "models": [
+    {
+      "tag": "qwen2.5:0.5b",
+      "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+      "a_ms": 72.40566256602307,
+      "b_ms_per_char": 0.371423499716952,
+      "r2": 0.9898339763361774,
+      "ms_per_prompt_token": 1.7900198468034325,
+      "pred_ms_golden_p50": 373.6301208364711,
+      "pred_ms_golden_p95": 707.168423582294,
+      "ollama_cpu_median": 979.71,
+      "ollama_cpu_peak": 979.71,
+      "triage_cpu_peak": 0.49,
+      "ollama_mem": "694.8MiB / 9.701GiB"
+    },
+    {
+      "tag": "llama3.2:1b-instruct-q4_K_M",
+      "digest": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02",
+      "a_ms": 156.7828944287631,
+      "b_ms_per_char": 0.366114738532232,
+      "r2": 0.9500197923862531,
+      "ms_per_prompt_token": 1.8429488717805695,
+      "pred_ms_golden_p50": 453.7019473784032,
+      "pred_ms_golden_p95": 782.4729825803474,
+      "ollama_cpu_median": 1016.62,
+      "ollama_cpu_peak": 1016.62,
+      "triage_cpu_peak": 0.57,
+      "ollama_mem": "1.291GiB / 9.701GiB"
+    },
+    {
+      "tag": "qwen2.5:3b",
+      "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+      "a_ms": 274.9498215531212,
+      "b_ms_per_char": 1.0453054292702304,
+      "r2": 0.9918566204027155,
+      "ms_per_prompt_token": 4.986012219404467,
+      "pred_ms_golden_p50": 1122.692524691278,
+      "pred_ms_golden_p95": 2061.376800175945,
+      "ollama_cpu_median": 962.36,
+      "ollama_cpu_peak": 1030.89,
+      "triage_cpu_peak": 1.18,
+      "ollama_mem": "2.363GiB / 9.701GiB"
+    },
+    {
+      "tag": "qwen2.5:7b",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "a_ms": 621.0928966589631,
+      "b_ms_per_char": 2.2038129004398,
+      "r2": 0.995369424185748,
+      "ms_per_prompt_token": 10.323957556378543,
+      "pred_ms_golden_p50": 2408.385158915641,
+      "pred_ms_golden_p95": 4387.409143510582,
+      "ollama_cpu_median": 1000.54,
+      "ollama_cpu_peak": 1009.73,
+      "triage_cpu_peak": 0.58,
+      "ollama_mem": "4.819GiB / 9.701GiB"
+    }
+  ]
+}

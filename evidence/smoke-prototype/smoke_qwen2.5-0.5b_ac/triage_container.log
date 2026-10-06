@@ -1,0 +1,9 @@
+triage  | 2026-10-05T10:26:40.100727208Z INFO:     Started server process [1]
+triage  | 2026-10-05T10:26:40.100743208Z INFO:     Waiting for application startup.
+triage  | 2026-10-05T10:26:40.108571250Z INFO:     Application startup complete.
+triage  | 2026-10-05T10:26:40.108957375Z INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+triage  | 2026-10-05T10:26:40.831476500Z INFO:     192.168.65.1:37499 - "GET /health HTTP/1.1" 200 OK
+triage  | 2026-10-05T10:26:40.932972459Z INFO:     192.168.65.1:25169 - "GET /health HTTP/1.1" 200 OK
+triage  | 2026-10-05T10:26:41.513538376Z INFO:     192.168.65.1:17198 - "POST /tickets HTTP/1.1" 200 OK
+triage  | 2026-10-05T10:26:41.528819209Z INFO:     192.168.65.1:50300 - "GET /search?q=wire HTTP/1.1" 200 OK
+triage  | 2026-10-05T10:26:41.539955542Z INFO:     192.168.65.1:63035 - "GET /stats HTTP/1.1" 200 OK

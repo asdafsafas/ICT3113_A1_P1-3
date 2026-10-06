@@ -1,0 +1,96 @@
+{
+    "models": [
+        {
+            "name": "qwen2.5:7b",
+            "model": "qwen2.5:7b",
+            "modified_at": "2026-10-05T10:22:59.176771009Z",
+            "size": 4683087332,
+            "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+            "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen2",
+                "families": [
+                    "qwen2"
+                ],
+                "parameter_size": "7.6B",
+                "quantization_level": "Q4_K_M",
+                "context_length": 32768,
+                "embedding_length": 3584
+            },
+            "capabilities": [
+                "completion",
+                "tools"
+            ]
+        },
+        {
+            "name": "qwen2.5:3b",
+            "model": "qwen2.5:3b",
+            "modified_at": "2026-10-05T10:22:58.082771009Z",
+            "size": 1929912432,
+            "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+            "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen2",
+                "families": [
+                    "qwen2"
+                ],
+                "parameter_size": "3.1B",
+                "quantization_level": "Q4_K_M",
+                "context_length": 32768,
+                "embedding_length": 2048
+            },
+            "capabilities": [
+                "completion",
+                "tools"
+            ]
+        },
+        {
+            "name": "llama3.2:1b-instruct-q4_K_M",
+            "model": "llama3.2:1b-instruct-q4_K_M",
+            "modified_at": "2026-10-05T10:22:56.989771008Z",
+            "size": 807709787,
+            "digest": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02",
+            "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "llama",
+                "families": [
+                    "llama"
+                ],
+                "parameter_size": "1.2B",
+                "quantization_level": "Q4_K_M",
+                "context_length": 131072,
+                "embedding_length": 2048
+            },
+            "capabilities": [
+                "completion",
+                "tools"
+            ]
+        },
+        {
+            "name": "qwen2.5:0.5b",
+            "model": "qwen2.5:0.5b",
+            "modified_at": "2026-10-05T10:22:32.766841011Z",
+            "size": 397821319,
+            "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+            "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen2",
+                "families": [
+                    "qwen2"
+                ],
+                "parameter_size": "494.03M",
+                "quantization_level": "Q4_K_M",
+                "context_length": 32768,
+                "embedding_length": 896
+            },
+            "capabilities": [
+                "completion",
+                "tools"
+            ]
+        }
+    ]
+}
