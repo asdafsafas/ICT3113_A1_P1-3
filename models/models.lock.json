@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-10-06T07:17:07+00:00",
+  "ollama_version": "0.35.1",
+  "ollama_image": {
+    "tag": "ollama/ollama:0.35.1",
+    "repo_digests": [
+      "ollama/ollama@sha256:292ee7945dfc3d5840a181f3ab86fedb1e66703e02c8af98b50f4da56b7e278c"
+    ]
+  },
+  "models": [
+    {
+      "tag": "qwen2.5:0.5b",
+      "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+      "size_bytes": 397821319,
+      "family": "qwen2",
+      "parameter_size": "494.03M",
+      "quantization": "Q4_K_M",
+      "license_first_line": "Apache License"
+    },
+    {
+      "tag": "llama3.2:1b-instruct-q4_K_M",
+      "digest": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02",
+      "size_bytes": 807709787,
+      "family": "llama",
+      "parameter_size": "1.2B",
+      "quantization": "Q4_K_M",
+      "license_first_line": "LLAMA 3.2 COMMUNITY LICENSE AGREEMENT"
+    },
+    {
+      "tag": "qwen2.5:3b",
+      "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+      "size_bytes": 1929912432,
+      "family": "qwen2",
+      "parameter_size": "3.1B",
+      "quantization": "Q4_K_M",
+      "license_first_line": "Qwen RESEARCH LICENSE AGREEMENT"
+    },
+    {
+      "tag": "qwen2.5:7b",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "size_bytes": 4683087332,
+      "family": "qwen2",
+      "parameter_size": "7.6B",
+      "quantization": "Q4_K_M",
+      "license_first_line": "Apache License"
+    }
+  ]
+}

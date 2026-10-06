@@ -1,0 +1,232 @@
+ollama  | 2026-10-05T10:25:43.441426668Z [GIN] 2026/10/05 - 10:25:43 | 200 |         126µs |       127.0.0.1 | HEAD     "/"
+ollama  | 2026-10-05T10:25:43.444479293Z [GIN] 2026/10/05 - 10:25:43 | 200 |      2.8345ms |       127.0.0.1 | GET      "/api/tags"
+ollama  | 2026-10-05T10:25:43.719443502Z time=2026-10-05T10:25:43.719Z level=INFO source=sched.go:1152 msg="disabling mmap for llama-server load by default" model=/root/.ollama/models/blobs/sha256-84fffd9ce0ecc7e0a36ec7a3c3aa21bb888213f8bf3db9408d5520a26412f06e reason=cpu
+ollama  | 2026-10-05T10:25:43.719551168Z time=2026-10-05T10:25:43.719Z level=INFO source=server.go:100 msg="using llama-server for model" model=/root/.ollama/models/blobs/sha256-84fffd9ce0ecc7e0a36ec7a3c3aa21bb888213f8bf3db9408d5520a26412f06e
+ollama  | 2026-10-05T10:25:43.720627877Z time=2026-10-05T10:25:43.719Z level=INFO source=llama_server.go:436 msg="starting llama-server" cmd="/usr/lib/ollama/llama-server --model /root/.ollama/models/blobs/sha256-84fffd9ce0ecc7e0a36ec7a3c3aa21bb888213f8bf3db9408d5520a26412f06e --port 43863 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --load-mode none --flash-attn auto -b 512 -ub 512 --context-shift --keep 4"
+ollama  | 2026-10-05T10:25:43.721280835Z time=2026-10-05T10:25:43.721Z level=INFO source=sched.go:618 msg="system memory" total="9.7 GiB" free="8.9 GiB" free_swap="1024.0 MiB"
+ollama  | 2026-10-05T10:25:43.721295335Z time=2026-10-05T10:25:43.721Z level=INFO source=llama_server.go:1054 msg="loading model via llama-server" model=/root/.ollama/models/blobs/sha256-84fffd9ce0ecc7e0a36ec7a3c3aa21bb888213f8bf3db9408d5520a26412f06e
+ollama  | 2026-10-05T10:25:43.721304502Z time=2026-10-05T10:25:43.721Z level=INFO source=llama_server.go:1307 msg="waiting for llama-server to start responding"
+ollama  | 2026-10-05T10:25:43.721565293Z time=2026-10-05T10:25:43.721Z level=INFO source=llama_server.go:1362 msg="waiting for llama-server to become available" status="llm server not responding"
+ollama  | 2026-10-05T10:25:43.724497668Z srv  llama_server: initializing ...
+ollama  | 2026-10-05T10:25:43.726611002Z load_backend: loaded CPU backend from /usr/lib/ollama/libggml-cpu-armv8.2_2.so
+ollama  | 2026-10-05T10:25:43.726614543Z cmn  common_param: common_params_print_info: build 1 (6f767fe96) with Clang 21.1.8 for Linux aarch64
+ollama  | 2026-10-05T10:25:43.726615460Z cmn  common_param: common_params_print_info: verbosity = 4 (adjust with the `-lv N` CLI arg)
+ollama  | 2026-10-05T10:25:43.726616210Z cmn  common_param: device_info:
+ollama  | 2026-10-05T10:25:43.726620918Z cmn  common_param:   - CPU     : CPU (9934 MiB, 9934 MiB free)
+ollama  | 2026-10-05T10:25:43.726667543Z cmn  common_param: system_info: n_threads = 10 (n_threads_batch = 10) / 10 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | DOTPROD = 1 | LLAMAFILE = 1 | REPACK = 1 | 
+ollama  | 2026-10-05T10:25:43.726784502Z srv  init_listene: The UI is disabled
+ollama  | 2026-10-05T10:25:43.726789460Z srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+ollama  | 2026-10-05T10:25:43.726790085Z srv          init: using 9 threads for HTTP server
+ollama  | 2026-10-05T10:25:43.726790627Z srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+ollama  | 2026-10-05T10:25:43.728230085Z srv    load_model: loading model '/root/.ollama/models/blobs/sha256-84fffd9ce0ecc7e0a36ec7a3c3aa21bb888213f8bf3db9408d5520a26412f06e'
+ollama  | 2026-10-05T10:25:43.728233627Z srv    load_model: local path '/root/.ollama/models/blobs/sha256-84fffd9ce0ecc7e0a36ec7a3c3aa21bb888213f8bf3db9408d5520a26412f06e'
+ollama  | 2026-10-05T10:25:43.728234210Z cmn  common_init_: fitting params to device memory ...
+ollama  | 2026-10-05T10:25:43.728234877Z cmn  common_init_: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+ollama  | 2026-10-05T10:25:43.728235543Z common_params_fit_impl: getting device memory data for initial parameters:
+ollama  | 2026-10-05T10:25:43.804723877Z [GIN] 2026/10/05 - 10:25:43 | 200 |      54.167µs |      172.21.0.3 | GET      "/api/version"
+ollama  | 2026-10-05T10:25:43.806436919Z [GIN] 2026/10/05 - 10:25:43 | 200 |    1.186334ms |      172.21.0.3 | GET      "/api/tags"
+ollama  | 2026-10-05T10:25:43.875321835Z common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+ollama  | 2026-10-05T10:25:43.875333627Z common_memory_breakdown_print: |   - Host               |                  401 =   205 +     128 +      68                |
+ollama  | 2026-10-05T10:25:43.875334335Z common_memory_breakdown_print: |   - CPU_REPACK         |                  762 =   762 +       0 +       0                |
+ollama  | 2026-10-05T10:25:43.896820002Z common_params_fit_impl: projected to use 401 MiB of host memory vs. 9934 MiB of total host memory
+ollama  | 2026-10-05T10:25:43.896829919Z common_params_fit_impl: will leave 9532 >= 1024 MiB of system memory, no changes needed
+ollama  | 2026-10-05T10:25:43.896830835Z common_fit_params: successfully fit params to free device memory
+ollama  | 2026-10-05T10:25:43.896831669Z common_fit_params: fitting params to free memory took 0.17 seconds
+ollama  | 2026-10-05T10:25:43.907962252Z llama_model_loader: loaded meta data with 30 key-value pairs and 147 tensors from /root/.ollama/models/blobs/sha256-84fffd9ce0ecc7e0a36ec7a3c3aa21bb888213f8bf3db9408d5520a26412f06e (version GGUF V3 (latest))
+ollama  | 2026-10-05T10:25:43.907971752Z llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+ollama  | 2026-10-05T10:25:43.907972502Z llama_model_loader: - kv   0:                       general.architecture str              = llama
+ollama  | 2026-10-05T10:25:43.907973002Z llama_model_loader: - kv   1:                               general.type str              = model
+ollama  | 2026-10-05T10:25:43.907973419Z llama_model_loader: - kv   2:                               general.name str              = Llama 3.2 1B Instruct
+ollama  | 2026-10-05T10:25:43.907974044Z llama_model_loader: - kv   3:                           general.finetune str              = Instruct
+ollama  | 2026-10-05T10:25:43.907974460Z llama_model_loader: - kv   4:                           general.basename str              = Llama-3.2
+ollama  | 2026-10-05T10:25:43.907974877Z llama_model_loader: - kv   5:                         general.size_label str              = 1B
+ollama  | 2026-10-05T10:25:43.907975460Z llama_model_loader: - kv   6:                               general.tags arr[str,6]       = ["facebook", "meta", "pytorch", "llam...
+ollama  | 2026-10-05T10:25:43.907976085Z llama_model_loader: - kv   7:                          general.languages arr[str,8]       = ["en", "de", "fr", "it", "pt", "hi", ...
+ollama  | 2026-10-05T10:25:43.907976585Z llama_model_loader: - kv   8:                          llama.block_count u32              = 16
+ollama  | 2026-10-05T10:25:43.907977085Z llama_model_loader: - kv   9:                       llama.context_length u32              = 131072
+ollama  | 2026-10-05T10:25:43.907983294Z llama_model_loader: - kv  10:                     llama.embedding_length u32              = 2048
+ollama  | 2026-10-05T10:25:43.907983710Z llama_model_loader: - kv  11:                  llama.feed_forward_length u32              = 8192
+ollama  | 2026-10-05T10:25:43.907984127Z llama_model_loader: - kv  12:                 llama.attention.head_count u32              = 32
+ollama  | 2026-10-05T10:25:43.907984544Z llama_model_loader: - kv  13:              llama.attention.head_count_kv u32              = 8
+ollama  | 2026-10-05T10:25:43.907984960Z llama_model_loader: - kv  14:                       llama.rope.freq_base f32              = 500000.000000
+ollama  | 2026-10-05T10:25:43.907985419Z llama_model_loader: - kv  15:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+ollama  | 2026-10-05T10:25:43.907986127Z llama_model_loader: - kv  16:                 llama.attention.key_length u32              = 64
+ollama  | 2026-10-05T10:25:43.907986544Z llama_model_loader: - kv  17:               llama.attention.value_length u32              = 64
+ollama  | 2026-10-05T10:25:43.907986960Z llama_model_loader: - kv  18:                          general.file_type u32              = 15
+ollama  | 2026-10-05T10:25:43.907987377Z llama_model_loader: - kv  19:                           llama.vocab_size u32              = 128256
+ollama  | 2026-10-05T10:25:43.907987794Z llama_model_loader: - kv  20:                 llama.rope.dimension_count u32              = 64
+ollama  | 2026-10-05T10:25:43.907988210Z llama_model_loader: - kv  21:                       tokenizer.ggml.model str              = gpt2
+ollama  | 2026-10-05T10:25:43.907988627Z llama_model_loader: - kv  22:                         tokenizer.ggml.pre str              = llama-bpe
+ollama  | 2026-10-05T10:25:43.913323544Z llama_model_loader: - kv  23:                      tokenizer.ggml.tokens arr[str,128256]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+ollama  | 2026-10-05T10:25:43.914940502Z llama_model_loader: - kv  24:                  tokenizer.ggml.token_type arr[i32,128256]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+ollama  | 2026-10-05T10:25:43.926207460Z llama_model_loader: - kv  25:                      tokenizer.ggml.merges arr[str,280147]  = ["Ġ Ġ", "Ġ ĠĠĠ", "ĠĠ ĠĠ", "...
+ollama  | 2026-10-05T10:25:43.926211085Z llama_model_loader: - kv  26:                tokenizer.ggml.bos_token_id u32              = 128000
+ollama  | 2026-10-05T10:25:43.926211794Z llama_model_loader: - kv  27:                tokenizer.ggml.eos_token_id u32              = 128009
+ollama  | 2026-10-05T10:25:43.926212377Z llama_model_loader: - kv  28:                    tokenizer.chat_template str              = {{- bos_token }}\n{%- if custom_tools ...
+ollama  | 2026-10-05T10:25:43.926212919Z llama_model_loader: - kv  29:               general.quantization_version u32              = 2
+ollama  | 2026-10-05T10:25:43.926213544Z llama_model_loader: - type  f32:   34 tensors
+ollama  | 2026-10-05T10:25:43.926214419Z llama_model_loader: - type q4_K:   96 tensors
+ollama  | 2026-10-05T10:25:43.926214919Z llama_model_loader: - type q6_K:   17 tensors
+ollama  | 2026-10-05T10:25:43.926215335Z print_info: file format = GGUF V3 (latest)
+ollama  | 2026-10-05T10:25:43.926215752Z print_info: file type   = Q4_K - Medium
+ollama  | 2026-10-05T10:25:43.926216210Z print_info: file size   = 762.81 MiB (5.18 BPW) 
+ollama  | 2026-10-05T10:25:43.967811919Z load: 0 unused tokens
+ollama  | 2026-10-05T10:25:43.973101502Z time=2026-10-05T10:25:43.973Z level=INFO source=llama_server.go:1362 msg="waiting for llama-server to become available" status="llm server loading model"
+ollama  | 2026-10-05T10:25:43.973534127Z load: printing all EOG tokens:
+ollama  | 2026-10-05T10:25:43.973536960Z load:   - 128001 ('<|end_of_text|>')
+ollama  | 2026-10-05T10:25:43.973537877Z load:   - 128008 ('<|eom_id|>')
+ollama  | 2026-10-05T10:25:43.973538335Z load:   - 128009 ('<|eot_id|>')
+ollama  | 2026-10-05T10:25:43.973586835Z load: special tokens cache size = 256
+ollama  | 2026-10-05T10:25:43.990362419Z load: token to piece cache size = 0.7999 MB
+ollama  | 2026-10-05T10:25:43.990366294Z print_info: arch                  = llama
+ollama  | 2026-10-05T10:25:43.990366794Z print_info: vocab_only            = 0
+ollama  | 2026-10-05T10:25:43.990367210Z print_info: no_alloc              = 0
+ollama  | 2026-10-05T10:25:43.990367669Z print_info: n_ctx_train           = 131072
+ollama  | 2026-10-05T10:25:43.990368085Z print_info: n_embd_inp            = 2048
+ollama  | 2026-10-05T10:25:43.990368502Z print_info: n_embd                = 2048
+ollama  | 2026-10-05T10:25:43.990373835Z print_info: n_embd_out            = 2048
+ollama  | 2026-10-05T10:25:43.990374252Z print_info: n_layer               = 16
+ollama  | 2026-10-05T10:25:43.990374669Z print_info: n_layer_all           = 16
+ollama  | 2026-10-05T10:25:43.990375044Z print_info: n_head                = 32
+ollama  | 2026-10-05T10:25:43.990375460Z print_info: n_head_kv             = 8
+ollama  | 2026-10-05T10:25:43.990375877Z print_info: n_rot                 = 64
+ollama  | 2026-10-05T10:25:43.990376294Z print_info: n_swa                 = 0
+ollama  | 2026-10-05T10:25:43.990376669Z print_info: is_swa_any            = 0
+ollama  | 2026-10-05T10:25:43.990377085Z print_info: non_causal_type       = 0
+ollama  | 2026-10-05T10:25:43.990377502Z print_info: n_embd_head_k         = 64
+ollama  | 2026-10-05T10:25:43.990377919Z print_info: n_embd_head_v         = 64
+ollama  | 2026-10-05T10:25:43.990378294Z print_info: n_gqa                 = 4
+ollama  | 2026-10-05T10:25:43.990378710Z print_info: n_embd_k_gqa          = 512
+ollama  | 2026-10-05T10:25:43.990379127Z print_info: n_embd_v_gqa          = 512
+ollama  | 2026-10-05T10:25:43.990379544Z print_info: f_norm_eps            = 0.0e+00
+ollama  | 2026-10-05T10:25:43.990379919Z print_info: f_norm_rms_eps        = 1.0e-05
+ollama  | 2026-10-05T10:25:43.990380335Z print_info: f_clamp_kqv           = 0.0e+00
+ollama  | 2026-10-05T10:25:43.990380752Z print_info: f_max_alibi_bias      = 0.0e+00
+ollama  | 2026-10-05T10:25:43.990381169Z print_info: f_logit_scale         = 0.0e+00
+ollama  | 2026-10-05T10:25:43.990381585Z print_info: f_attn_scale          = 0.0e+00
+ollama  | 2026-10-05T10:25:43.990382002Z print_info: f_attn_value_scale    = 0.0000
+ollama  | 2026-10-05T10:25:43.990382419Z print_info: n_ff                  = 8192
+ollama  | 2026-10-05T10:25:43.990382835Z print_info: n_expert              = 0
+ollama  | 2026-10-05T10:25:43.990383210Z print_info: n_expert_used         = 0
+ollama  | 2026-10-05T10:25:43.990383752Z print_info: n_expert_groups       = 0
+ollama  | 2026-10-05T10:25:43.990384169Z print_info: n_group_used          = 0
+ollama  | 2026-10-05T10:25:43.990384585Z print_info: causal attn           = 1
+ollama  | 2026-10-05T10:25:43.990385002Z print_info: pooling type          = -1
+ollama  | 2026-10-05T10:25:43.990385377Z print_info: rope type             = 0
+ollama  | 2026-10-05T10:25:43.990385794Z print_info: rope scaling          = linear
+ollama  | 2026-10-05T10:25:43.990386210Z print_info: freq_base_train       = 500000.0
+ollama  | 2026-10-05T10:25:43.990386627Z print_info: freq_scale_train      = 1
+ollama  | 2026-10-05T10:25:43.990387002Z print_info: n_ctx_orig_yarn       = 131072
+ollama  | 2026-10-05T10:25:43.990387419Z print_info: rope_yarn_log_mul     = 0.0000
+ollama  | 2026-10-05T10:25:43.990387835Z print_info: rope_finetuned        = unknown
+ollama  | 2026-10-05T10:25:43.990388252Z print_info: model type            = 1B
+ollama  | 2026-10-05T10:25:43.990388627Z print_info: model params          = 1.24 B
+ollama  | 2026-10-05T10:25:43.990389044Z print_info: general.name          = Llama 3.2 1B Instruct
+ollama  | 2026-10-05T10:25:43.990389710Z print_info: vocab type            = BPE
+ollama  | 2026-10-05T10:25:43.990390127Z print_info: n_vocab               = 128256
+ollama  | 2026-10-05T10:25:43.990390502Z print_info: n_merges              = 280147
+ollama  | 2026-10-05T10:25:43.990390919Z print_info: BOS token             = 128000 '<|begin_of_text|>'
+ollama  | 2026-10-05T10:25:43.990391502Z print_info: EOS token             = 128009 '<|eot_id|>'
+ollama  | 2026-10-05T10:25:43.990391919Z print_info: EOT token             = 128009 '<|eot_id|>'
+ollama  | 2026-10-05T10:25:43.990392335Z print_info: EOM token             = 128008 '<|eom_id|>'
+ollama  | 2026-10-05T10:25:43.990392752Z print_info: LF token              = 198 'Ċ'
+ollama  | 2026-10-05T10:25:43.990393169Z print_info: EOG token             = 128001 '<|end_of_text|>'
+ollama  | 2026-10-05T10:25:43.990393544Z print_info: EOG token             = 128008 '<|eom_id|>'
+ollama  | 2026-10-05T10:25:43.990393960Z print_info: EOG token             = 128009 '<|eot_id|>'
+ollama  | 2026-10-05T10:25:43.990394377Z print_info: max token length      = 256
+ollama  | 2026-10-05T10:25:43.990394794Z load_tensors: loading model tensors, this can take a while... (load_mode = none)
+ollama  | 2026-10-05T10:25:43.990915669Z load_tensors:          CPU model buffer size =   205.75 MiB
+ollama  | 2026-10-05T10:25:43.990917752Z load_tensors:   CPU_REPACK model buffer size =   762.55 MiB
+ollama  | 2026-10-05T10:25:44.931590586Z cmn  common_init_: added <|end_of_text|> logit bias = -inf
+ollama  | 2026-10-05T10:25:44.931631252Z cmn  common_init_: added <|eom_id|> logit bias = -inf
+ollama  | 2026-10-05T10:25:44.931633002Z cmn  common_init_: added <|eot_id|> logit bias = -inf
+ollama  | 2026-10-05T10:25:44.931633502Z llama_context: constructing llama_context
+ollama  | 2026-10-05T10:25:44.931643544Z llama_context: n_seq_max             = 1
+ollama  | 2026-10-05T10:25:44.931644336Z llama_context: n_ctx                 = 4096
+ollama  | 2026-10-05T10:25:44.931644752Z llama_context: n_ctx_seq             = 4096
+ollama  | 2026-10-05T10:25:44.931645169Z llama_context: n_batch               = 512
+ollama  | 2026-10-05T10:25:44.931645627Z llama_context: n_ubatch              = 512
+ollama  | 2026-10-05T10:25:44.931646002Z llama_context: causal_attn           = 1
+ollama  | 2026-10-05T10:25:44.931646419Z llama_context: flash_attn            = auto
+ollama  | 2026-10-05T10:25:44.931647002Z llama_context: kv_unified            = false
+ollama  | 2026-10-05T10:25:44.931647419Z llama_context: freq_base             = 500000.0
+ollama  | 2026-10-05T10:25:44.931647836Z llama_context: freq_scale            = 1
+ollama  | 2026-10-05T10:25:44.931648252Z llama_context: n_rs_seq              = 0
+ollama  | 2026-10-05T10:25:44.931648669Z llama_context: n_outputs_max         = 1
+ollama  | 2026-10-05T10:25:44.931649086Z llama_context: n_outputs_max_per_seq = 1
+ollama  | 2026-10-05T10:25:44.931649502Z llama_context: n_ctx_seq (4096) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+ollama  | 2026-10-05T10:25:44.931650419Z llama_context:        CPU  output buffer size =     0.49 MiB
+ollama  | 2026-10-05T10:25:44.931728211Z llama_kv_cache:        CPU KV buffer size =   128.00 MiB
+ollama  | 2026-10-05T10:25:45.007768627Z llama_kv_cache: size =  128.00 MiB (  4096 cells,  16 layers,  1/1 seqs), K (f16):   64.00 MiB, V (f16):   64.00 MiB
+ollama  | 2026-10-05T10:25:45.007786961Z llama_kv_cache: attn_rot_k = 0, n_embd_head_k_all = 64
+ollama  | 2026-10-05T10:25:45.007788002Z llama_kv_cache: attn_rot_v = 0, n_embd_head_k_all = 64
+ollama  | 2026-10-05T10:25:45.007797211Z sched_reserve: reserving ...
+ollama  | 2026-10-05T10:25:45.008004669Z resolve_fused_ops: Flash Attention enabled
+ollama  | 2026-10-05T10:25:45.008005836Z resolve_fused_ops: resolving fused DeepSeek V4 HC support:
+ollama  | 2026-10-05T10:25:45.008089002Z resolve_fused_ops: fused DeepSeek V4 HC pre enabled
+ollama  | 2026-10-05T10:25:45.008183294Z resolve_fused_ops: fused DeepSeek V4 HC comb enabled
+ollama  | 2026-10-05T10:25:45.008266752Z resolve_fused_ops: fused DeepSeek V4 HC post enabled
+ollama  | 2026-10-05T10:25:45.008707086Z sched_reserve:        CPU compute buffer size =    68.01 MiB
+ollama  | 2026-10-05T10:25:45.008710211Z sched_reserve: graph: nodes = 502, splits = 1, input objects = 4, input tensors = 6
+ollama  | 2026-10-05T10:25:45.008710877Z sched_reserve: reserve took 1.01 ms, sched copies = 1
+ollama  | 2026-10-05T10:25:45.008711294Z cmn          init: llama threadpool init, n_threads = 10
+ollama  | 2026-10-05T10:25:45.010308669Z cmn  common_init_: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+ollama  | 2026-10-05T10:25:45.056649211Z srv    load_model: initializing, n_slots = 1, n_ctx_slot = 4096, kv_unified = 'false'
+ollama  | 2026-10-05T10:25:45.056665669Z spec common_specu: no implementations specified for speculative decoding
+ollama  | 2026-10-05T10:25:45.056667169Z slot   load_model: id  0 | task -1 | new slot, n_ctx = 4096
+ollama  | 2026-10-05T10:25:45.056668127Z srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+ollama  | 2026-10-05T10:25:45.056669002Z srv    load_model: use `--cache-ram 0` to disable the prompt cache
+ollama  | 2026-10-05T10:25:45.056669711Z srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+ollama  | 2026-10-05T10:25:45.056675419Z srv    load_model: context checkpoints enabled, max = 32, min spacing = 8192
+ollama  | 2026-10-05T10:25:45.056676377Z srv          init: idle slots will be saved to prompt cache upon starting a new task
+ollama  | 2026-10-05T10:25:45.056715711Z srv          init: init: chat template, example_format: '<|im_start|>system
+ollama  | 2026-10-05T10:25:45.056717502Z You are a helpful assistant<|im_end|>
+ollama  | 2026-10-05T10:25:45.056718627Z <|im_start|>user
+ollama  | 2026-10-05T10:25:45.056719586Z Hello<|im_end|>
+ollama  | 2026-10-05T10:25:45.056720336Z <|im_start|>assistant
+ollama  | 2026-10-05T10:25:45.056721461Z Hi there<|im_end|>
+ollama  | 2026-10-05T10:25:45.056722127Z <|im_start|>user
+ollama  | 2026-10-05T10:25:45.056722836Z How are you?<|im_end|>
+ollama  | 2026-10-05T10:25:45.056723461Z <|im_start|>assistant
+ollama  | 2026-10-05T10:25:45.056724127Z '
+ollama  | 2026-10-05T10:25:45.056725002Z srv          init: init: chat template, thinking = 0
+ollama  | 2026-10-05T10:25:45.056726252Z srv          init: preserve_reasoning kwarg: not supported by template
+ollama  | 2026-10-05T10:25:45.056727044Z srv  llama_server: model loaded
+ollama  | 2026-10-05T10:25:45.056728044Z srv  llama_server: listening on http://127.0.0.1:43863
+ollama  | 2026-10-05T10:25:45.056743836Z srv  update_slots: all slots are idle
+ollama  | 2026-10-05T10:25:45.241220253Z time=2026-10-05T10:25:45.241Z level=INFO source=llama_server.go:1374 msg="llama-server started in 1.52 seconds"
+ollama  | 2026-10-05T10:25:45.241334794Z time=2026-10-05T10:25:45.241Z level=INFO source=images.go:395 msg="template selection" model=registry.ollama.ai/library/llama3.2:1b-instruct-q4_K_M selected=go_template renderer="" parser="" go_template="[completion tools]" chat_template="[tools completion]" harmony=null renderer_parser=null
+ollama  | 2026-10-05T10:25:45.241344211Z time=2026-10-05T10:25:45.241Z level=INFO source=sched.go:733 msg="loaded runners" count=1
+ollama  | 2026-10-05T10:25:45.241350961Z time=2026-10-05T10:25:45.241Z level=INFO source=llama_server.go:1307 msg="waiting for llama-server to start responding"
+ollama  | 2026-10-05T10:25:45.241771378Z time=2026-10-05T10:25:45.241Z level=INFO source=llama_server.go:1374 msg="llama-server started in 1.52 seconds"
+ollama  | 2026-10-05T10:25:45.241876753Z [GIN] 2026/10/05 - 10:25:45 | 200 |  1.579785334s |      172.21.0.1 | POST     "/api/generate"
+ollama  | 2026-10-05T10:25:45.284701378Z [GIN] 2026/10/05 - 10:25:45 | 200 |      22.083µs |      172.21.0.3 | GET      "/api/version"
+ollama  | 2026-10-05T10:25:45.286201753Z [GIN] 2026/10/05 - 10:25:45 | 200 |    1.143208ms |      172.21.0.3 | GET      "/api/tags"
+ollama  | 2026-10-05T10:25:45.370924461Z [GIN] 2026/10/05 - 10:25:45 | 200 |      16.084µs |       127.0.0.1 | HEAD     "/"
+ollama  | 2026-10-05T10:25:45.371069836Z [GIN] 2026/10/05 - 10:25:45 | 200 |      36.083µs |       127.0.0.1 | GET      "/api/ps"
+ollama  | 2026-10-05T10:25:45.388774753Z [GIN] 2026/10/05 - 10:25:45 | 200 |      15.792µs |      172.21.0.3 | GET      "/api/version"
+ollama  | 2026-10-05T10:25:45.390130836Z [GIN] 2026/10/05 - 10:25:45 | 200 |       1.075ms |      172.21.0.3 | GET      "/api/tags"
+ollama  | 2026-10-05T10:25:45.401254086Z srv  server_strea: conv_id= (empty=1)
+ollama  | 2026-10-05T10:25:45.401580753Z slot get_availabl: id  0 | task -1 |  - skipping, slot is empty
+ollama  | 2026-10-05T10:25:45.401584003Z slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+ollama  | 2026-10-05T10:25:45.401584961Z srv  get_availabl: updating prompt cache
+ollama  | 2026-10-05T10:25:45.401585544Z srv          load:  - looking for better prompt, base f_keep = -1.000, f_sim = 0.000
+ollama  | 2026-10-05T10:25:45.401586211Z srv        update:  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 4096 tokens, 8589934592 est)
+ollama  | 2026-10-05T10:25:45.401587128Z srv  get_availabl: prompt cache update took 0.01 ms
+ollama  | 2026-10-05T10:25:45.401688378Z slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist 
+ollama  | 2026-10-05T10:25:45.401695461Z slot launch_slot_: id  0 | task -1 | sampler params: 
+ollama  | 2026-10-05T10:25:45.401696294Z 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+ollama  | 2026-10-05T10:25:45.401696919Z 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+ollama  | 2026-10-05T10:25:45.401697419Z 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+ollama  | 2026-10-05T10:25:45.401698378Z 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+ollama  | 2026-10-05T10:25:45.401698961Z slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+ollama  | 2026-10-05T10:25:45.401699461Z slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 300
+ollama  | 2026-10-05T10:25:45.401699961Z slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
+ollama  | 2026-10-05T10:25:45.401700461Z slot init_sampler: id  0 | task 0 | init sampler, took 0.04 ms, tokens: text = 300, total = 300
+ollama  | 2026-10-05T10:25:45.989640211Z slot print_timing: id  0 | task 0 | prompt eval time =     497.22 ms /   300 tokens (    1.66 ms per token,   603.36 tokens per second)
+ollama  | 2026-10-05T10:25:45.989655628Z slot print_timing: id  0 | task 0 |        eval time =      88.27 ms /    10 tokens (    9.81 ms per token,   101.96 tokens per second)
+ollama  | 2026-10-05T10:25:45.989656753Z slot print_timing: id  0 | task 0 |       total time =     585.48 ms /   310 tokens
+ollama  | 2026-10-05T10:25:45.989665920Z slot print_timing: id  0 | task 0 |    graphs reused =          9
+ollama  | 2026-10-05T10:25:45.989667170Z slot      release: id  0 | task 0 | stop processing: n_tokens = 309, truncated = 0
+ollama  | 2026-10-05T10:25:45.989667878Z srv  update_slots: all slots are idle
+ollama  | 2026-10-05T10:25:45.990623378Z [GIN] 2026/10/05 - 10:25:45 | 200 |  591.258751ms |      172.21.0.3 | POST     "/api/generate"

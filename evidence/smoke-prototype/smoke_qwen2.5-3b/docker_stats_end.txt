@@ -1,0 +1,3 @@
+CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O        PIDS
+8d4137260dec   ollama    5.29%     2.332GiB / 9.701GiB   24.04%    823MB / 9.48MB   1.94GB / 808MB   39
+d26be75aef67   triage    0.22%     39MiB / 9.701GiB      0.39%     12.7kB / 8kB     0B / 0B          2

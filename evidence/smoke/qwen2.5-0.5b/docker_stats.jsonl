@@ -1,0 +1,6 @@
+{"ts": 1791271411.110388, "service": "ollama", "cpu_pct": 0.01, "mem": "666.4MiB / 9.701GiB", "mem_pct": 6.71}
+{"ts": 1791271411.110388, "service": "triage", "cpu_pct": 0.25, "mem": "35.76MiB / 9.701GiB", "mem_pct": 0.36}
+{"ts": 1791271413.122396, "service": "ollama", "cpu_pct": 979.71, "mem": "686.6MiB / 9.701GiB", "mem_pct": 6.91}
+{"ts": 1791271413.122396, "service": "triage", "cpu_pct": 0.49, "mem": "36.13MiB / 9.701GiB", "mem_pct": 0.36}
+{"ts": 1791271415.151135, "service": "ollama", "cpu_pct": 396.54, "mem": "694.8MiB / 9.701GiB", "mem_pct": 6.99}
+{"ts": 1791271415.151135, "service": "triage", "cpu_pct": 0.32, "mem": "36.3MiB / 9.701GiB", "mem_pct": 0.37}

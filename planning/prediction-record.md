@@ -2,12 +2,13 @@
 
 > **Freeze rule:** this file is committed together with the golden set **before the first benchmark run**, and must not be edited afterwards. The commit history is our evidence. Corrections go in the report as "where we were wrong", never here.
 
-**Committed on:** ____ · **Commit / tag:** ____
+**Committed on:** YYYY-MM-DD HH:MM SGT · **Commit / tag:** annotated tag `prediction-freeze` (a file cannot contain its own commit hash; resolve it with `git rev-list -n 1 prediction-freeze`). The golden set (`golden/golden_set.csv`), this record, the prompt (`service/prompts/classify_v1.txt`) and the model pins (`models/models.lock.json`) are all in the tagged commit.
 
 Marks are for being **specific enough to be proven wrong**, not for being right. "The model will be slow" earns nothing; "qwen2.5:7b will take 25–40 s per ticket and p95 will exceed 120 s at 4 tickets/min" can be checked.
 
 **What these predictions are based on (all available before any model saw a golden ticket):**
-- **Han's smoke tests:** one *invented* 136-character ticket per model on the system-under-test machine (logs `logs/smoke_*`).
+- **Han's prototype smoke tests (5 Oct):** one *invented* 136-character ticket per model on the system-under-test machine and the same pinned models, but sent through Han's **prototype** service, whose prompt included category definitions (1,240 characters; 300–306 prompt tokens in total). Raw logs are committed in `evidence/smoke-prototype/`. They are **not** from this repo's service or prompt (`classify_v1.txt`, 395 characters).
+- **Smoke tests on the real service (`evidence/smoke/`)**, if present in this commit: six invented tickets (186–2,000 characters) per model through this repo's service and `classify_v1.txt`, with `docker stats` sampled during the requests (`scripts/smoke_sut.py`). Where `evidence/smoke/SUMMARY.md` exists, its measured CPU and memory figures are the evidence; everything else about CPU and memory below is a prediction.
 - **Ticket lengths** of all 1,000 allocated rows (3000–3999): character counts only, no model involved ([workload model](workload-model.md), section 4).
 - **The baseline service's configuration:** FastAPI with 1 uvicorn worker, synchronous endpoints, `OLLAMA_NUM_PARALLEL=1`, `OLLAMA_TIMEOUT_S=600`.
 - **Our own labelling disagreements** ([golden/agreement_summary.md](../golden/agreement_summary.md)).
@@ -15,6 +16,7 @@ Marks are for being **specific enough to be proven wrong**, not for being right.
 **How latency was extrapolated:**
 - In the smoke tests, reading the prompt took 80–88% of each request. The time per prompt token (1.6 / 1.6 / 5.0 / 11.0 ms for 0.5B / 1B / 3B / 7B) was applied to each real ticket's length.
 - Ticket length in tokens was estimated as characters ÷ 4, plus about 272 tokens of instructions. The smoke tests' answer-generation time was added.
+  - **Known bias:** the 272 instruction tokens were derived from the *prototype* prompt. `classify_v1.txt` is about a third of that length, so this method overstates single-request latency by roughly the time to read ~170 extra tokens (about 0.3 s for 0.5B/1B, 0.9 s for 3B and 1.9 s for 7B at the per-token rates above). *[Team: either re-derive the latency predictions from `evidence/smoke/SUMMARY.md` before the freeze, or keep them and delete this sentence's bracketed note — but keep the bias statement.]*
 - Queueing was estimated by treating Ollama as a single server (M/G/1 queue) handling one request at a time.
 - The ranges allow ±30% for tokenizer differences and for prompt reading slowing down on longer prompts.
 
@@ -22,8 +24,8 @@ Marks are for being **specific enough to be proven wrong**, not for being right.
 
 - **The bottleneck is the Ollama model server, specifically CPU time spent reading the prompt.** No other component comes close:
   - `OLLAMA_NUM_PARALLEL=1` makes Ollama classify one ticket at a time. Every other request waits in line.
-  - While a 7B request runs, the Ollama container uses all 10 allocated CPUs (≥ 90% in `docker stats`). The triage service container stays **below 10% CPU**.
-  - Memory holds steady at the loaded model size (about 5.1 GB for 7B) and does not grow during a run.
+  - *Prediction:* while a 7B request runs, the Ollama container will use nearly all 10 allocated CPUs (≥ 900% in `docker stats`, where 100% = one CPU), and the triage service container will stay **below 10% CPU**.
+  - *Prediction:* Ollama's memory will hold steady at the loaded model size (`ollama ps` reported 5.1 GB for 7B in the prototype smoke test) and will not grow during a run.
   - SQLite and the network are not expected to be limits at the assignment's standard rates. We predict `GET /search` p95 stays **under 100 ms** at peak, because each run stores fewer than 200 tickets and a full-table `LIKE` scan over them is fast.
 - **Where it saturates, by model.** Ollama's capacity is about 1 ÷ mean service time.
   - **qwen2.5:7b** has a mean service time of about 6.4 s, so capacity is about **9.4 tickets/min**. At the stress steps:
