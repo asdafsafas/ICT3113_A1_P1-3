@@ -21,17 +21,19 @@ Use the same system-under-test Mac, load-generator Mac, prompt, service commit, 
 
 | Configuration | POST `/tickets` | GET `/search` | Arrivals | Duration | Drain | Runs per model |
 |---|---:|---:|---|---:|---:|---:|
-| Average | 1.1/min | 4.5/min | Open-loop | 15 min | 5 min | 3 |
-| Peak | 2.4/min | 8/min | Open-loop | 15 min | 5 min | 3 |
-| Headroom | 4.8/min | 8/min | Open-loop | 15 min | 5 min | 3 |
+| Average | 1.45/min | 2.9/min | Open-loop | 10 min | 5 min | 3 |
+| Peak | 1.73/min | 3.5/min | Open-loop | 10 min | 5 min | 3 |
+| Beyond peak | 3.5/min | 7/min | Open-loop | 10 min | 5 min | 3 |
 
-This is 36 measured load-test runs: 4 models × 3 configurations × 3 runs. Allow about 12 hours for the configured arrival and drain periods, excluding setup and reruns.
+This is 36 measured load-test runs: 4 models × 3 configurations × 3 runs. Allow about 9 hours for the configured arrival and drain periods, excluding setup and reruns.
 
 ### Requirements checked
 
-- **R1:** At 2.4 tickets/min plus 8 searches/min, POST p95 ≤ 15 s, POST p99 ≤ 30 s and error rate ≤ 1%, with no continuing latency growth.
-- **R2:** At the same peak load, search p95 ≤ 1 s and search p99 ≤ 2 s.
-- **R3:** At 4.8 tickets/min plus 8 searches/min, sustain at least 4.8 successful tickets/min, POST p95 ≤ 30 s, error rate ≤ 1% and no continuing latency growth.
+- **R1:** At 1.73 tickets/min, sustained for 10 minutes, POST p95 ≤ 30 s.
+- **R2:** At 1.73 tickets/min plus 3.5 searches/min, sustained for 10 minutes, search p95 ≤ 1 s.
+- **R3:** At 1.73 tickets/min, sustained for 10 minutes, achieve at least 104 successful classifications/hour (1.73/min), error rate ≤ 1%, and no continuing latency growth.
+
+The beyond-peak configuration is additional evidence rather than a separate formal requirement. Report p50, p95 and p99, achieved throughput and error rate for all three configurations as required by the brief.
 
 ## 2. Stop gate before official testing
 
@@ -200,7 +202,7 @@ while true; do
   docker stats --no-stream --format "{{.Name}},{{.CPUPerc}},{{.MemUsage}}" | \
     sed "s/^/$(date +%s),/"
   sleep 5
-done > "results/load/$MODEL_SLUG/2.4rpm_s8_run1_stats.csv"
+done > "results/load/$MODEL_SLUG/1.73rpm_s3.5_run1_stats.csv"
 ```
 
 Leave it running until JMeter prints `... end of run`, then stop it with Control-C.
@@ -215,7 +217,7 @@ On the load-generator Mac:
 mkdir -p "results/load/$MODEL_SLUG"
 ```
 
-### Average load: 1.1 tickets/min and 4.5 searches/min
+### Average load: 1.45 tickets/min and 2.9 searches/min
 
 Run this three times, changing `run1` to `run2` and `run3`:
 
@@ -225,18 +227,18 @@ Run this three times, changing `run1` to `run2` and `run3`:
   -q loadtest/triage.properties \
   -Jhost="$SUT_HOST" \
   -Jport=8000 \
-  -Jrate=1.1 \
-  -Jrate_end=1.1 \
-  -Jsearch_rate=4.5 \
-  -Jduration=15 \
+  -Jrate=1.45 \
+  -Jrate_end=1.45 \
+  -Jsearch_rate=2.9 \
+  -Jduration=10 \
   -Jdrain=5 \
   -Jtimeout_ms=600000 \
   -Jdata="$TICKET_DATA" \
-  -l "results/load/$MODEL_SLUG/1.1rpm_s4.5_run1.jtl" \
-  -j "results/load/$MODEL_SLUG/1.1rpm_s4.5_run1_jmeter.log"
+  -l "results/load/$MODEL_SLUG/1.45rpm_s2.9_run1.jtl" \
+  -j "results/load/$MODEL_SLUG/1.45rpm_s2.9_run1_jmeter.log"
 ```
 
-### Peak load: 2.4 tickets/min and 8 searches/min
+### Peak load: 1.73 tickets/min and 3.5 searches/min
 
 Run this three times:
 
@@ -246,18 +248,18 @@ Run this three times:
   -q loadtest/triage.properties \
   -Jhost="$SUT_HOST" \
   -Jport=8000 \
-  -Jrate=2.4 \
-  -Jrate_end=2.4 \
-  -Jsearch_rate=8 \
-  -Jduration=15 \
+  -Jrate=1.73 \
+  -Jrate_end=1.73 \
+  -Jsearch_rate=3.5 \
+  -Jduration=10 \
   -Jdrain=5 \
   -Jtimeout_ms=600000 \
   -Jdata="$TICKET_DATA" \
-  -l "results/load/$MODEL_SLUG/2.4rpm_s8_run1.jtl" \
-  -j "results/load/$MODEL_SLUG/2.4rpm_s8_run1_jmeter.log"
+  -l "results/load/$MODEL_SLUG/1.73rpm_s3.5_run1.jtl" \
+  -j "results/load/$MODEL_SLUG/1.73rpm_s3.5_run1_jmeter.log"
 ```
 
-### Headroom load: 4.8 tickets/min and 8 searches/min
+### Beyond-peak load: 3.5 tickets/min and 7 searches/min
 
 Run this three times:
 
@@ -267,15 +269,15 @@ Run this three times:
   -q loadtest/triage.properties \
   -Jhost="$SUT_HOST" \
   -Jport=8000 \
-  -Jrate=4.8 \
-  -Jrate_end=4.8 \
-  -Jsearch_rate=8 \
-  -Jduration=15 \
+  -Jrate=3.5 \
+  -Jrate_end=3.5 \
+  -Jsearch_rate=7 \
+  -Jduration=10 \
   -Jdrain=5 \
   -Jtimeout_ms=600000 \
   -Jdata="$TICKET_DATA" \
-  -l "results/load/$MODEL_SLUG/4.8rpm_s8_run1.jtl" \
-  -j "results/load/$MODEL_SLUG/4.8rpm_s8_run1_jmeter.log"
+  -l "results/load/$MODEL_SLUG/3.5rpm_s7_run1.jtl" \
+  -j "results/load/$MODEL_SLUG/3.5rpm_s7_run1_jmeter.log"
 ```
 
 ### After every run
@@ -294,7 +296,7 @@ The `.jtl` is created on the load-generator Mac and the service log is created o
 
 ```bash
 python3 scripts/reconcile.py \
-  "results/load/$MODEL_SLUG/2.4rpm_s8_run1.jtl"
+  "results/load/$MODEL_SLUG/1.73rpm_s3.5_run1.jtl"
 ```
 
 A valid run should show:
@@ -324,7 +326,7 @@ For every model:
 - [ ] `ollama ps` confirms CPU-only inference.
 - [ ] Three average runs completed.
 - [ ] Three peak runs completed.
-- [ ] Three headroom runs completed.
+- [ ] Three beyond-peak runs completed.
 - [ ] All nine JTL files reconciled.
 - [ ] All nine stats files retained.
 - [ ] JMeter logs retained for failed or suspicious runs.
@@ -343,23 +345,23 @@ Reset, warm up and start resource monitoring. Then run:
   -q loadtest/triage.properties \
   -Jhost="$SUT_HOST" \
   -Jport=8000 \
-  -Jrate=2.4 \
+  -Jrate=3.5 \
   -Jrate_end=12 \
-  -Jsearch_rate=8 \
+  -Jsearch_rate=7 \
   -Jduration=30 \
   -Jdrain=10 \
   -Jtimeout_ms=600000 \
   -Jdata="$TICKET_DATA" \
-  -l "results/load/qwen2.5-7b/stress_2.4to12rpm_s8_run1.jtl" \
-  -j "results/load/qwen2.5-7b/stress_2.4to12rpm_s8_run1_jmeter.log"
+  -l "results/load/qwen2.5-7b/stress_3.5to12rpm_s7_run1.jtl" \
+  -j "results/load/qwen2.5-7b/stress_3.5to12rpm_s7_run1_jmeter.log"
 ```
 
 Generate an HTML dashboard:
 
 ```bash
 "$JMETER_BIN" -g \
-  results/load/qwen2.5-7b/stress_2.4to12rpm_s8_run1.jtl \
-  -o results/load/qwen2.5-7b/stress_2.4to12rpm_s8_run1_report
+  results/load/qwen2.5-7b/stress_3.5to12rpm_s7_run1.jtl \
+  -o results/load/qwen2.5-7b/stress_3.5to12rpm_s7_run1_report
 ```
 
 Inspect:
@@ -373,14 +375,14 @@ Inspect:
 
 After separate resets, run one 15-minute constant-rate confirmation at each rate:
 
-- **Below:** 7.2 tickets/min plus 8 searches/min.
-- **Above:** 9.6 tickets/min plus 8 searches/min.
+- **Below:** 7.2 tickets/min plus 7 searches/min.
+- **Above:** 9.6 tickets/min plus 7 searches/min.
 
 Use the normal command with `rate` and `rate_end` both set to the chosen value. Name the files:
 
 ```text
-stress_7.2rpm_s8_confirm_run1.jtl
-stress_9.6rpm_s8_confirm_run1.jtl
+stress_7.2rpm_s7_confirm_run1.jtl
+stress_9.6rpm_s7_confirm_run1.jtl
 ```
 
 The measured limit is where achieved throughput stops following offered throughput and latency continues increasing through the run. Do not identify the limit from one high percentile alone; confirm it from the time-series charts, service queueing time and CPU statistics.
@@ -403,7 +405,7 @@ python3 scripts/summarise_jtl.py results/load \
   --csv results/load/search-summary.csv
 ```
 
-The model is warmed before each run, so these commands include the full measured 15 minutes. If the team decides before testing to exclude an initial measurement window, record that decision in the frozen playbook, apply the same `--skip-s` value everywhere and disclose it on the results slide. Never choose an exclusion after looking at the results. Keep the raw JTL files unchanged.
+The model is warmed before each run, so these commands include the full measured 10 minutes. If the team decides before testing to exclude an initial measurement window, record that decision in the frozen playbook, apply the same `--skip-s` value everywhere and disclose it on the results slide. Never choose an exclusion after looking at the results. Keep the raw JTL files unchanged.
 
 For every standard configuration, verify the summary reports `Runs = 3`.
 
@@ -411,12 +413,12 @@ For every standard configuration, verify the summary reports `Runs = 3`.
 
 For each model, record:
 
-| Model | R1 peak POST | R2 peak search | R3 headroom | Stress limit | Main evidence |
-|---|---|---|---|---|---|
-| qwen2.5:0.5b | | | | | |
-| llama3.2:1b-instruct-q4_K_M | | | | | |
-| qwen2.5:3b | | | | | |
-| qwen2.5:7b | | | | | |
+| Model | R1 peak POST | R2 peak search | R3 peak throughput | Beyond-peak check | Stress limit | Main evidence |
+|---|---|---|---|---|---|---|
+| qwen2.5:0.5b | | | | | | |
+| llama3.2:1b-instruct-q4_K_M | | | | | | |
+| qwen2.5:3b | | | | | | |
+| qwen2.5:7b | | | | | | |
 
 For the bottleneck diagnosis, compare:
 
