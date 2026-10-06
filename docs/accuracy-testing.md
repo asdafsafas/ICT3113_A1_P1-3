@@ -39,6 +39,14 @@ Repeat for every candidate model. The prompt, generation settings and golden set
 - **Confusion matrix:** rows are golden labels, columns are predictions. Off-diagonal cells are the mistakes; the "most common mistakes" table lists the biggest ones. Compare them with the prediction record's "hardest categories".
 - **Mean single-request latency** comes from the same run (sequential requests, no load). It's the measured version of the prediction record's "expected single-request latency".
 
+Once every model has been run, put them side by side for Slide 10:
+
+```bash
+python scripts/accuracy_compare.py      # latest run per model -> results/accuracy/comparison.md
+```
+
+This gives overall accuracy, per-category recall and precision, the R4 (≥ 80%) and R5 (every category ≥ 70%) verdicts from [requirements.md](../planning/requirements.md), and single-request latency p50/p95 per model.
+
 To regenerate a report from a results CSV without re-running: `python scripts/accuracy_test.py --report results/accuracy/<file>.csv`.
 
 ## Reconciling with the logs
