@@ -8,7 +8,7 @@ Marks are for being **specific enough to be proven wrong**, not for being right.
 
 **What these predictions are based on (all available before any model saw a golden ticket):**
 - **Han's smoke tests:** one *invented* 136-character ticket per model on the system-under-test machine (logs `logs/smoke_*`).
-- **Ticket lengths** of rows 3000–3199: character counts only, no model involved ([workload model](workload-model.md), section 4).
+- **Ticket lengths** of all 1,000 allocated rows (3000–3999): character counts only, no model involved ([workload model](workload-model.md), section 4).
 - **The baseline service's configuration:** FastAPI with 1 uvicorn worker, synchronous endpoints, `OLLAMA_NUM_PARALLEL=1`, `OLLAMA_TIMEOUT_S=600`.
 - **Our own labelling disagreements** ([golden/agreement_summary.md](../golden/agreement_summary.md)).
 
@@ -24,11 +24,11 @@ Marks are for being **specific enough to be proven wrong**, not for being right.
   - `OLLAMA_NUM_PARALLEL=1` makes Ollama classify one ticket at a time. Every other request waits in line.
   - While a 7B request runs, the Ollama container uses all 10 allocated CPUs (≥ 90% in `docker stats`). The triage service container stays **below 10% CPU**.
   - Memory holds steady at the loaded model size (about 5.1 GB for 7B) and does not grow during a run.
-  - SQLite and the network are not limits at any tested rate. `GET /search` p95 stays **under 100 ms** at peak, because each run stores fewer than 200 tickets and a full-table `LIKE` scan over them is fast.
+  - SQLite and the network are not expected to be limits at the assignment's standard rates. We predict `GET /search` p95 stays **under 100 ms** at peak, because each run stores fewer than 200 tickets and a full-table `LIKE` scan over them is fast.
 - **Where it saturates, by model.** Ollama's capacity is about 1 ÷ mean service time.
   - **qwen2.5:7b** has a mean service time of about 6.4 s, so capacity is about **9.4 tickets/min**. At the stress steps:
     - **7.2/min:** still stable (utilisation about 0.76), but p95 rises to about **30–45 s**.
-    - **9.6/min:** the queue never drains. p95 grows for the whole 15-minute run and ends above 60 s.
+    - **9.6/min:** the queue does not drain during a sustained limit-finding run. p95 grows throughout the run and ends above 60 s.
     - **12/min:** the backlog grows by about 2.6 tickets/min.
   - **qwen2.5:3b** (capacity about 21/min), **llama3.2:1b** and **qwen2.5:0.5b** (about 65/min each) do not saturate at any rate up to 12/min.
 - **What we expect to observe at saturation:**
@@ -39,28 +39,29 @@ Marks are for being **specific enough to be proven wrong**, not for being right.
   - Once more than about 40 classification requests are queued, `GET /search` requests wait for a free thread too.
   - Search p95 then jumps from under 100 ms to **over 10 s**, even though search never touches the model.
   - For qwen2.5:7b at 12 tickets/min, this happens about **15 minutes** into the run (40 ÷ 2.6 per min).
-  - At peak (2.4/min) and headroom (4.8/min) the backlog stays far below 40, so search is unaffected.
+  - At the assignment peak (1.73/min) and fixed beyond-peak check (3.5/min), the backlog stays far below 40, so search is unaffected.
 
 ## 2. Per candidate model
 
 Hardware: MacBook Pro (Mac17,2), Apple M5, 10 cores (4 performance + 6 efficiency), 16 GB RAM, macOS 26.6.2. Docker 29.8.2 Linux VM with 10 CPUs and 9.7 GiB RAM. Ollama 0.35.1, CPU only. Settings: temperature 0, seed 42, `num_ctx` 4096, JSON-schema-constrained output.
 
-**"Single-request latency"** means `POST /tickets` with one request in flight, measured over the golden tickets: the p50, with the p95 in brackets.
+**"Single-request latency"** means the predicted `POST /tickets` latency with one request in flight over the golden ticket-length distribution: the p50, with the p95 in brackets. These values must remain predictions until the frozen record is committed and the real accuracy test is run.
 
 | Model (tag) | Size class | Expected accuracy on golden set | Expected single-request latency | Reasoning |
 |---|---|---|---|---|
 | `qwen2.5:0.5b` | < 1B | **45%** (range 35–55%) | **0.8 s** (range 0.6–1.1 s); p95 1.2 s | The prompt gives category names only, without definitions. A 0.5B model cannot tell apart categories it has never had defined (Consumer loan, Money transfer) and falls back on the most frequent-sounding one. Prediction: **Credit reporting accounts for over 35% of its answers**, against 22% in the golden set. |
 | `llama3.2:1b-instruct-q4_K_M` | ~1B | **55%** (range 45–65%) | **0.9 s** (range 0.6–1.1 s); p95 1.2 s | Better at following instructions than the 0.5B model, but still too small to apply rules like "who is the complaint against". It reads input at the same speed as the 0.5B model (497 vs 502 ms in the smoke test), so **its p50 will be within 10% of the 0.5B model's** while being about 10 points more accurate. |
-| `qwen2.5:3b` | ~3B | **72%** (range 64–79%) | **2.6 s** (range 1.8–3.4 s); p95 3.8 s | The usual large step up from 1B to 3B. Mostly correct on clear-cut tickets (Mortgage, Credit card), but loses the Credit reporting vs Debt collection and Bank account vs Money transfer splits that our own labellers argued about. *Fails C2 (non-commercial licence) regardless.* |
-| `qwen2.5:7b` | ~7B | **78%** (range 72–84%) | **6.1 s** (range 4.3–7.9 s); p95 8.6 s | The most accurate, but **below R4's 85%**. Without our protocol's edge-case rules in the prompt, it labels collector complaints that mention credit reports as Credit reporting, which is the error our own labellers made before v0.2. |
+| `qwen2.5:3b` | ~3B | **72%** (range 64–79%) | **2.6 s** (range 1.8–3.4 s); p95 3.8 s | The usual large step up from 1B to 3B. Mostly correct on clear-cut tickets (Mortgage, Credit card), but loses the Credit reporting vs Debt collection and Bank account vs Money transfer splits that our own labellers argued about. Its non-commercial licence is predicted to fail the commercial-suitability constraint regardless of its benchmark result. |
+| `qwen2.5:7b` | ~7B | **78%** (range 72–84%) | **6.1 s** (range 4.3–7.9 s); p95 8.6 s | The most accurate, but **slightly below R4's 80%**. Without our protocol's edge-case rules in the prompt, it labels collector complaints that mention credit reports as Credit reporting, which is the error our own labellers made before v0.2. |
 
 **Predictions against the requirements:**
-- **R1** (p95 ≤ 15 s at 2.4/min): **all four models pass.** qwen2.5:7b has the highest p95, about **10–12 s**: 8.6 s for a long ticket plus about 1 s average queueing (utilisation 0.25).
+- **R1** (POST p95 ≤ 30 s at 1.73 tickets/min for 10 min): **all four models pass.** qwen2.5:7b has the highest predicted p95, about **9–11 s**, because its estimated utilisation is only about 0.18 at this rate.
 - **R2** (search p95 ≤ 1 s at peak): **all four pass**, with p95 under 100 ms.
-- **R3** (4.8/min sustained, p95 ≤ 30 s): **all four pass.** qwen2.5:7b has the least margin: utilisation about 0.5, p95 about **14–20 s**.
-- **R4** (overall accuracy ≥ 85%): **no candidate passes.** The best (qwen2.5:7b) falls short by about 7 points.
+- **R3** (achieved throughput ≥ 104/hour, error rate ≤ 1%, and no growing latency at 1.73/min): **all four pass.** Even qwen2.5:7b's predicted capacity of about 9.4/min is well above the offered peak rate.
+- **Fixed beyond-peak check** (3.5 tickets/min + 7 searches/min): **all four remain stable.** qwen2.5:7b has the least margin, with utilisation about 0.37 and predicted POST p95 around **12–15 s**.
+- **R4** (overall accuracy ≥ 80%): **no candidate passes in the point predictions.** The best (qwen2.5:7b) falls short by about 2 points, although its prediction range crosses the threshold.
 - **R5** (every category ≥ 70%): **no candidate passes.** qwen2.5:7b's weakest category is **Debt collection or Consumer loan, at 55–68%**.
-- **Overall: no candidate meets every requirement.** The models that pass R1–R3 easily (0.5B, 1B) miss the accuracy requirements by about 30–40 points. The model closest on accuracy (7B) passes the load requirements but still misses R4/R5. The 3B model fails C2 regardless.
+- **Overall: no candidate meets every requirement in the point predictions.** All four pass R1–R3, but the 0.5B and 1B models miss R4 by about 25–35 points, the 3B model by about 8 points, and the 7B model by about 2 points. The 7B model also misses R5, while the 3B model is unsuitable for recommendation under the commercial-licence constraint regardless of performance.
 
 ## 3. Hardest categories to classify, and why
 
