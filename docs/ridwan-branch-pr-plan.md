@@ -33,8 +33,8 @@ This checklist prepares `ridwan-branch` for review and merge into `main`. Mergin
 - [x] Validate the 800-ticket CSV and JMeter XML.
 - [x] Run a non-reportable mock JMeter test and reconcile every sample.
 - [x] Scan for stale workload rates and removed candidate tags.
-- [ ] Push `ridwan-branch`.
-- [ ] Open a pull request into `main` with verification and pre-benchmark blockers recorded.
+- [x] Push `ridwan-branch`.
+- [x] Open a pull request into `main` with verification and pre-benchmark blockers recorded.
 
 ## Required after merge and before official benchmarks
 
