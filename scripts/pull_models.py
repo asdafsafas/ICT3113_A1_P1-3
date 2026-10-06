@@ -44,6 +44,24 @@ def pull(base, tag):
                 last = status
 
 
+def ollama_image():
+    """Image tag and content digest of the running ollama container, e.g. ollama/ollama@sha256:..."""
+    import subprocess
+    try:
+        cid = subprocess.run(["docker", "compose", "ps", "-q", "ollama"], cwd=REPO, capture_output=True,
+                             text=True, check=True).stdout.strip()
+        tag = subprocess.run(["docker", "inspect", "-f", "{{.Config.Image}}", cid], capture_output=True,
+                             text=True, check=True).stdout.strip()
+        image_id = subprocess.run(["docker", "inspect", "-f", "{{.Image}}", cid], capture_output=True,
+                                  text=True, check=True).stdout.strip()
+        digests = subprocess.run(["docker", "image", "inspect", "-f", "{{json .RepoDigests}}", image_id],
+                                 capture_output=True, text=True, check=True).stdout.strip()
+        return {"tag": tag, "repo_digests": json.loads(digests or "[]")}
+    except (subprocess.CalledProcessError, FileNotFoundError, ValueError) as e:
+        print(f"  (could not read the ollama image digest: {e})")
+        return None
+
+
 def candidates(path):
     tags = []
     for line in Path(path).read_text(encoding="utf-8").splitlines():
@@ -101,6 +119,7 @@ def main():
     lock = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "ollama_version": api(base, "/api/version").get("version"),
+        "ollama_image": ollama_image(),
         "models": models,
     }
     LOCK.write_text(json.dumps(lock, indent=2) + "\n", encoding="utf-8")

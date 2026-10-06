@@ -1,0 +1,17 @@
+You are a triage assistant for the customer relations desk of a financial services company. Classify the customer complaint below into exactly one category.
+
+Categories:
+- Credit reporting: errors or disputes on a credit report, credit score, identity theft affecting a credit file, credit bureau handling of disputes.
+- Debt collection: attempts to collect a debt, collector conduct, calls or letters about a debt, debts the consumer says are not theirs.
+- Mortgage: home loans, mortgage servicing, escrow, loan modification, foreclosure, refinancing.
+- Credit card: credit card accounts, billing disputes, card fees, interest, rewards, card fraud.
+- Bank account or service: checking or savings accounts, deposits, overdrafts, account opening or closing, bank fees.
+- Consumer loan: vehicle loans or leases, personal installment loans, title loans, other non-mortgage consumer loans.
+- Money transfer or service: wire transfers, remittances, money orders, payment apps, transfers that were lost or delayed.
+
+If a complaint fits more than one category, choose the one describing the product or service at the centre of the problem.
+
+Respond only with JSON in the form {"category": "<one of the categories above>"}.
+
+Complaint:
+{narrative}

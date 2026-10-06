@@ -1,0 +1,31 @@
+# Service machine — recorded 2026-10-05T10:23:04Z
+
+## Hardware
+Model Name: MacBook Pro
+Model Identifier: Mac17,2
+Chip: Apple M5
+Total Number of Cores: 10 (4 Super and 6 Efficiency)
+Memory: 16 GB
+
+## OS
+ProductName:		macOS
+ProductVersion:		26.6.2
+BuildVersion:		25G83
+
+## Docker
+Client: 29.8.2  Server: 29.8.2
+Kernel Version: 7.0.14-linuxkit
+Operating System: Docker Desktop
+CPUs: 10
+Total Memory: 9.701GiB
+
+## Ollama
+ollama version is 0.35.1
+Image: ollama/ollama@sha256:292ee7945dfc3d5840a181f3ab86fedb1e66703e02c8af98b50f4da56b7e278c
+OLLAMA_MAX_LOADED_MODELS=1
+OLLAMA_KEEP_ALIVE=24h
+OLLAMA_HOST=0.0.0.0:11434
+
+## Power
+Now drawing from 'Battery Power'
+ -InternalBattery-0 (id=23068771)	88%; discharging; 8:22 remaining present: true

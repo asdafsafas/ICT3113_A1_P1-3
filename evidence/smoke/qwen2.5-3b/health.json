@@ -1,0 +1,6 @@
+{
+  "status": "ok",
+  "model": "qwen2.5:3b",
+  "model_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+  "prompt_file": "classify_v1.txt"
+}

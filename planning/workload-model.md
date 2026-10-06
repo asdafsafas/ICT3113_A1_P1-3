@@ -42,16 +42,18 @@ We found no published figure for how often complaint handlers search past cases,
 
 ## 4. Ticket length distribution
 
-Measured from all 1,000 rows allocated to our team by running `python scripts/export_loadtest_data.py --source <course CSV> --rows 3000-3999`:
+Measured from the exact 1,000 tickets committed in this repository: rows 3000–3199 from `ict3113_ticket_P1-3.xlsx` plus rows 3200–3999 from `loadtest/data/load-test-tickets.csv` (1,000 rows, contiguous, no overlap). Lengths are counted exactly as stored (Python `len()` for characters, whitespace-split for words, nearest-rank percentiles via `scripts/common.py`). Reproduce with `python3 scripts/ticket_lengths.py`.
 
 | | p5 | p25 | p50 | p75 | p95 | p99 | max |
 |---|---|---|---|---|---|---|---|
 | Words | 49 | 94 | 144 | 214 | 322 | 361 | 385 |
-| Characters | 263 | 514 | 797 | 1218 | 1789 | 1940 | 2000 |
+| Characters | 263 | 512 | 797 | 1214 | 1780 | 1938 | 2000 |
+
+*Correction (before the prediction freeze):* an earlier version of this table, computed from the course CSV, reported p25 514, p75 1,218, p95 1,789 and p99 1,940 characters. The committed files store line breaks as `\n` only (72 of the 1,000 tickets contain line breaks; none contain `\r`), so the earlier figures most likely counted Windows `\r\n` line endings as two characters. Word counts and the median are unchanged. The committed figures are what the service receives, because JMeter sends the committed narratives.
 
 What this means for the model:
 
-- **Processing time varies with length.** A p95 ticket (1,789 characters) is about 2.2 times the length of a median ticket (797), so per-ticket latency should vary noticeably across the test traffic.
+- **Processing time varies with length.** A p95 ticket (1,780 characters) is about 2.2 times the length of a median ticket (797), so per-ticket latency should vary noticeably across the test traffic.
 - **No ticket should be truncated.** The longest ticket plus the prompt template (`service/prompts/classify_v1.txt`, 395 characters) is 2,395 characters. Even at one token per character, far more than English text normally uses, this fits within the default context window of 4,096 tokens (`NUM_CTX` in `.env.example`). The service logs `prompt_tokens` per request, so this can be confirmed from the logs.
 - **Ticket length appears capped at 2,000 characters** in our allocated extract: the longest of our 1,000 rows is exactly 2,000 characters. The real client could see longer tickets than those available to our team.
 
