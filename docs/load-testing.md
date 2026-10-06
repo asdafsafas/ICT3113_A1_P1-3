@@ -81,17 +81,26 @@ Repeat for every (model, arrival rate) configuration, **three times**.
 **On the SUT:**
 
 1. Close other applications. Plug in the laptop. Don't use the machine during the run.
-2. Set the model: `MODEL=<tag>` in `.env`, then empty the database and start fresh:
+2. Set the model: `MODEL=<tag>` in `.env`, then restart Ollama and empty the database. Repeat this before **every** measured run, including runs 2 and 3 of the same configuration:
    ```bash
-   docker compose down
+   docker compose stop triage
+   docker compose restart ollama
+   until docker compose exec -T ollama ollama list >/dev/null 2>&1; do sleep 2; done
+   docker compose rm -f triage
    docker volume rm triage_triage-data
-   docker compose up -d
+   docker compose up -d triage
    python scripts/pull_models.py --check          # all OK?
    curl http://localhost:8000/health              # "status": "ok" and the right model?
    ```
-3. **Warm up:** send one made-up ticket so the model is loaded into memory (the first request includes load time):
+   JMeter starts at the first TSV row each time so the repetitions use the same workload. Restarting Ollama ensures no repetition inherits in-memory model or prompt-prefix state from the preceding run.
+3. **Warm up:** send one invented ticket so the model is loaded into memory, then recreate only triage and its data volume so the measured database starts empty while Ollama stays warm:
    ```bash
    curl -X POST http://localhost:8000/tickets -H "Content-Type: application/json" -d '{"narrative": "warm-up request"}'
+   docker compose stop triage
+   docker compose rm -f triage
+   docker volume rm triage_triage-data
+   docker compose up -d triage
+   curl http://localhost:8000/health
    ```
 4. Start recording resource use (CPU and memory per container, every 5 s) in a separate terminal. This uses bash (Terminal on Mac, **Git Bash** on Windows):
    ```bash
