@@ -2,7 +2,7 @@
 
 > **Freeze rule:** this file is committed together with the golden set **before the first benchmark run**, and must not be edited afterwards. The commit history is our evidence. Corrections go in the report as "where we were wrong", never here.
 
-**Committed on:** YYYY-MM-DD HH:MM SGT · **Commit / tag:** annotated tag `prediction-freeze` (a file cannot contain its own commit hash; resolve it with `git rev-list -n 1 prediction-freeze`). The golden set (`golden/golden_set.csv`), this record, the prompt (`service/prompts/classify_v1.txt`) and the model pins (`models/models.lock.json`) are all in the tagged commit.
+**Committed on:** 2026-10-06 15:35 SGT · **Commit / tag:** annotated tag `prediction-freeze` (a file cannot contain its own commit hash; resolve it with `git rev-list -n 1 prediction-freeze`). The golden set (`golden/golden_set.csv`), this record, the prompt (`service/prompts/classify_v1.txt`) and the model pins (`models/models.lock.json`) are all in the tagged commit.
 
 Marks are for being **specific enough to be proven wrong**, not for being right. "The model will be slow" earns nothing; "qwen2.5:7b will take 25–40 s per ticket and p95 will exceed 120 s at 4 tickets/min" can be checked.
 
@@ -16,7 +16,7 @@ Marks are for being **specific enough to be proven wrong**, not for being right.
 **How latency was extrapolated:**
 - In the smoke tests, reading the prompt took 80–88% of each request. The time per prompt token (1.6 / 1.6 / 5.0 / 11.0 ms for 0.5B / 1B / 3B / 7B) was applied to each real ticket's length.
 - Ticket length in tokens was estimated as characters ÷ 4, plus about 272 tokens of instructions. The smoke tests' answer-generation time was added.
-  - **Known bias:** the 272 instruction tokens were derived from the *prototype* prompt. `classify_v1.txt` is about a third of that length, so this method overstates single-request latency by roughly the time to read ~170 extra tokens (about 0.3 s for 0.5B/1B, 0.9 s for 3B and 1.9 s for 7B at the per-token rates above). *[Team: either re-derive the latency predictions from `evidence/smoke/SUMMARY.md` before the freeze, or keep them and delete this sentence's bracketed note — but keep the bias statement.]*
+  - **Known bias:** the 272 instruction tokens were derived from the *prototype* prompt. `classify_v1.txt` is about a third of that length, so this method overstates single-request latency by roughly the time to read ~170 extra tokens (about 0.3 s for 0.5B/1B, 0.9 s for 3B and 1.9 s for 7B at the per-token rates above). The team kept the original point predictions so the final report can compare them honestly with the later official measurements and explain this known source of error.
 - Queueing was estimated by treating Ollama as a single server (M/G/1 queue) handling one request at a time.
 - The ranges allow ±30% for tokenizer differences and for prompt reading slowing down on longer prompts.
 
