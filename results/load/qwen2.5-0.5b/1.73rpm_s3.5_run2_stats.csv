@@ -281,3 +281,13 @@ timestamp_epoch,container,cpu_percent,memory_usage
 1791349198,triage-ollama-1,3.14%,735.3MiB / 9.701GiB
 1791349205,triage-triage-1,0.27%,38.91MiB / 9.701GiB
 1791349205,triage-ollama-1,0.01%,735.1MiB / 9.701GiB
+1791349211,triage-triage-1,0.26%,38.91MiB / 9.701GiB
+1791349211,triage-ollama-1,0.01%,734.9MiB / 9.701GiB
+1791349217,triage-triage-1,0.27%,38.91MiB / 9.701GiB
+1791349217,triage-ollama-1,0.01%,735.1MiB / 9.701GiB
+1791349223,triage-triage-1,0.27%,38.91MiB / 9.701GiB
+1791349223,triage-ollama-1,2.76%,735.6MiB / 9.701GiB
+1791349230,triage-triage-1,0.23%,38.91MiB / 9.701GiB
+1791349230,triage-ollama-1,0.01%,735MiB / 9.701GiB
+1791349236,triage-triage-1,0.24%,38.91MiB / 9.701GiB
+1791349236,triage-ollama-1,0.01%,735.2MiB / 9.701GiB
