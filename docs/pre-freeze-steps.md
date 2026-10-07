@@ -22,7 +22,7 @@ cp .env.example .env                                # if .env does not exist yet
 docker compose up -d --build
 docker compose exec ollama sh -c 'env | grep ^OLLAMA_'   # must show OLLAMA_NUM_PARALLEL=1
 python3 scripts/pull_models.py                      # team volume is new, so this re-downloads ~7.8 GB
-python3 scripts/pull_models.py --check              # all four must say OK
+python3 scripts/pull_models.py --check              # all three must say OK
 ```
 
 The digests must match the prototype pins (`evidence/smoke-prototype/env/models_pinned.json`):
@@ -31,7 +31,6 @@ The digests must match the prototype pins (`evidence/smoke-prototype/env/models_
 |---|---|
 | qwen2.5:0.5b | a8b0c5157701 |
 | llama3.2:1b-instruct-q4_K_M | 22bc6b92eb01 |
-| qwen2.5:3b | 357c53fb659c |
 | qwen2.5:7b | 845dbda0ea48 |
 
 ## 2. Smoke-test the real service (CPU and memory evidence)
@@ -40,7 +39,7 @@ Mac on AC power. Try one model first, then all of them:
 
 ```bash
 python3 scripts/smoke_sut.py --models qwen2.5:0.5b  # check it switches, verifies and finishes
-python3 scripts/smoke_sut.py                        # all four, about 5 minutes
+python3 scripts/smoke_sut.py                        # all three, about 5 minutes
 cat evidence/smoke/SUMMARY.md
 ```
 

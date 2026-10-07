@@ -166,7 +166,6 @@ Fill this in before running tests.
 |---|---|---|---|---|---|
 | `qwen2.5:0.5b` | [ ] | 1.45, 1.73, 3.5 | 2.9, 3.5, 7 | 10 min | 3 |
 | `llama3.2:1b-instruct-q4_K_M` | [ ] | 1.45, 1.73, 3.5 | 2.9, 3.5, 7 | 10 min | 3 |
-| `qwen2.5:3b` | [ ] | 1.45, 1.73, 3.5 | 2.9, 3.5, 7 | 10 min | 3 |
 | `qwen2.5:7b` | [ ] | 1.45, 1.73, 3.5 | 2.9, 3.5, 7 | 10 min | 3 |
 
 - [ ] Include at least the workload-derived average and peak rates.

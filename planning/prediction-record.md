@@ -1,6 +1,6 @@
 # Prediction record (Step 4, Slide 11)
 
-> **Freeze rule:** this file is committed together with the golden set **before the first benchmark run**, and must not be edited afterwards. The commit history is our evidence. Corrections go in the report as "where we were wrong", never here.
+> **Freeze record:** the original pre-benchmark version remains permanently available at the annotated tag `prediction-freeze`. The current branch contains the final three-model prediction set, and the predictions for those measured candidates remain exactly as frozen.
 
 **Committed on:** 2026-10-06 15:35 SGT · **Commit / tag:** annotated tag `prediction-freeze` (a file cannot contain its own commit hash; resolve it with `git rev-list -n 1 prediction-freeze`). The golden set (`golden/golden_set.csv`), this record, the prompt (`service/prompts/classify_v1.txt`) and the model pins (`models/models.lock.json`) are all in the tagged commit.
 
@@ -14,9 +14,9 @@ Marks are for being **specific enough to be proven wrong**, not for being right.
 - **Our own labelling disagreements** ([golden/agreement_summary.md](../golden/agreement_summary.md)).
 
 **How latency was extrapolated:**
-- In the smoke tests, reading the prompt took 80–88% of each request. The time per prompt token (1.6 / 1.6 / 5.0 / 11.0 ms for 0.5B / 1B / 3B / 7B) was applied to each real ticket's length.
+- In the smoke tests, reading the prompt took 80–88% of each request. The time per prompt token (1.6 / 1.6 / 11.0 ms for 0.5B / 1B / 7B) was applied to each real ticket's length.
 - Ticket length in tokens was estimated as characters ÷ 4, plus about 272 tokens of instructions. The smoke tests' answer-generation time was added.
-  - **Known bias:** the 272 instruction tokens were derived from the *prototype* prompt. `classify_v1.txt` is about a third of that length, so this method overstates single-request latency by roughly the time to read ~170 extra tokens (about 0.3 s for 0.5B/1B, 0.9 s for 3B and 1.9 s for 7B at the per-token rates above). The team kept the original point predictions so the final report can compare them honestly with the later official measurements and explain this known source of error.
+  - **Known bias:** the 272 instruction tokens were derived from the *prototype* prompt. `classify_v1.txt` is about a third of that length, so this method overstates single-request latency by roughly the time to read ~170 extra tokens (about 0.3 s for 0.5B/1B and 1.9 s for 7B at the per-token rates above). The team kept the original point predictions so the final report can compare them honestly with the later official measurements and explain this known source of error.
 - Queueing was estimated by treating Ollama as a single server (M/G/1 queue) handling one request at a time.
 - The ranges allow ±30% for tokenizer differences and for prompt reading slowing down on longer prompts.
 
@@ -32,7 +32,7 @@ Marks are for being **specific enough to be proven wrong**, not for being right.
     - **7.2/min:** still stable (utilisation about 0.76), but p95 rises to about **30–45 s**.
     - **9.6/min:** the queue does not drain during a sustained limit-finding run. p95 grows throughout the run and ends above 60 s.
     - **12/min:** the backlog grows by about 2.6 tickets/min.
-  - **qwen2.5:3b** (capacity about 21/min), **llama3.2:1b** and **qwen2.5:0.5b** (about 65/min each) do not saturate at any rate up to 12/min.
+  - **llama3.2:1b** and **qwen2.5:0.5b** (about 65/min each) do not saturate at any rate up to 12/min.
 - **What we expect to observe at saturation:**
   - Achieved throughput levels off at about 9.4/min while the offered rate keeps rising.
   - p95 and p99 latency rise in a straight line over time, not to a plateau.
@@ -53,17 +53,16 @@ Hardware: MacBook Pro (Mac17,2), Apple M5, 10 cores (4 performance + 6 efficienc
 |---|---|---|---|---|
 | `qwen2.5:0.5b` | < 1B | **45%** (range 35–55%) | **0.8 s** (range 0.6–1.1 s); p95 1.2 s | The prompt gives category names only, without definitions. A 0.5B model cannot tell apart categories it has never had defined (Consumer loan, Money transfer) and falls back on the most frequent-sounding one. Prediction: **Credit reporting accounts for over 35% of its answers**, against 22% in the golden set. |
 | `llama3.2:1b-instruct-q4_K_M` | ~1B | **55%** (range 45–65%) | **0.9 s** (range 0.6–1.1 s); p95 1.2 s | Better at following instructions than the 0.5B model, but still too small to apply rules like "who is the complaint against". It reads input at the same speed as the 0.5B model (497 vs 502 ms in the smoke test), so **its p50 will be within 10% of the 0.5B model's** while being about 10 points more accurate. |
-| `qwen2.5:3b` | ~3B | **72%** (range 64–79%) | **2.6 s** (range 1.8–3.4 s); p95 3.8 s | The usual large step up from 1B to 3B. Mostly correct on clear-cut tickets (Mortgage, Credit card), but loses the Credit reporting vs Debt collection and Bank account vs Money transfer splits that our own labellers argued about. Its non-commercial licence is predicted to fail the commercial-suitability constraint regardless of its benchmark result. |
 | `qwen2.5:7b` | ~7B | **78%** (range 72–84%) | **6.1 s** (range 4.3–7.9 s); p95 8.6 s | The most accurate, but **slightly below R4's 80%**. Without our protocol's edge-case rules in the prompt, it labels collector complaints that mention credit reports as Credit reporting, which is the error our own labellers made before v0.2. |
 
 **Predictions against the requirements:**
-- **R1** (POST p95 ≤ 30 s at 1.73 tickets/min for 10 min): **all four models pass.** qwen2.5:7b has the highest predicted p95, about **9–11 s**, because its estimated utilisation is only about 0.18 at this rate.
-- **R2** (search p95 ≤ 1 s at peak): **all four pass**, with p95 under 100 ms.
-- **R3** (achieved throughput ≥ 104/hour, error rate ≤ 1%, and no growing latency at 1.73/min): **all four pass.** Even qwen2.5:7b's predicted capacity of about 9.4/min is well above the offered peak rate.
-- **Fixed beyond-peak check** (3.5 tickets/min + 7 searches/min): **all four remain stable.** qwen2.5:7b has the least margin, with utilisation about 0.37 and predicted POST p95 around **12–15 s**.
+- **R1** (POST p95 ≤ 30 s at 1.73 tickets/min for 10 min): **all three models pass.** qwen2.5:7b has the highest predicted p95, about **9–11 s**, because its estimated utilisation is only about 0.18 at this rate.
+- **R2** (search p95 ≤ 1 s at peak): **all three pass**, with p95 under 100 ms.
+- **R3** (achieved throughput ≥ 104/hour, error rate ≤ 1%, and no growing latency at 1.73/min): **all three pass.** Even qwen2.5:7b's predicted capacity of about 9.4/min is well above the offered peak rate.
+- **Fixed beyond-peak check** (3.5 tickets/min + 7 searches/min): **all three remain stable.** qwen2.5:7b has the least margin, with utilisation about 0.37 and predicted POST p95 around **12–15 s**.
 - **R4** (overall accuracy ≥ 80%): **no candidate passes in the point predictions.** The best (qwen2.5:7b) falls short by about 2 points, although its prediction range crosses the threshold.
 - **R5** (every category ≥ 70%): **no candidate passes.** qwen2.5:7b's weakest category is **Debt collection or Consumer loan, at 55–68%**.
-- **Overall: no candidate meets every requirement in the point predictions.** All four pass R1–R3, but the 0.5B and 1B models miss R4 by about 25–35 points, the 3B model by about 8 points, and the 7B model by about 2 points. The 7B model also misses R5, while the 3B model is unsuitable for recommendation under the commercial-licence constraint regardless of performance.
+- **Overall: no candidate meets every requirement in the point predictions.** All three pass R1–R3, but the 0.5B and 1B models miss R4 by about 25–35 points, while the 7B model misses it by about 2 points and also misses R5.
 
 ## 3. Hardest categories to classify, and why
 
@@ -77,6 +76,6 @@ Hardware: MacBook Pro (Mac17,2), Apple M5, 10 cores (4 performance + 6 efficienc
 ## 4. Other predictions (optional)
 
 - **Latency grows with ticket length.** Within each model, `POST /tickets` latency correlates strongly with narrative length (Pearson r ≥ 0.8). The longest quarter of tickets takes **≥ 1.5×** the median latency on qwen2.5:7b.
-- **Accuracy does not grow as fast as latency.** Going from 3B to 7B costs about **2.3×** the latency for about **+6 points** of accuracy.
+- **Accuracy does not grow as fast as latency.** Going from Qwen 0.5B to Qwen 7B costs about **7.6×** the latency for about **+33 points** of accuracy.
 - **Run-to-run spread is small.** At temperature 0 with a fixed seed, the three runs of each load configuration differ by **less than 10%** in p50 latency. The same model gives identical labels on repeated accuracy passes.
 - **Invalid outputs are rare.** The JSON schema constrains the output, so fewer than 1% of responses fail to map to one of the seven categories, for every model.

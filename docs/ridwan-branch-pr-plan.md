@@ -22,7 +22,7 @@ This checklist prepares `ridwan-branch` for review and merge into `main`. Mergin
 - [x] Keep the 800 non-golden tickets from rows 3200-3999 as JMeter traffic.
 - [x] Document the CSV-to-TSV export command.
 - [x] Replace the removed 1.5B model in setup examples.
-- [x] Document the four selected model tags and their comparison rationale.
+- [x] Document the three selected model tags and their comparison rationale.
 - [x] Set the documented Ollama version to 0.35.1.
 - [x] Assign JMeter work to Ridwan, model selection to Tze Han and accuracy testing to Zong Han.
 - [ ] Generate and commit `models/models.lock.json` on the system-under-test machine.

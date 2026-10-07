@@ -32,20 +32,6 @@
       "ollama_mem": "1.291GiB / 9.701GiB"
     },
     {
-      "tag": "qwen2.5:3b",
-      "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
-      "a_ms": 274.9498215531212,
-      "b_ms_per_char": 1.0453054292702304,
-      "r2": 0.9918566204027155,
-      "ms_per_prompt_token": 4.986012219404467,
-      "pred_ms_golden_p50": 1122.692524691278,
-      "pred_ms_golden_p95": 2061.376800175945,
-      "ollama_cpu_median": 962.36,
-      "ollama_cpu_peak": 1030.89,
-      "triage_cpu_peak": 1.18,
-      "ollama_mem": "2.363GiB / 9.701GiB"
-    },
-    {
       "tag": "qwen2.5:7b",
       "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
       "a_ms": 621.0928966589631,

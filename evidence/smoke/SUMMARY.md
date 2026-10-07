@@ -31,12 +31,6 @@ Raw evidence per model: `service.jsonl` (service log lines, matched by X-Request
 | `llama3.2:1b-instruct-q4_K_M` | smoke-04 | 1289 | 362 | 721.1 | 716.0 | 593.4 | 113.9 |
 | `llama3.2:1b-instruct-q4_K_M` | smoke-05 | 1715 | 474 | 810.8 | 807.7 | 723.5 | 78.3 |
 | `llama3.2:1b-instruct-q4_K_M` | smoke-06 | 2000 | 506 | 808.7 | 802.8 | 724.8 | 65.6 |
-| `qwen2.5:3b` | smoke-01 | 186 | 150 | 526.1 | 516.7 | 366.3 | 136.3 |
-| `qwen2.5:3b` | smoke-02 | 498 | 208 | 774.4 | 765.2 | 574.5 | 186.7 |
-| `qwen2.5:3b` | smoke-03 | 1011 | 314 | 1212.3 | 1207.2 | 1014.6 | 187.1 |
-| `qwen2.5:3b` | smoke-04 | 1289 | 366 | 1675.7 | 1668.3 | 1489.5 | 172.2 |
-| `qwen2.5:3b` | smoke-05 | 1715 | 478 | 2099.3 | 2094.0 | 1900.6 | 183.7 |
-| `qwen2.5:3b` | smoke-06 | 2000 | 510 | 2364.4 | 2351.1 | 2151.8 | 155.9 |
 | `qwen2.5:7b` | smoke-01 | 186 | 150 | 1083.6 | 1071.6 | 749.0 | 302.6 |
 | `qwen2.5:7b` | smoke-02 | 498 | 208 | 1727.7 | 1720.5 | 1230.6 | 484.9 |
 | `qwen2.5:7b` | smoke-03 | 1011 | 314 | 2796.0 | 2792.3 | 2277.3 | 508.7 |
@@ -52,7 +46,6 @@ Linear fit `latency_ms = a + b x chars` over the 6 tickets, evaluated at the gol
 |---|---:|---:|---:|---:|---:|---:|---|---:|---|
 | `qwen2.5:0.5b` | 72 | 0.37 | 0.990 | 1.79 | 0.37 s | 0.71 s | 980 / 980 | 0 | 694.8MiB / 9.701GiB |
 | `llama3.2:1b-instruct-q4_K_M` | 157 | 0.37 | 0.950 | 1.84 | 0.45 s | 0.78 s | 1017 / 1017 | 1 | 1.291GiB / 9.701GiB |
-| `qwen2.5:3b` | 275 | 1.05 | 0.992 | 4.99 | 1.12 s | 2.06 s | 962 / 1031 | 1 | 2.363GiB / 9.701GiB |
 | `qwen2.5:7b` | 621 | 2.20 | 0.995 | 10.32 | 2.41 s | 4.39 s | 1001 / 1010 | 1 | 4.819GiB / 9.701GiB |
 
 `docker stats` CPU % is relative to one CPU, so 1000% = all 10 CPUs of the Docker VM. Samples are taken about once a second, so short requests may get few or no samples.

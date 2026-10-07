@@ -14,7 +14,6 @@ Use the same system-under-test Mac, load-generator Mac, prompt, service commit, 
 
 - `qwen2.5:0.5b`
 - `llama3.2:1b-instruct-q4_K_M`
-- `qwen2.5:3b`
 - `qwen2.5:7b`
 
 ### Load configurations
@@ -25,7 +24,7 @@ Use the same system-under-test Mac, load-generator Mac, prompt, service commit, 
 | Peak | 1.73/min | 3.5/min | Open-loop | 10 min | 5 min | 3 |
 | Beyond peak | 3.5/min | 7/min | Open-loop | 10 min | 5 min | 3 |
 
-This is 36 measured load-test runs: 4 models × 3 configurations × 3 runs. Allow about 9 hours for the configured arrival and drain periods, excluding setup and reruns.
+This is 27 measured load-test runs: 3 models × 3 configurations × 3 runs. Allow about 6 hours 45 minutes for the configured arrival and drain periods, excluding setup and reruns.
 
 ### Requirements checked
 
@@ -41,7 +40,7 @@ Do not start official runs until every item below is confirmed.
 
 - [ ] Golden set is frozen: 195 labelled tickets from the original 200-ticket pool.
 - [ ] Prediction record is final and committed.
-- [ ] Four model tags and digests are committed.
+- [ ] The three active model tags and their digests are recorded.
 - [ ] Classification prompt and generation settings are committed.
 - [ ] Freeze commit or tag is recorded: `____________________________`.
 - [ ] `OLLAMA_NUM_PARALLEL=1` is confirmed inside the running container.
@@ -340,7 +339,7 @@ A valid run should show:
 
 Connection failures that never reached the service can be missing from the service log, but they must be explained and counted as JMeter errors.
 
-## 10. Repeat for all four models
+## 10. Repeat for all three active models
 
 Finish the nine load runs for one model before changing `.env` to the next model. This minimises model switching and configuration mistakes.
 
@@ -349,7 +348,6 @@ Use these result folders:
 ```text
 results/load/qwen2.5-0.5b/
 results/load/llama3.2-1b-instruct-q4_K_M/
-results/load/qwen2.5-3b/
 results/load/qwen2.5-7b/
 ```
 
@@ -450,7 +448,6 @@ For each model, record:
 |---|---|---|---|---|---|---|
 | qwen2.5:0.5b | | | | | | |
 | llama3.2:1b-instruct-q4_K_M | | | | | | |
-| qwen2.5:3b | | | | | | |
 | qwen2.5:7b | | | | | | |
 
 For the bottleneck diagnosis, compare:

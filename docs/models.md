@@ -16,17 +16,20 @@
 |---|---:|---|---|
 | `qwen2.5:0.5b` | 0.49B | Q4_K_M | Smallest and fastest Qwen baseline |
 | `llama3.2:1b-instruct-q4_K_M` | 1.24B | Q4_K_M | A second family near the small-model class |
-| `qwen2.5:3b` | 3.1B | Q4_K_M | Middle point on the Qwen size curve |
 | `qwen2.5:7b` | 7.6B | Q4_K_M | Largest candidate that fits the SUT memory budget |
 
-The three Qwen sizes make the speed/accuracy/throughput effect of parameter count visible within one family. The similarly small Llama candidate shows whether model family matters as well as size. All four use Q4_K_M, avoiding quantisation as an extra uncontrolled variable.
+The 0.5B and 7B Qwen models show the speed, accuracy and throughput trade-off
+between small and large models within one family. The 1B Llama candidate adds a
+second family near the small-model class. All three use Q4_K_M, avoiding
+quantisation as an extra uncontrolled variable, and together they span the
+small and large parameter-size classes required by the brief.
 
 ## Choosing
 
 Things worth weighing (and writing down as the justification):
 
 - **Size classes:** at least one small model the CPU handles quickly, and at least one larger model that should be more accurate.
-- **Same family at different sizes** (Qwen 0.5B / 3B / 7B) isolates the effect of size. **Different families near the small-model class** (Qwen and Llama) shows whether training matters as well as size.
+- **Same family at different sizes** (Qwen 0.5B / 7B) isolates the effect of size. **Different families near the small-model class** (Qwen and Llama) shows whether training matters as well as size.
 - **Memory:** check the model fits in the SUT machine's Docker memory limit (see [setup.md](setup.md)).
 - **Quantisation:** Ollama's default tags are usually 4-bit (`Q4_K_M`). Keep it the same across candidates, or justify the difference.
 - **Instruction-tuned** models follow the "reply with one category" instruction much better than base models.

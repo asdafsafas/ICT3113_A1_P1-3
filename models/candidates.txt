@@ -2,5 +2,4 @@
 # After editing, run: python scripts/pull_models.py
 qwen2.5:0.5b
 llama3.2:1b-instruct-q4_K_M
-qwen2.5:3b
 qwen2.5:7b
