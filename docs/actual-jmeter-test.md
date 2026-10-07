@@ -226,6 +226,24 @@ Leave it running until JMeter prints `... end of run`, then stop it with Control
 
 Run JMeter only in non-GUI mode. Use a 600-second client timeout so it matches `OLLAMA_TIMEOUT_S=600`.
 
+To run the complete nine-run standard matrix for one model with guarded pauses between
+runs, use the suite runner. It verifies the model and digest, refuses to overwrite prior
+evidence, validates each JTL, and stops until the matching service log and resource CSV
+have been pulled:
+
+```bash
+python3 scripts/run_official_jmeter_suite.py \
+  --host "$SUT_HOST" \
+  --model qwen2.5:0.5b
+```
+
+Use `--resume` after an interruption to skip runs whose JTL and JMeter log both already
+exist. Use `--dry-run` to print the complete plan without executing JMeter. Run the suite
+once per model; model changes and the SUT reset/warm-up remain manual because they occur
+on the separate SUT Mac. After it finishes, run the same command again with the next
+model tag; the script automatically writes to that model's separate result folder. The
+individual commands below remain available for manual runs.
+
 On the load-generator Mac:
 
 ```bash
