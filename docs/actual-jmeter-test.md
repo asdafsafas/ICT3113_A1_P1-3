@@ -366,6 +366,20 @@ For every model:
 
 The prediction estimates the 7B limit near 9.5 tickets/min. Use the 7B model because its limit is reachable within the planned rates.
 
+After all nine standard 7B runs have complete JTL, JMeter log, service-log and
+statistics evidence, run the guarded stress suite from the JMeter Mac:
+
+```bash
+python3 scripts/run_7b_stress_suite.py \
+  --host "$SUT_HOST"
+```
+
+It runs the ramp, below-limit confirmation and above-limit confirmation in order.
+It pauses for the separate SUT reset, warm-up and statistics monitor before every
+stage, then pauses again until both evidence files have been pulled. Use `--resume`
+after an interruption. Use `--dry-run` to print all three commands without starting
+the tests.
+
 ### Ramp test
 
 Reset, warm up and start resource monitoring. Then run:
@@ -409,11 +423,22 @@ After separate resets, run one 15-minute constant-rate confirmation at each rate
 - **Below:** 7.2 tickets/min plus 7 searches/min.
 - **Above:** 9.6 tickets/min plus 7 searches/min.
 
+Keep the 10-minute drain window for both confirmations so queued 7B requests have
+time to complete and remain visible in the evidence.
+
 Use the normal command with `rate` and `rate_end` both set to the chosen value. Name the files:
 
 ```text
 stress_7.2rpm_s7_confirm_run1.jtl
 stress_9.6rpm_s7_confirm_run1.jtl
+```
+
+Their matching resource files are:
+
+```text
+stress_3.5to12rpm_s7_run1_stats.csv
+stress_7.2rpm_s7_confirm_run1_stats.csv
+stress_9.6rpm_s7_confirm_run1_stats.csv
 ```
 
 The measured limit is where achieved throughput stops following offered throughput and latency continues increasing through the run. Do not identify the limit from one high percentile alone; confirm it from the time-series charts, service queueing time and CPU statistics.
