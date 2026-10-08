@@ -1,7 +1,7 @@
 """Smoke-test every pinned model on the real system under test, and keep the evidence.
 
     python3 scripts/smoke_sut.py                  # all models in models/models.lock.json
-    python3 scripts/smoke_sut.py --models qwen2.5:3b
+    python3 scripts/smoke_sut.py --models qwen2.5:7b
 
 Run on the system-under-test machine, from the repo root, with the stack up
 (`docker compose up -d`) and the models pulled (`python3 scripts/pull_models.py`).

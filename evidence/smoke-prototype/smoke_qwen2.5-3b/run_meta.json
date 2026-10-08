@@ -1,1 +1,0 @@
-{"run_id":"smoke_qwen2.5-3b","num_ctx":4096,"prompt_sha":"88f4a7bfcd89","model":"qwen2.5:3b","model_digest":"357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b","ollama_version":"0.35.1","model_present":true,"quantization":"Q4_K_M","parameter_size":"3.1B"}

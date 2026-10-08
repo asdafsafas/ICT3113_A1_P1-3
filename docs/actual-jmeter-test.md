@@ -14,7 +14,6 @@ Use the same system-under-test Mac, load-generator Mac, prompt, service commit, 
 
 - `qwen2.5:0.5b`
 - `llama3.2:1b-instruct-q4_K_M`
-- `qwen2.5:3b`
 - `qwen2.5:7b`
 
 ### Load configurations
@@ -25,7 +24,7 @@ Use the same system-under-test Mac, load-generator Mac, prompt, service commit, 
 | Peak | 1.73/min | 3.5/min | Open-loop | 10 min | 5 min | 3 |
 | Beyond peak | 3.5/min | 7/min | Open-loop | 10 min | 5 min | 3 |
 
-This is 36 measured load-test runs: 4 models × 3 configurations × 3 runs. Allow about 9 hours for the configured arrival and drain periods, excluding setup and reruns.
+This is 27 measured load-test runs: 3 models × 3 configurations × 3 runs. Allow about 6 hours 45 minutes for the configured arrival and drain periods, excluding setup and reruns.
 
 ### Requirements checked
 
@@ -41,7 +40,7 @@ Do not start official runs until every item below is confirmed.
 
 - [ ] Golden set is frozen: 195 labelled tickets from the original 200-ticket pool.
 - [ ] Prediction record is final and committed.
-- [ ] Four model tags and digests are committed.
+- [ ] The three active model tags and their digests are recorded.
 - [ ] Classification prompt and generation settings are committed.
 - [ ] Freeze commit or tag is recorded: `____________________________`.
 - [ ] `OLLAMA_NUM_PARALLEL=1` is confirmed inside the running container.
@@ -340,7 +339,7 @@ A valid run should show:
 
 Connection failures that never reached the service can be missing from the service log, but they must be explained and counted as JMeter errors.
 
-## 10. Repeat for all four models
+## 10. Repeat for all three active models
 
 Finish the nine load runs for one model before changing `.env` to the next model. This minimises model switching and configuration mistakes.
 
@@ -349,7 +348,6 @@ Use these result folders:
 ```text
 results/load/qwen2.5-0.5b/
 results/load/llama3.2-1b-instruct-q4_K_M/
-results/load/qwen2.5-3b/
 results/load/qwen2.5-7b/
 ```
 
@@ -367,6 +365,20 @@ For every model:
 ## 11. Conduct the 7B stress test
 
 The prediction estimates the 7B limit near 9.5 tickets/min. Use the 7B model because its limit is reachable within the planned rates.
+
+After all nine standard 7B runs have complete JTL, JMeter log, service-log and
+statistics evidence, run the guarded stress suite from the JMeter Mac:
+
+```bash
+python3 scripts/run_7b_stress_suite.py \
+  --host "$SUT_HOST"
+```
+
+It runs the ramp, below-limit confirmation and above-limit confirmation in order.
+It pauses for the separate SUT reset, warm-up and statistics monitor before every
+stage, then pauses again until both evidence files have been pulled. Use `--resume`
+after an interruption. Use `--dry-run` to print all three commands without starting
+the tests.
 
 ### Ramp test
 
@@ -411,11 +423,22 @@ After separate resets, run one 15-minute constant-rate confirmation at each rate
 - **Below:** 7.2 tickets/min plus 7 searches/min.
 - **Above:** 9.6 tickets/min plus 7 searches/min.
 
+Keep the 10-minute drain window for both confirmations so queued 7B requests have
+time to complete and remain visible in the evidence.
+
 Use the normal command with `rate` and `rate_end` both set to the chosen value. Name the files:
 
 ```text
 stress_7.2rpm_s7_confirm_run1.jtl
 stress_9.6rpm_s7_confirm_run1.jtl
+```
+
+Their matching resource files are:
+
+```text
+stress_3.5to12rpm_s7_run1_stats.csv
+stress_7.2rpm_s7_confirm_run1_stats.csv
+stress_9.6rpm_s7_confirm_run1_stats.csv
 ```
 
 The measured limit is where achieved throughput stops following offered throughput and latency continues increasing through the run. Do not identify the limit from one high percentile alone; confirm it from the time-series charts, service queueing time and CPU statistics.
@@ -450,7 +473,6 @@ For each model, record:
 |---|---|---|---|---|---|---|
 | qwen2.5:0.5b | | | | | | |
 | llama3.2:1b-instruct-q4_K_M | | | | | | |
-| qwen2.5:3b | | | | | | |
 | qwen2.5:7b | | | | | | |
 
 For the bottleneck diagnosis, compare:

@@ -1,5 +1,7 @@
 {
   "generated_at": "2026-10-06T07:17:07+00:00",
+  "scope_updated_at": "2026-10-07",
+  "scope_note": "Current measured set contains three models; the original pre-benchmark four-model lock remains at tag prediction-freeze.",
   "ollama_version": "0.35.1",
   "ollama_image": {
     "tag": "ollama/ollama:0.35.1",
@@ -25,15 +27,6 @@
       "parameter_size": "1.2B",
       "quantization": "Q4_K_M",
       "license_first_line": "LLAMA 3.2 COMMUNITY LICENSE AGREEMENT"
-    },
-    {
-      "tag": "qwen2.5:3b",
-      "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
-      "size_bytes": 1929912432,
-      "family": "qwen2",
-      "parameter_size": "3.1B",
-      "quantization": "Q4_K_M",
-      "license_first_line": "Qwen RESEARCH LICENSE AGREEMENT"
     },
     {
       "tag": "qwen2.5:7b",

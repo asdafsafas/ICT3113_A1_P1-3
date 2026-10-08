@@ -4,7 +4,33 @@
 
 The brief: send **every golden-set ticket through `POST /tickets`** for each candidate model, and report overall and per-category accuracy against the golden labels, with a confusion matrix.
 
-> Only after the **freeze** (`git tag freeze` exists, see [golden-set.md](golden-set.md)). Before that, no model may see golden-set tickets.
+> Only after the **freeze** (`git tag prediction-freeze` exists, see [golden-set.md](golden-set.md)). Before that, no model may see golden-set tickets.
+
+## Guarded three-model runner
+
+After JMeter testing has completely stopped, the SUT operator can run the full
+three-model accuracy suite with one command:
+
+```bash
+python3 scripts/run_accuracy_suite.py
+```
+
+Type `ACCURACY` only after confirming that JMeter and all other traffic have
+stopped. The runner verifies `prediction-freeze`, the 195-ticket golden set, the
+frozen prompt, model digests and fixed `.env` settings. For each active model it
+then selects the model, performs the reset/warm-up/database-clear procedure below,
+runs all golden tickets sequentially, verifies their service-log evidence and
+finally creates `results/accuracy/comparison.md`.
+
+If interrupted, run the same command with `--resume`. It continues the newest
+partial CSV and skips completed, validated model runs:
+
+```bash
+python3 scripts/run_accuracy_suite.py --resume
+```
+
+Use `--dry-run` to validate the frozen inputs and print the model plan without
+changing `.env`, Docker or result files.
 
 ## Playbook: one model
 
