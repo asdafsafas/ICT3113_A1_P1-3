@@ -207,7 +207,7 @@ pres.addSection({ title: "System and workload" });
   s.addTable(rows, { x: MX, y: 4.15, w: 7.35, colW: [1.45, 1.35, 1.45, 3.1], fontSize: 12, color: C.text1, border: { type: "solid", pt: 0.75, color: "D5DFDD" }, rowH: 0.36, valign: "middle" });
   s.addText(bullets([
     "Searches: we assume staff search twice per ticket (the customer's past complaints, similar cases). An estimate: no published figure exists",
-    "We count phone complaints as tickets too, and move out-of-hours ones into office hours. Both make our test harder than reality [7]",
+    "We count phone complaints as tickets too, and move out-of-hours ones into office hours. Both make our test harder than reality",
   ], { gap: 3 }), { x: MX, y: 5.75, w: 7.35, h: 1.1, isTextBox: true, fontSize: 12, color: C.text1, margin: 0, valign: "top" });
 
   // ticket length chart
@@ -215,7 +215,7 @@ pres.addSection({ title: "System and workload" });
   s.addChart(pres.charts.BAR, [{ name: "Characters", labels: ["5%", "25%", "50%", "75%", "95%", "99%", "Longest"], values: [263, 512, 797, 1214, 1780, 1938, 2000] }], {
     x: chx, y: 1.4, w: chw, h: 3.75, barDir: "col",
     chartColors: [HEX.accent1], showValue: true, dataLabelPosition: "outEnd", dataLabelFontSize: 10, dataLabelColor: HEX.dk1, dataLabelFontFace: "+mn-lt",
-    showTitle: true, title: "Ticket length in characters (our 1,000) [8]", titleFontSize: 13, titleColor: HEX.dk2, titleFontFace: "+mn-lt",
+    showTitle: true, title: "Ticket length in characters (our 1,000) [7]", titleFontSize: 13, titleColor: HEX.dk2, titleFontFace: "+mn-lt",
     catAxisLabelColor: HEX.accent5, valAxisLabelColor: HEX.accent5, catAxisLabelFontFace: "+mn-lt", valAxisLabelFontFace: "+mn-lt", catAxisLabelFontSize: 11, valAxisLabelFontSize: 10,
     valGridLine: { color: "E2E8E7", size: 0.5 }, catGridLine: { style: "none" }, showLegend: false, valAxisMaxVal: 2400, valAxisMinVal: 0,
   });
@@ -241,7 +241,7 @@ pres.addSection({ title: "Requirements and candidates" });
   const rows = [
     [H("ID"), H("Target"), H("Tested under"), H("Why this number")],
     [R("R1"), "95% of tickets sorted within 30 s", "Busiest hour: 1.73 tickets/min for 10 min, 3 runs", "At peak a ticket arrives about every 35 s. Sorting slower than that means tickets pile up"],
-    [R("R2"), "95% of searches answered within 1 s", "Busiest hour plus 3.5 searches/min, 10 min", "Staff wait at the screen; about 1 s keeps their train of thought [9]"],
+    [R("R2"), "95% of searches answered within 1 s", "Busiest hour plus 3.5 searches/min, 10 min", "Staff wait at the screen; about 1 s keeps their train of thought [8]"],
     [R("R3"), "Keeps up: ≥ 104 tickets sorted an hour, ≤ 1% failures, delays not growing", "Busiest hour, 10 min, 3 runs", "104 is the busiest hour's volume; sorting fewer means a growing backlog"],
     [R("R4"), "At least 80% of tickets sorted correctly", "Our 195 hand-checked tickets, once each", "Our own team agreed with each other on 78–85% of tickets: the model should do as well as one trained person"],
     [R("R5"), "At least 70% correct in every category", "Each category of the 195", "Small categories have only 17–18 tickets, so one wrong ticket costs ~6 points. A lower bar avoids failing a model over 1–2 tickets"],
@@ -262,9 +262,9 @@ pres.addSection({ title: "Requirements and candidates" });
   const s = content("Requirements and candidates", "We tested three models, from small and fast to 15 times larger",
     "Source: models/models.lock.json, docs/models.md.");
   const cands = [
-    ["SMALL", "qwen2.5:0.5b", "0.5 billion parameters · 398 MB", "Apache 2.0 [11]", "Fastest. Same maker as the large one [10], so only size differs", MODEL_HEX.q05],
-    ["SMALL", "llama3.2:1b-instruct-q4_K_M", "1.2 billion parameters · 808 MB", "Llama 3.2 Community [12]", "A small model from a different maker: does how it was trained matter as much as size?", MODEL_HEX.l1],
-    ["LARGE", "qwen2.5:7b", "7.6 billion parameters · 4.7 GB", "Apache 2.0 [11]", "The largest that fits our test machine's memory; expected to be most accurate", MODEL_HEX.q7],
+    ["SMALL", "qwen2.5:0.5b", "0.5 billion parameters · 398 MB", "Apache 2.0 [10]", "Fastest. Same maker as the large one [9], so only size differs", MODEL_HEX.q05],
+    ["SMALL", "llama3.2:1b-instruct-q4_K_M", "1.2 billion parameters · 808 MB", "Llama 3.2 Community [11]", "A small model from a different maker: does how it was trained matter as much as size?", MODEL_HEX.l1],
+    ["LARGE", "qwen2.5:7b", "7.6 billion parameters · 4.7 GB", "Apache 2.0 [10]", "The largest that fits our test machine's memory; expected to be most accurate", MODEL_HEX.q7],
   ];
   const cw = (CW - 2 * 0.3) / 3;
   cands.forEach(([cls, tag, spec, lic, role, col], i) => {
@@ -558,7 +558,7 @@ pres.addSection({ title: "Results and recommendation" });
   txt(s, "qwen2.5:7b", px + 0.25, 1.85, pw - 0.5, 0.5, { fontSize: 26, bold: true, color: C.background1, fontFace: "Cambria" });
   s.addText(bullets([
     { text: "Meets R1–R4: 95% of tickets in 6.1 s (target 30), searches in 0.46 s (target 1), no failures, 82.6% correct (target 80)", options: { color: C.background1 } },
-    { text: "Apache 2.0 [11] permits commercial use. 20/min sustained in the stress check, over 11× our peak load", options: { color: C.background1 } },
+    { text: "Apache 2.0 [10] permits commercial use. 20/min sustained in the stress check, over 11× our peak load", options: { color: C.background1 } },
     { text: "The small models are 47–62 points short on accuracy. We value correct routing over speed, so being faster does not save them", options: { color: C.background1 } },
   ], { gap: 5 }), { x: px + 0.25, y: 2.45, w: pw - 0.5, h: 2.2, isTextBox: true, fontSize: 12, margin: 0, valign: "top" });
   s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: px + 0.2, y: 4.75, w: pw - 0.4, h: 1.95, rectRadius: 0.08, fill: { color: "1B4A50" }, line: { type: "none" } });
@@ -582,12 +582,11 @@ pres.addSection({ title: "Results and recommendation" });
     `[6] Soon, "How many agents do you need for 500 calls a day?" [Online]. Available: https://soon.works/staffing/call-center/500-calls-per-day. ${A}`,
   ];
   const refs2 = [
-    `[7] Financial Conduct Authority, "Complaint," FCA Handbook Glossary. [Online]. Available: https://www.handbook.fca.org.uk/handbook/glossary/G197.html. ${A}`,
-    `[8] Consumer Financial Protection Bureau, "Consumer Complaint Database." [Online]. Available: https://www.consumerfinance.gov/data-research/consumer-complaints/. Course extract (rows 3000–3999) provided by Singapore Institute of Technology for ICT3113 via xSiTe.`,
-    `[9] J. Nielsen, "Response times: The 3 important limits," Nielsen Norman Group, Jan. 1, 1993. [Online]. Available: https://www.nngroup.com/articles/response-times-3-important-limits/. ${A}`,
-    `[10] A. Yang et al., "Qwen2.5 technical report," 2024, arXiv:2412.15115.`,
-    `[11] The Apache Software Foundation, "Apache License, Version 2.0," Jan. 2004. [Online]. Available: https://www.apache.org/licenses/LICENSE-2.0. ${A}`,
-    `[12] Meta Platforms, "Llama 3.2 Community License Agreement," Sep. 25, 2024. [Online]. Available: https://www.llama.com/llama3_2/license/. ${A}`,
+    `[7] Consumer Financial Protection Bureau, "Consumer Complaint Database." [Online]. Available: https://www.consumerfinance.gov/data-research/consumer-complaints/. Course extract (rows 3000–3999) provided by Singapore Institute of Technology for ICT3113 via xSiTe.`,
+    `[8] J. Nielsen, "Response times: The 3 important limits," Nielsen Norman Group, Jan. 1, 1993. [Online]. Available: https://www.nngroup.com/articles/response-times-3-important-limits/. ${A}`,
+    `[9] A. Yang et al., "Qwen2.5 technical report," 2024, arXiv:2412.15115.`,
+    `[10] The Apache Software Foundation, "Apache License, Version 2.0," Jan. 2004. [Online]. Available: https://www.apache.org/licenses/LICENSE-2.0. ${A}`,
+    `[11] Meta Platforms, "Llama 3.2 Community License Agreement," Sep. 25, 2024. [Online]. Available: https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE. ${A}`,
   ];
   const cw2 = (CW - 0.4) / 2;
   const para = (list) => list.map((r, i) => ({ text: r, options: { breakLine: i < list.length - 1, paraSpaceAfter: 6 } }));
