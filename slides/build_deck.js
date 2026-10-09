@@ -369,7 +369,7 @@ pres.addSection({ title: "Golden set and testing" });
   txt(s, "How results carry over to the bank's servers", MX, 4.6, bw, 0.35, { fontSize: 15, bold: true, color: C.text2, fontFace: "Cambria" });
   s.addText(bullets([
     "82–89% of the model's time goes on reading the ticket, so speed depends mostly on the server's processor and memory",
-    "Stress check: 20 tickets/min sustained, 22/min mixed, 24/min overloaded twice, with 7 searches/min",
+    "Stress check: the limit lies between 20 and 24 tickets/min (with 7 searches/min)",
     "Our estimate: a server up to 3× slower would still meet the 30 s target. Time one ticket on the bank's server first",
   ], { gap: 4 }), { x: MX, y: 5.0, w: bw, h: 1.9, isTextBox: true, fontSize: 12, color: C.text1, margin: 0, valign: "top" });
   txt(s, "What could make our numbers misleading", MX + bw + 0.3, 4.6, bw, 0.35, { fontSize: 15, bold: true, color: C.text2, fontFace: "Cambria" });
@@ -418,7 +418,7 @@ pres.addSection({ title: "Golden set and testing" });
       "Run on 8 Oct, after the labels were locked; no other test running",
     ]],
     ["Stress test: large model", [
-      "After the first ramp, test higher fixed rates with 7 searches/min and repeat each overload signal",
+      "After a 3.5→12/min ramp, steady rates from 12 to 24 tickets/min in steps of 2, plus 7 searches/min; repeat any overload",
       "Each new attempt: 10 min of traffic, 10 min to drain, with the same reset and warm-up",
       "Overload: failures >1%, ≥15% still in flight, or a growing queue with slower completions or rising latency",
       "Check queue size at 5 and 10 min, early vs late latency, throughput, failures and processor use",
@@ -480,10 +480,10 @@ pres.addSection({ title: "Results and recommendation" });
     txt(s, a, px + 0.2, y, pw - 0.4, 0.27, { fontSize: 12, bold: true, color: C.background1 });
     txt(s, b + " · 0 failed", px + 0.2, y + 0.27, pw - 0.4, 0.27, { fontSize: 11, color: "CADDDA" });
   });
-  txt(s, "Overload confirmed at 24 /min", px + 0.2, 3.85, pw - 0.4, 0.35, { fontSize: 14, bold: true, color: C.accent2, fontFace: "Cambria" });
-  txt(s, "At 24/min, in-flight tickets grew from 15 to 24 and 13 to 27. Late-half typical latency rose 1.80× and 3.37×. All requests eventually finished.", px + 0.2, 4.22, pw - 0.4, 0.95, { fontSize: 11, color: C.background1 });
-  txt(s, "Slow part: the AI model", px + 0.2, 5.15, pw - 0.4, 0.35, { fontSize: 14, bold: true, color: C.accent2, fontFace: "Cambria" });
-  txt(s, "At 24/min, late-half completions were 23.0 and 22.8/min, below arrivals. Model CPU p95 was about 10 cores; service CPU p95 stayed below 1% of one core.", px + 0.2, 5.52, pw - 0.4, 1.25, { fontSize: 11, color: C.background1 });
+  txt(s, "Limit: 20–24 /min", px + 0.2, 3.85, pw - 0.4, 0.35, { fontSize: 14, bold: true, color: C.accent2, fontFace: "Cambria" });
+  txt(s, "Earlier runs from 3.5 to 18 /min all kept up; one 14 /min attempt had 3 tickets fail on Wi-Fi timeouts and was repeated cleanly. At 24 /min the queue grew in both attempts (15→24, 13→27).", px + 0.2, 4.22, pw - 0.4, 0.95, { fontSize: 11, color: C.background1 });
+  txt(s, "Slow part: the AI model", px + 0.2, 5.3, pw - 0.4, 0.35, { fontSize: 14, bold: true, color: C.accent2, fontFace: "Cambria" });
+  txt(s, "At 24/min, late-half completions were 23.0 and 22.8/min, below arrivals. Model CPU p95 was about 10 cores; service CPU p95 stayed below 1% of one core.", px + 0.2, 5.67, pw - 0.4, 1.1, { fontSize: 11, color: C.background1 });
   s.addNotes("Final stress source: results/load/qwen2.5-7b/adaptive-stress/adaptive-stress-summary.json. Independently recomputed from the five final JTLs and reconciled with per-run service logs. All five final attempts have zero POST failures. POST p50/p95/p99 in seconds: 20 run1 9.051/21.831/25.274; 22 run1 16.207/31.897/38.468; 22 run2 25.334/43.972/46.545; 24 run1 26.617/53.816/64.126; 24 run2 34.011/71.663/75.021. Last-half successful completions/min: 20.8, 21.6, 22.4, 23.0, 22.8. Backlog midpoint/end: 1/4, 8/12, 10/7, 15/24, 13/27. At 22/min outcomes were mixed; do not promise reliable sustained capacity there. At 24/min backlog and late-half latency grew in both independent attempts. Ollama CPU p95 1008.62%/1013.85%, triage p95 0.81%/0.87%. Stats summaries include monitoring/drain, so CPU p95 is supporting evidence, not proof of continuous saturation. The earlier 14/min first attempt had timeouts and is not included in this final conclusion.");
 }
 
@@ -539,7 +539,7 @@ pres.addSection({ title: "Results and recommendation" });
     [H("We predicted (before testing)"), H("We measured"), H("")],
     ["Slow part: the model reading each ticket; it keeps ≥ 9 cores busy, our service < 10% of one", "Reading = 82% of the large model's time; ~10.4 cores busy; our service ≤ 6.8%", ok("Right")],
     ["Typical time per ticket: 0.8 / 0.9 / 6.1 s (small Qwen / Llama / large Qwen)", "0.40 / 0.46 / 2.84 s: about half", no("Wrong")],
-    ["Large model overwhelmed near 9.4 /min; delays grow without end at 9.6", "20/min sustained; 22/min mixed; overload at 24/min in both attempts", no("Wrong")],
+    ["Large model overwhelmed near 9.4 /min; delays grow without end at 9.6", "Limit between 20 and 24 /min: 20 kept up, 24 overloaded twice", no("Wrong")],
     ["Accuracy 45% / 55% / 78%", "17.9% / 32.8% / 82.6%", no("2 of 3 wrong")],
     ["Small Qwen over-uses Credit reporting (> 35% of answers)", "It over-uses Credit card instead (79%)", no("Wrong")],
     ["Hardest: Debt collection, Consumer loan; ≥ 25% of money transfers put in Bank account", "Money transfer 66.7% (30% put in Bank account), Consumer loan 70.8%; but Debt collection 82.4%", ok("Mostly right")],
