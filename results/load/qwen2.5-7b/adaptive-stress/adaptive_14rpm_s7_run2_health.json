@@ -1,0 +1,16 @@
+{
+  "captured_at": "2026-10-09T05:44:49.834+00:00",
+  "stage_id": "adaptive_14rpm_s7_run2",
+  "before_warm": {
+    "status": "ok",
+    "model": "qwen2.5:7b",
+    "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "prompt_file": "classify_v1.txt"
+  },
+  "measured_service": {
+    "status": "ok",
+    "model": "qwen2.5:7b",
+    "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "prompt_file": "classify_v1.txt"
+  }
+}
