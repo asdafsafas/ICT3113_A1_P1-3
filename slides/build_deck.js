@@ -126,7 +126,7 @@ pres.addSection({ title: "System and workload" });
   card(s, MX, 1.75, 2.45, 2.4, { fill: C.background2 });
   txt(s, "TEST TRAFFIC", MX + 0.2, 1.9, 2.1, 0.3, { fontSize: 11, bold: true, color: C.accent1, charSpacing: 1 });
   txt(s, "Separate Mac", MX + 0.2, 2.2, 2.1, 0.35, { fontSize: 16, bold: true, color: C.text2 });
-  txt(s, "Apache JMeter 5.6.3 plays the bank: new complaints arriving, and staff searching past tickets", MX + 0.2, 2.6, 2.1, 1.4, { fontSize: 12, color: C.text1 });
+  txt(s, "Apache JMeter 5.6.3 [2] plays the bank: new complaints arriving, and staff searching past tickets", MX + 0.2, 2.6, 2.1, 1.4, { fontSize: 12, color: C.text1 });
   arrow(s, MX + 2.5, 2.95, 0.75, 0);
   txt(s, "HTTP, Wi-Fi", MX + 2.45, 2.55, 0.9, 0.3, { fontSize: 10, color: C.accent5, align: "center" });
 
@@ -141,7 +141,7 @@ pres.addSection({ title: "System and workload" });
   // ollama
   arrow(s, sx + 1.15, sy + 1.72, 0, 0.55);
   card(s, sx + 0.25, sy + 2.3, 2.95, 1.15, { fill: C.accent1 });
-  txt(s, "AI model server (Ollama)", sx + 0.45, sy + 2.4, 2.6, 0.35, { fontSize: 14, bold: true, color: C.background1 });
+  txt(s, "AI model server (Ollama) [1]", sx + 0.45, sy + 2.4, 2.6, 0.35, { fontSize: 14, bold: true, color: C.background1 });
   txt(s, "Runs on the processor, no graphics card; one ticket at a time", sx + 0.45, sy + 2.75, 2.6, 0.6, { fontSize: 11, color: C.background1 });
   // sqlite + logs
   arrow(s, sx + 3.6, sy + 1.72, 0, 2.05);
@@ -181,10 +181,10 @@ pres.addSection({ title: "System and workload" });
   const s = content("System and workload", "The desk peaks at 1.73 tickets per minute, all in business hours",
     "Source: planning/workload-model.md. Ticket lengths reproduced with python scripts/ticket_lengths.py over rows 3000-3999.");
   const stats = [
-    ["86,719", "complaints in 6 months at a large UK bank (Bank of Scotland, Jul–Dec 2025)", "SOURCED [1]"],
-    ["≈ 694", "per working day: 86,719 × 2 = 173,438 a year, ÷ 250 working days", "ESTIMATED"],
+    ["86,719", "complaints in 6 months at a large UK bank (Bank of Scotland, Jul–Dec 2025)", "SOURCED [3]"],
+    ["≈ 694", "per working day: 86,719 × 2 = 173,438 a year, ÷ 250 working days", "EST. FROM [4]"],
     ["1.45/min", "on average: 694 spread over an 8-hour working day", "ESTIMATED"],
-    ["1.73/min", "in the busiest hour, which gets 15% of the day (104 tickets)", "EST. FROM [3][4]"],
+    ["1.73/min", "in the busiest hour, which gets 15% of the day (104 tickets)", "EST. FROM [5], [6]"],
   ];
   const cw = 1.75, gap = 0.12;
   stats.forEach(([n, l, tag], i) => {
@@ -207,7 +207,7 @@ pres.addSection({ title: "System and workload" });
   s.addTable(rows, { x: MX, y: 4.15, w: 7.35, colW: [1.45, 1.35, 1.45, 3.1], fontSize: 12, color: C.text1, border: { type: "solid", pt: 0.75, color: "D5DFDD" }, rowH: 0.36, valign: "middle" });
   s.addText(bullets([
     "Searches: we assume staff search twice per ticket (the customer's past complaints, similar cases). An estimate: no published figure exists",
-    "We count phone complaints as tickets too, and move out-of-hours ones into office hours. Both make our test harder than reality",
+    "We count phone complaints as tickets too, and move out-of-hours ones into office hours. Both make our test harder than reality [7]",
   ], { gap: 3 }), { x: MX, y: 5.75, w: 7.35, h: 1.1, isTextBox: true, fontSize: 12, color: C.text1, margin: 0, valign: "top" });
 
   // ticket length chart
@@ -215,7 +215,7 @@ pres.addSection({ title: "System and workload" });
   s.addChart(pres.charts.BAR, [{ name: "Characters", labels: ["5%", "25%", "50%", "75%", "95%", "99%", "Longest"], values: [263, 512, 797, 1214, 1780, 1938, 2000] }], {
     x: chx, y: 1.4, w: chw, h: 3.75, barDir: "col",
     chartColors: [HEX.accent1], showValue: true, dataLabelPosition: "outEnd", dataLabelFontSize: 10, dataLabelColor: HEX.dk1, dataLabelFontFace: "+mn-lt",
-    showTitle: true, title: "Ticket length in characters (our 1,000)", titleFontSize: 13, titleColor: HEX.dk2, titleFontFace: "+mn-lt",
+    showTitle: true, title: "Ticket length in characters (our 1,000) [8]", titleFontSize: 13, titleColor: HEX.dk2, titleFontFace: "+mn-lt",
     catAxisLabelColor: HEX.accent5, valAxisLabelColor: HEX.accent5, catAxisLabelFontFace: "+mn-lt", valAxisLabelFontFace: "+mn-lt", catAxisLabelFontSize: 11, valAxisLabelFontSize: 10,
     valGridLine: { color: "E2E8E7", size: 0.5 }, catGridLine: { style: "none" }, showLegend: false, valAxisMaxVal: 2400, valAxisMinVal: 0,
   });
@@ -241,7 +241,7 @@ pres.addSection({ title: "Requirements and candidates" });
   const rows = [
     [H("ID"), H("Target"), H("Tested under"), H("Why this number")],
     [R("R1"), "95% of tickets sorted within 30 s", "Busiest hour: 1.73 tickets/min for 10 min, 3 runs", "At peak a ticket arrives about every 35 s. Sorting slower than that means tickets pile up"],
-    [R("R2"), "95% of searches answered within 1 s", "Busiest hour plus 3.5 searches/min, 10 min", "Staff wait at the screen; about 1 s keeps their train of thought [7]"],
+    [R("R2"), "95% of searches answered within 1 s", "Busiest hour plus 3.5 searches/min, 10 min", "Staff wait at the screen; about 1 s keeps their train of thought [9]"],
     [R("R3"), "Keeps up: ≥ 104 tickets sorted an hour, ≤ 1% failures, delays not growing", "Busiest hour, 10 min, 3 runs", "104 is the busiest hour's volume; sorting fewer means a growing backlog"],
     [R("R4"), "At least 80% of tickets sorted correctly", "Our 195 hand-checked tickets, once each", "Our own team agreed with each other on 78–85% of tickets: the model should do as well as one trained person"],
     [R("R5"), "At least 70% correct in every category", "Each category of the 195", "Small categories have only 17–18 tickets, so one wrong ticket costs ~6 points. A lower bar avoids failing a model over 1–2 tickets"],
@@ -260,11 +260,11 @@ pres.addSection({ title: "Requirements and candidates" });
 // 5. Candidate models
 {
   const s = content("Requirements and candidates", "We tested three models, from small and fast to 15 times larger",
-    "Source: models/models.lock.json, docs/models.md. qwen2.5:3b was in the four-model lock at tag prediction-freeze.");
+    "Source: models/models.lock.json, docs/models.md.");
   const cands = [
-    ["SMALL", "qwen2.5:0.5b", "0.5 billion parameters · 398 MB", "Apache 2.0", "Fastest. Same maker as the large one, so only size differs", MODEL_HEX.q05],
-    ["SMALL", "llama3.2:1b-instruct-q4_K_M", "1.2 billion parameters · 808 MB", "Llama 3.2 Community", "A small model from a different maker: does how it was trained matter as much as size?", MODEL_HEX.l1],
-    ["LARGE", "qwen2.5:7b", "7.6 billion parameters · 4.7 GB", "Apache 2.0", "The largest that fits our test machine's memory; expected to be most accurate", MODEL_HEX.q7],
+    ["SMALL", "qwen2.5:0.5b", "0.5 billion parameters · 398 MB", "Apache 2.0 [11]", "Fastest. Same maker as the large one [10], so only size differs", MODEL_HEX.q05],
+    ["SMALL", "llama3.2:1b-instruct-q4_K_M", "1.2 billion parameters · 808 MB", "Llama 3.2 Community [12]", "A small model from a different maker: does how it was trained matter as much as size?", MODEL_HEX.l1],
+    ["LARGE", "qwen2.5:7b", "7.6 billion parameters · 4.7 GB", "Apache 2.0 [11]", "The largest that fits our test machine's memory; expected to be most accurate", MODEL_HEX.q7],
   ];
   const cw = (CW - 2 * 0.3) / 3;
   cands.forEach(([cls, tag, spec, lic, role, col], i) => {
@@ -286,7 +286,7 @@ pres.addSection({ title: "Requirements and candidates" });
     [mono("qwen2.5:7b"), mono("845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e")],
     [mono("ollama/ollama:0.35.1 (image)"), mono("sha256:292ee7945dfc3d5840a181f3ab86fedb1e66703e02c8af98b50f4da56b7e278c")],
   ], { x: MX, y: 4.8, w: CW, colW: [3.6, 8.53], fontSize: 11, color: C.text1, border: { type: "solid", pt: 0.75, color: "D5DFDD" }, rowH: 0.3, valign: "middle" });
-  txt(s, "All three are compressed the same way (Q4_K_M), so size is the only difference. A fourth, qwen2.5:3b, was planned but not tested: its licence bans commercial use (fails C2).", MX, 6.4, CW, 0.5, { fontSize: 12, italic: true, color: C.accent5 });
+  txt(s, "All three are compressed the same way (Q4_K_M), so size is the only difference.", MX, 6.4, CW, 0.5, { fontSize: 12, italic: true, color: C.accent5 });
 }
 
 // =====================================================================
@@ -553,7 +553,7 @@ pres.addSection({ title: "Results and recommendation" });
   txt(s, "qwen2.5:7b", px + 0.25, 1.85, pw - 0.5, 0.5, { fontSize: 26, bold: true, color: C.background1, fontFace: "Cambria" });
   s.addText(bullets([
     { text: "Meets R1–R4: 95% of tickets in 6.1 s (target 30), searches in 0.46 s (target 1), no failures, 82.6% correct (target 80)", options: { color: C.background1 } },
-    { text: "Its licence (Apache 2.0) allows commercial use; runs on one standard server", options: { color: C.background1 } },
+    { text: "Its licence (Apache 2.0 [11]) allows commercial use; runs on one standard server", options: { color: C.background1 } },
     { text: "The small models are 47–62 points short on accuracy. We value correct routing over speed, so being faster does not save them", options: { color: C.background1 } },
   ], { gap: 5 }), { x: px + 0.25, y: 2.45, w: pw - 0.5, h: 2.2, isTextBox: true, fontSize: 12, margin: 0, valign: "top" });
   s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: px + 0.2, y: 4.75, w: pw - 0.4, h: 1.95, rectRadius: 0.08, fill: { color: "1B4A50" }, line: { type: "none" } });
@@ -565,33 +565,34 @@ pres.addSection({ title: "Results and recommendation" });
 // 12. References
 {
   const s = content("Results and recommendation", "References and acknowledgements",
-    "Licences: Qwen2.5 0.5B and 7B are Apache 2.0; Llama 3.2 Community License requires 'Built with Llama' attribution and a copy of the licence on redistribution; Ollama is MIT; Apache JMeter is Apache 2.0.");
+    "IEEE style, numbered in order of first citation in the deck. Licences: Qwen2.5 0.5B and 7B are Apache 2.0; the Llama 3.2 Community License requires 'Built with Llama' attribution and a copy of the licence on redistribution; Ollama is MIT; Apache JMeter is Apache 2.0.");
+  const A = "Accessed: Oct. 9, 2026.";
   const refs = [
-    "[1] Lloyds Banking Group (2026). Complaints publication report: Bank of Scotland plc, 1 July – 31 December 2025. lloydsbankinggroup.com",
-    "[2] Financial Conduct Authority (2026). Aggregate complaints data: 2025 H2. fca.org.uk/data/complaints-data/aggregate-complaints-data-2025-h2",
-    "[3] Brown, L. et al. (2005). Statistical analysis of a telephone call center: a queueing-science perspective. JASA, 100(469), 36–50.",
-    "[4] Soon. How many agents do you need for 500 calls a day? soon.works/staffing/call-center/500-calls-per-day",
-    "[5] Financial Conduct Authority. FCA Handbook Glossary: complaint. handbook.fca.org.uk/glossary/G197",
-    "[6] Consumer Financial Protection Bureau. Consumer Complaint Database. consumerfinance.gov/data-research/consumer-complaints (course extract, rows 3000–3999)",
-    "[7] Nielsen, J. (1993). Response times: the 3 important limits. Nielsen Norman Group. nngroup.com/articles/response-times-3-important-limits",
+    `[1] Ollama, "Ollama," ver. 0.35.1, MIT License. [Online]. Available: https://github.com/ollama/ollama. ${A}`,
+    `[2] The Apache Software Foundation, "Apache JMeter," ver. 5.6.3. [Online]. Available: https://jmeter.apache.org/. ${A}`,
+    `[3] Lloyds Banking Group, "Complaints publication report: Bank of Scotland plc, 1 July to 31 December 2025," 2026. [Online]. Available: https://www.lloydsbankinggroup.com/assets/pdfs/who-we-are/customer-complaints/2025/h2-2025/bank-of-scotland-plc.pdf. ${A}`,
+    `[4] Financial Conduct Authority, "Aggregate complaints data: 2025 H2," 2026. [Online]. Available: https://www.fca.org.uk/data/complaints-data/aggregate-complaints-data-2025-h2. ${A}`,
+    `[5] L. Brown, N. Gans, A. Mandelbaum, A. Sakov, H. Shen, S. Zeltyn, and L. Zhao, "Statistical analysis of a telephone call center: A queueing-science perspective," J. Amer. Statist. Assoc., vol. 100, no. 469, pp. 36–50, 2005, doi: 10.2307/27590517.`,
+    `[6] Soon, "How many agents do you need for 500 calls a day?" [Online]. Available: https://soon.works/staffing/call-center/500-calls-per-day. ${A}`,
   ];
-  const lw = 7.3;
-  txt(s, "References", MX, 1.4, lw, 0.35, { fontSize: 16, bold: true, color: C.text2, fontFace: "Cambria" });
-  s.addText(refs.map((r, i) => ({ text: r, options: { breakLine: i < refs.length - 1, paraSpaceAfter: 6 } })), { x: MX, y: 1.85, w: lw, h: 5.0, isTextBox: true, fontSize: 11, color: C.text1, margin: 0, valign: "top" });
+  const refs2 = [
+    `[7] Financial Conduct Authority, "Complaint," FCA Handbook Glossary. [Online]. Available: https://www.handbook.fca.org.uk/handbook/glossary/G197.html. ${A}`,
+    `[8] Consumer Financial Protection Bureau, "Consumer Complaint Database." [Online]. Available: https://www.consumerfinance.gov/data-research/consumer-complaints/. Course extract (rows 3000–3999) provided by Singapore Institute of Technology for ICT3113 via xSiTe.`,
+    `[9] J. Nielsen, "Response times: The 3 important limits," Nielsen Norman Group, Jan. 1, 1993. [Online]. Available: https://www.nngroup.com/articles/response-times-3-important-limits/. ${A}`,
+    `[10] A. Yang et al., "Qwen2.5 technical report," 2024, arXiv:2412.15115.`,
+    `[11] The Apache Software Foundation, "Apache License, Version 2.0," Jan. 2004. [Online]. Available: https://www.apache.org/licenses/LICENSE-2.0. ${A}`,
+    `[12] Meta Platforms, "Llama 3.2 Community License Agreement," Sep. 25, 2024. [Online]. Available: https://www.llama.com/llama3_2/license/. ${A}`,
+  ];
+  const cw2 = (CW - 0.4) / 2;
+  const para = (list) => list.map((r, i) => ({ text: r, options: { breakLine: i < list.length - 1, paraSpaceAfter: 6 } }));
+  s.addText(para(refs), { x: MX, y: 1.4, w: cw2, h: 4.55, isTextBox: true, fontSize: 11, color: C.text1, margin: 0, valign: "top" });
+  s.addText(para(refs2), { x: MX + cw2 + 0.4, y: 1.4, w: cw2, h: 4.55, isTextBox: true, fontSize: 11, color: C.text1, margin: 0, valign: "top" });
 
-  const px = MX + lw + 0.4, pw = W - MX - px;
-  card(s, px, 1.4, pw, 3.3, { fill: C.background2 });
-  txt(s, "Software and model licences", px + 0.25, 1.52, pw - 0.5, 0.35, { fontSize: 14, bold: true, color: C.text2 });
-  s.addText(bullets([
-    "Ollama 0.35.1, MIT License. ollama.com",
-    "Qwen2.5 0.5B and 7B (Alibaba Cloud), Apache License 2.0",
-    "Llama 3.2 1B: Llama 3.2 Community License, Meta Platforms. Built with Llama",
-    "Apache JMeter 5.6.3, Apache License 2.0",
-    "FastAPI (MIT), SQLite (public domain), Docker",
-  ], { gap: 3 }), { x: px + 0.25, y: 1.92, w: pw - 0.5, h: 2.7, isTextBox: true, fontSize: 11, color: C.text1, margin: 0, valign: "top" });
-  card(s, px, 4.9, pw, 1.95, { fill: C.background1, line: "D5DFDD" });
-  txt(s, "Acknowledgements", px + 0.25, 5.0, pw - 0.5, 0.35, { fontSize: 14, bold: true, color: C.text2 });
-  txt(s, "Complaint narratives published by the CFPB with consumer consent, personal data removed at source. AI coding tools (Claude Code) helped build the service and test scripts and draft documents; all labels, test runs and the recommendation are the team's own.", px + 0.25, 5.38, pw - 0.5, 1.4, { fontSize: 11 });
+  card(s, MX, 6.05, CW, 0.8, { fill: C.background2 });
+  txt(s, [
+    { text: "Acknowledgements.  ", options: { bold: true, color: C.text2 } },
+    { text: "Complaint narratives published by the CFPB with consumer consent, personal data removed at source. Built with Llama. AI coding tools (Claude Code) helped build the service and test scripts and draft documents; all labels, test runs and the recommendation are the team's own." },
+  ], MX + 0.25, 6.05, CW - 0.5, 0.8, { fontSize: 11, valign: "middle" });
 }
 
 (async () => {
