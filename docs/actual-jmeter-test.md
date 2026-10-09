@@ -510,3 +510,11 @@ Never delete evidence of a failed run. Mark it invalid and explain why it was re
 - [ ] The measured bottleneck is supported by latency, throughput and resource evidence.
 - [ ] Raw JTL files, service logs, stats and summaries are committed.
 - [ ] No dry-run timing appears in the final report or slides.
+
+## Final adaptive stress follow-up (9 October 2026)
+
+The initial ramp and 7.2/9.6 confirmations did not identify a limit. The subsequent procedure is in [adaptive-stress-test.md](adaptive-stress-test.md), with raw evidence and the generated decision record in `results/load/qwen2.5-7b/adaptive-stress/`.
+
+The final 20/22/24 tickets-per-minute sequence, with 7 searches/minute, used 10 active minutes and 10 drain minutes per attempt. The 20/min attempt sustained load. At 22/min one attempt met the overload rule and one did not. Both 24/min attempts showed growing in-flight counts and rising late-half latency, confirming overload under the predeclared rule. Report 22/min as mixed, rather than a reliable operating capacity. The generated summary describes a bracket above 22 and at or below 24/min because its algorithm selects the highest attempt classified as sustained. Keep that raw decision record unchanged, but use the more cautious interpretation in the slides: 20/min sustained in one attempt, 22/min mixed, 24/min overloaded twice.
+
+All five final attempts reconcile with service logs, have the pinned 7B digest, and have complete JTL, JMeter log, service log, resource statistics, health and SUT audit evidence. Their summary metrics were independently recomputed from raw JTLs. The earlier `adaptive_14rpm_s7_run1` has two connection failures without service entries and two socket timeouts despite service HTTP 200 responses. Retain it as diagnostic evidence, but exclude it from the final capacity conclusion.
