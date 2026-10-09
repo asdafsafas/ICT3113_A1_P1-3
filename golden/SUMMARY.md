@@ -38,7 +38,7 @@ Agreement is high but not perfect, as the brief expects. Each labeller matched t
   - Group B: Bank account vs Money transfer (6 tickets across its split patterns).
 - **Data-quality finding:** two of Zong Han's reasoning notes had been saved to the wrong rows (the note on 3020 belongs to 3018; the note on 3086 belongs to 3085). Both rows were re-decided from the ticket text, and the raw sheet was left unedited.
 
-Resolution drafts were prepared with AI assistance and accepted by the team on 5 Oct 2026. *(Edit this line if the groups revise any resolution.)*
+Resolutions were redone and agreed upon as a group.
 
 ## Protocol revisions
 
