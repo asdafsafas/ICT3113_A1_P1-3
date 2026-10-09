@@ -41,15 +41,18 @@ overlapping evidence files were byte-for-byte identical, committed Ridwan's
 local JMeter evidence and summaries, and merged Tze Han's commit. Git resolved
 the identical additions automatically; there was no content conflict.
 
-Two files existed only in Tze Han's commit and were then removed in a separate
-commit:
+Two files existed only in Tze Han's commit:
 
-- `logs/service/service-2026-10-09.jsonl`, a redundant whole-day log.
+- `logs/service/service-2026-10-09.jsonl`, a supplemental whole-day log.
 - `service-adaptive_20rpm_s7_run2.jsonl`, an orphan service log with no matching
   JTL, JMeter log, statistics, health snapshot or SUT audit file.
 
-Neither file was referenced by the final adaptive summary. The reportable runs
-continued to have complete dedicated per-run service logs.
+They were briefly removed during conflict cleanup, but the team decided to
+retain them because additional raw evidence does not harm the evidence package.
+Neither file is referenced by the final adaptive summary, and the orphan 20/min
+run 2 log must not be used as a reportable run without its missing matching
+files. The five reportable runs continue to have complete dedicated per-run
+service logs.
 
 ## 3. Datasets
 
@@ -290,10 +293,10 @@ The same audit found several other final-report issues:
 The latest work is on the `attempt-2` branch. The adaptive test is complete and
 its final Markdown/JSON summary and supporting evidence have been committed.
 The pull problem with Tze Han's evidence was resolved through commit
-`aa1c5c1`, and the two redundant/unreportable logs were removed in commit
-`0ba1c6f`.
+`aa1c5c1`. The two supplemental logs were briefly removed in commit `0ba1c6f`
+and then restored after the team chose to retain all available raw evidence.
 
-At the time of this update, the working tree is clean and `attempt-2` is four
+At the time of this update, the working tree is clean and `attempt-2` is five
 commits ahead of `origin/attempt-2`. No files remain in an unresolved merge
 state. Ridwan can publish the completed branch with:
 
