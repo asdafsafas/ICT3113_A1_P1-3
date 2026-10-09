@@ -359,7 +359,8 @@ pres.addSection({ title: "Golden set and testing" });
   card(s, lx, 1.4, mw, 2.95, { fill: C.background2 });
   txt(s, "MACHINE SENDING TEST TRAFFIC", lx + 0.25, 1.52, mw - 0.5, 0.3, { fontSize: 11, bold: true, color: C.accent1, charSpacing: 1 });
   s.addText(bullets([
-    "A second Mac (Ridwan's), macOS 26.5",
+    "A second Mac (Ridwan's), MacBook Air, Apple M4 Chip, 10 cores, 24 GB memory",
+    "macOS 26.5",
     "Apache JMeter 5.6.3 (Java 17.0.17), run without its on-screen interface",
     "Connects over Wi-Fi to the system at 172.20.10.2",
     "Proof it is separate: a different macOS version, and every JMeter log points at the other machine",
@@ -589,7 +590,18 @@ pres.addSection({ title: "Results and recommendation" });
     `[11] Meta Platforms, "Llama 3.2 Community License Agreement," Sep. 25, 2024. [Online]. Available: https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE. ${A}`,
   ];
   const cw2 = (CW - 0.4) / 2;
-  const para = (list) => list.map((r, i) => ({ text: r, options: { breakLine: i < list.length - 1, paraSpaceAfter: 6 } }));
+  // URLs become real hyperlinks so a PDF export keeps them intact when they wrap at a hyphen
+  const para = (list) => list.flatMap((r, i) => {
+    const m = r.match(/https?:\/\/\S+?(?=\.?(\s|$))/);
+    const end = { breakLine: i < list.length - 1, paraSpaceAfter: 6 };
+    if (!m) return [{ text: r, options: end }];
+    const before = r.slice(0, m.index), url = m[0], after = r.slice(m.index + url.length);
+    return [
+      { text: before, options: { paraSpaceAfter: 6 } },
+      { text: url, options: { hyperlink: { url }, color: C.accent1, paraSpaceAfter: 6 } },
+      { text: after, options: end },
+    ];
+  });
   s.addText(para(refs), { x: MX, y: 1.4, w: cw2, h: 4.55, isTextBox: true, fontSize: 11, color: C.text1, margin: 0, valign: "top" });
   s.addText(para(refs2), { x: MX + cw2 + 0.4, y: 1.4, w: cw2, h: 4.55, isTextBox: true, fontSize: 11, color: C.text1, margin: 0, valign: "top" });
 
