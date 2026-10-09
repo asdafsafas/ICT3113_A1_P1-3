@@ -34,6 +34,23 @@ and removed an obsolete worktree after its pull request was accepted.
 Later testing and adaptive stress-test work continued on the `attempt-2`
 branch.
 
+Near the end of the work, Tze Han pushed SUT-side stress evidence while Ridwan
+still had matching files locally as untracked files. A normal pull was blocked
+because Git would not overwrite those local files. We verified that all 40
+overlapping evidence files were byte-for-byte identical, committed Ridwan's
+local JMeter evidence and summaries, and merged Tze Han's commit. Git resolved
+the identical additions automatically; there was no content conflict.
+
+Two files existed only in Tze Han's commit and were then removed in a separate
+commit:
+
+- `logs/service/service-2026-10-09.jsonl`, a redundant whole-day log.
+- `service-adaptive_20rpm_s7_run2.jsonl`, an orphan service log with no matching
+  JTL, JMeter log, statistics, health snapshot or SUT audit file.
+
+Neither file was referenced by the final adaptive summary. The reportable runs
+continued to have complete dedicated per-run service logs.
+
 ## 3. Datasets
 
 We distinguished the two datasets used by the project:
@@ -58,6 +75,15 @@ conservative, while the CPU-related predictions were broadly supported.
 We also confirmed that estimates such as a possible saturation region must not
 be reported as an observed limit unless the stress test actually demonstrates
 one.
+
+A final repository audit identified an important disclosure issue: the
+`prediction-freeze` tag contains four candidates, including `qwen2.5:3b`, but
+the current prediction file was edited after testing began to remove that
+candidate. The frozen record must not be presented as if it originally
+contained only three models. The final submission should use or preserve the
+exact frozen record and explain honestly that the 3B model was later removed
+from the measured set because its licence was unsuitable for the commercial
+client scenario.
 
 ## 5. JMeter setup and dry run
 
@@ -116,6 +142,12 @@ The candidates originally included `qwen2.5:3b`. The team later decided to drop
 the 3B model. We removed its active references from predictions and supporting
 documents while preserving the other frozen material.
 
+The later audit clarified that editing the active prediction document after the
+freeze creates a marking risk because the brief says the prediction record
+cannot be revised after benchmarking begins. The original tagged version still
+exists in Git, so the correct response is transparent disclosure rather than
+hiding the fourth model.
+
 The retained measured models were:
 
 - `qwen2.5:0.5b`
@@ -164,10 +196,23 @@ stress-test process. It increases load automatically, keeps JTL, JMeter, service
 and resource evidence, and confirms suspected overload so the result is backed
 by logs rather than guesswork.
 
-At the time this chat summary was rewritten, the adaptive test had been running
-on the `attempt-2` branch. Any summary produced while that process is still
-running must be treated as interim; the final conclusion should only be taken
-after the script exits normally and all evidence is reconciled.
+The adaptive test completed and produced a defensible limit for
+`qwen2.5:7b`. With 7 searches per minute in every stage:
+
+- 20 POST/min was sustained.
+- 22 POST/min produced one overloaded attempt and one sustained attempt.
+- 24 POST/min was overloaded in both independent reset-and-warm attempts.
+
+The measured sustainable mixed-load capacity is therefore bracketed **above 22
+and at or below 24 classification requests per minute**. At 24/min, backlog and
+late-run latency grew in both attempts even though no request failed. This is a
+measured saturation bracket, not an estimate.
+
+The five attempts used in the final summary are 20 run 1, 22 runs 1 and 2, and
+24 runs 1 and 2. Each has a JTL, JMeter log, dedicated service JSONL, Docker
+statistics CSV, health snapshot and SUT audit log. A final reconciliation
+matched all 1,468 JMeter samples to their service records with zero missing IDs
+and zero status mismatches.
 
 ## 10. Documentation and slides
 
@@ -191,6 +236,27 @@ clearly between:
 - An analytical estimate made after testing.
 - A limit that was not observed within the tested range.
 
+A repository-wide audit found that the 12-slide deck was visually clean but
+still described the older stress test. Slides 7 to 9 and 11 still said that no
+limit was found up to 12/min and estimated capacity near 19/min. They must be
+updated to report the measured 22-to-24/min bracket and the adaptive procedure.
+
+The same audit found several other final-report issues:
+
+- Slide 5 incorrectly said equal Q4_K_M quantisation meant model size was the
+  only difference; Qwen and Llama are different model families.
+- Slide 9's `Done/min` values use the time from first request to last completion,
+  which can make achieved throughput appear higher than the configured offered
+  rate. The calculation window must be labelled clearly or replaced by
+  completed requests per 10-minute active period.
+- Slide 9 shows run-to-run spread for p50 and p95 but not for every reported p99
+  and throughput value, even though the brief asks for means and spread.
+- The AI acknowledgement must distinguish human independent labels from any AI
+  assistance used to draft resolution documentation.
+- The final PowerPoint is on the `slides` branch, while the completed adaptive
+  evidence is on `attempt-2`; those branches still need to be integrated before
+  rebuilding the final deck.
+
 ## 11. Main conclusions from the chat
 
 - JMeter testing can be automated, but the two machines still have to be
@@ -208,17 +274,36 @@ clearly between:
   every category-recall requirement.
 - The original stress test established only that capacity exceeded the tested
   range; it did not directly establish saturation.
-- The adaptive stress test was added to find and confirm a defensible limit
-  with supporting logs.
+- The adaptive stress test found a defensible 7B capacity bracket above 22 and
+  at or below 24 POST/min under 7 searches/min.
+- Every one of the five reportable adaptive attempts has complete evidence and
+  reconciles with its dedicated service log.
+- The original frozen prediction record contains the later-dropped 3B model and
+  this must be disclosed honestly in the submission.
+- The current slides still need the adaptive result, corrected model-comparison
+  wording, clearer throughput reporting and full run-to-run spread.
 - Final slides and reports should never present predictions or estimates as if
   they were measured facts.
 
 ## 12. Current point in the conversation
 
-The latest work is on the `attempt-2` branch. The adaptive 7B stress test was
-still in progress when this summary was prepared. Its generated result files
-should not be edited while it is running, and its final Markdown/JSON conclusion
-should be used only after normal completion and evidence reconciliation.
+The latest work is on the `attempt-2` branch. The adaptive test is complete and
+its final Markdown/JSON summary and supporting evidence have been committed.
+The pull problem with Tze Han's evidence was resolved through commit
+`aa1c5c1`, and the two redundant/unreportable logs were removed in commit
+`0ba1c6f`.
+
+At the time of this update, the working tree is clean and `attempt-2` is four
+commits ahead of `origin/attempt-2`. No files remain in an unresolved merge
+state. Ridwan can publish the completed branch with:
+
+```bash
+git push origin attempt-2
+```
+
+After that, the remaining assignment work is to merge the latest evidence into
+the slide work, correct the audited slide claims, rebuild and visually verify
+`Group03.pptx`, and assemble the required supporting files for xSiTe.
 
 This file itself is only a summary of the conversation with Codex. It does not
 change the assignment methodology or the frozen experimental evidence.
