@@ -1,0 +1,291 @@
+{
+  "generated_at_epoch_s": 1791541109.1319292,
+  "model": "qwen2.5:7b",
+  "settings": {
+    "host": "172.20.10.2",
+    "port": 8000,
+    "frozen_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "rates_post_per_min": [
+      20.0,
+      22.0,
+      24.0,
+      26.0,
+      28.0
+    ],
+    "search_rate_per_min": 7.0,
+    "duration_min": 10,
+    "drain_min": 10,
+    "confirm_runs": 1,
+    "thresholds": {
+      "error_percent": 1.0,
+      "minimum_backlog": 5,
+      "material_backlog_fraction": 0.15,
+      "throughput_ratio": 0.9,
+      "latency_growth_ratio": 1.5,
+      "latency_growth_floor_ms": 2000
+    }
+  },
+  "attempts": [
+    {
+      "offered_post_per_min": 20.0,
+      "post_samples": 200,
+      "search_samples": 70,
+      "post_successes": 200,
+      "post_failures": 0,
+      "post_error_percent": 0.0,
+      "post_p50_ms": 9051,
+      "post_p95_ms": 21831,
+      "post_p99_ms": 25274,
+      "early_half_post_p50_ms": 7975,
+      "late_half_post_p50_ms": 10076,
+      "late_to_early_p50_ratio": 1.2634,
+      "backlog_at_midpoint": 1,
+      "backlog_at_active_end": 4,
+      "material_backlog_threshold": 30,
+      "last_half_successful_completions": 104,
+      "last_half_throughput_per_min": 20.8,
+      "throughput_to_offered_ratio": 1.04,
+      "queue_grew": false,
+      "throughput_shortfall": false,
+      "latency_growth": false,
+      "classification": "SUSTAINED",
+      "reasons": [
+        "none of the predeclared saturation conditions was met"
+      ],
+      "active_start_epoch_ms": 1791535019859,
+      "active_end_epoch_ms": 1791535619859,
+      "stage_id": "adaptive_20rpm_s7_run1",
+      "attempt": 1,
+      "jtl": "results/load/qwen2.5-7b/adaptive-stress/adaptive_20rpm_s7_run1.jtl",
+      "jmeter_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_20rpm_s7_run1_jmeter.log",
+      "service_log": "results/load/qwen2.5-7b/adaptive-stress/service-adaptive_20rpm_s7_run1.jsonl",
+      "stats_csv": "results/load/qwen2.5-7b/adaptive-stress/adaptive_20rpm_s7_run1_stats.csv",
+      "health_json": "results/load/qwen2.5-7b/adaptive-stress/adaptive_20rpm_s7_run1_health.json",
+      "sut_audit_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_20rpm_s7_run1_sut-audit.jsonl",
+      "resource_summary": {
+        "triage-triage-1": {
+          "samples": 177,
+          "mean_cpu_percent": 0.22,
+          "p95_cpu_percent": 0.48,
+          "max_cpu_percent": 0.77
+        },
+        "triage-ollama-1": {
+          "samples": 177,
+          "mean_cpu_percent": 421.52,
+          "p95_cpu_percent": 1004.52,
+          "max_cpu_percent": 1010.15
+        }
+      }
+    },
+    {
+      "offered_post_per_min": 22.0,
+      "post_samples": 219,
+      "search_samples": 70,
+      "post_successes": 219,
+      "post_failures": 0,
+      "post_error_percent": 0.0,
+      "post_p50_ms": 16207,
+      "post_p95_ms": 31897,
+      "post_p99_ms": 38468,
+      "early_half_post_p50_ms": 12696,
+      "late_half_post_p50_ms": 19168,
+      "late_to_early_p50_ratio": 1.5098,
+      "backlog_at_midpoint": 8,
+      "backlog_at_active_end": 12,
+      "material_backlog_threshold": 33,
+      "last_half_successful_completions": 108,
+      "last_half_throughput_per_min": 21.6,
+      "throughput_to_offered_ratio": 0.9818,
+      "queue_grew": true,
+      "throughput_shortfall": false,
+      "latency_growth": true,
+      "classification": "OVERLOADED",
+      "reasons": [
+        "backlog grew 8->12 and late-half p50 was 1.51x early-half p50"
+      ],
+      "active_start_epoch_ms": 1791536241119,
+      "active_end_epoch_ms": 1791536841119,
+      "stage_id": "adaptive_22rpm_s7_run1",
+      "attempt": 1,
+      "jtl": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run1.jtl",
+      "jmeter_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run1_jmeter.log",
+      "service_log": "results/load/qwen2.5-7b/adaptive-stress/service-adaptive_22rpm_s7_run1.jsonl",
+      "stats_csv": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run1_stats.csv",
+      "health_json": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run1_health.json",
+      "sut_audit_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run1_sut-audit.jsonl",
+      "resource_summary": {
+        "triage-triage-1": {
+          "samples": 177,
+          "mean_cpu_percent": 0.22,
+          "p95_cpu_percent": 0.49,
+          "max_cpu_percent": 0.82
+        },
+        "triage-ollama-1": {
+          "samples": 177,
+          "mean_cpu_percent": 476.63,
+          "p95_cpu_percent": 1005.7,
+          "max_cpu_percent": 1011.2
+        }
+      }
+    },
+    {
+      "offered_post_per_min": 22.0,
+      "post_samples": 219,
+      "search_samples": 70,
+      "post_successes": 219,
+      "post_failures": 0,
+      "post_error_percent": 0.0,
+      "post_p50_ms": 25334,
+      "post_p95_ms": 43972,
+      "post_p99_ms": 46545,
+      "early_half_post_p50_ms": 26247,
+      "late_half_post_p50_ms": 25286,
+      "late_to_early_p50_ratio": 0.9634,
+      "backlog_at_midpoint": 10,
+      "backlog_at_active_end": 7,
+      "material_backlog_threshold": 33,
+      "last_half_successful_completions": 112,
+      "last_half_throughput_per_min": 22.4,
+      "throughput_to_offered_ratio": 1.0182,
+      "queue_grew": false,
+      "throughput_shortfall": false,
+      "latency_growth": false,
+      "classification": "SUSTAINED",
+      "reasons": [
+        "none of the predeclared saturation conditions was met"
+      ],
+      "active_start_epoch_ms": 1791537464484,
+      "active_end_epoch_ms": 1791538064484,
+      "stage_id": "adaptive_22rpm_s7_run2",
+      "attempt": 2,
+      "jtl": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run2.jtl",
+      "jmeter_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run2_jmeter.log",
+      "service_log": "results/load/qwen2.5-7b/adaptive-stress/service-adaptive_22rpm_s7_run2.jsonl",
+      "stats_csv": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run2_stats.csv",
+      "health_json": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run2_health.json",
+      "sut_audit_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_22rpm_s7_run2_sut-audit.jsonl",
+      "resource_summary": {
+        "triage-triage-1": {
+          "samples": 176,
+          "mean_cpu_percent": 0.29,
+          "p95_cpu_percent": 0.79,
+          "max_cpu_percent": 2.21
+        },
+        "triage-ollama-1": {
+          "samples": 176,
+          "mean_cpu_percent": 501.49,
+          "p95_cpu_percent": 1012.79,
+          "max_cpu_percent": 1051.62
+        }
+      }
+    },
+    {
+      "offered_post_per_min": 24.0,
+      "post_samples": 240,
+      "search_samples": 70,
+      "post_successes": 240,
+      "post_failures": 0,
+      "post_error_percent": 0.0,
+      "post_p50_ms": 26617,
+      "post_p95_ms": 53816,
+      "post_p99_ms": 64126,
+      "early_half_post_p50_ms": 15471,
+      "late_half_post_p50_ms": 27873,
+      "late_to_early_p50_ratio": 1.8016,
+      "backlog_at_midpoint": 15,
+      "backlog_at_active_end": 24,
+      "material_backlog_threshold": 36,
+      "last_half_successful_completions": 115,
+      "last_half_throughput_per_min": 23.0,
+      "throughput_to_offered_ratio": 0.9583,
+      "queue_grew": true,
+      "throughput_shortfall": false,
+      "latency_growth": true,
+      "classification": "OVERLOADED",
+      "reasons": [
+        "backlog grew 15->24 and late-half p50 was 1.80x early-half p50"
+      ],
+      "active_start_epoch_ms": 1791538686867,
+      "active_end_epoch_ms": 1791539286867,
+      "stage_id": "adaptive_24rpm_s7_run1",
+      "attempt": 1,
+      "jtl": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run1.jtl",
+      "jmeter_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run1_jmeter.log",
+      "service_log": "results/load/qwen2.5-7b/adaptive-stress/service-adaptive_24rpm_s7_run1.jsonl",
+      "stats_csv": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run1_stats.csv",
+      "health_json": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run1_health.json",
+      "sut_audit_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run1_sut-audit.jsonl",
+      "resource_summary": {
+        "triage-triage-1": {
+          "samples": 177,
+          "mean_cpu_percent": 0.3,
+          "p95_cpu_percent": 0.81,
+          "max_cpu_percent": 1.96
+        },
+        "triage-ollama-1": {
+          "samples": 177,
+          "mean_cpu_percent": 506.65,
+          "p95_cpu_percent": 1008.62,
+          "max_cpu_percent": 1022.85
+        }
+      }
+    },
+    {
+      "offered_post_per_min": 24.0,
+      "post_samples": 240,
+      "search_samples": 70,
+      "post_successes": 240,
+      "post_failures": 0,
+      "post_error_percent": 0.0,
+      "post_p50_ms": 34011,
+      "post_p95_ms": 71663,
+      "post_p99_ms": 75021,
+      "early_half_post_p50_ms": 12962,
+      "late_half_post_p50_ms": 43729,
+      "late_to_early_p50_ratio": 3.3736,
+      "backlog_at_midpoint": 13,
+      "backlog_at_active_end": 27,
+      "material_backlog_threshold": 36,
+      "last_half_successful_completions": 114,
+      "last_half_throughput_per_min": 22.8,
+      "throughput_to_offered_ratio": 0.95,
+      "queue_grew": true,
+      "throughput_shortfall": false,
+      "latency_growth": true,
+      "classification": "OVERLOADED",
+      "reasons": [
+        "backlog grew 13->27 and late-half p50 was 3.37x early-half p50"
+      ],
+      "active_start_epoch_ms": 1791539908487,
+      "active_end_epoch_ms": 1791540508487,
+      "stage_id": "adaptive_24rpm_s7_run2",
+      "attempt": 2,
+      "jtl": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run2.jtl",
+      "jmeter_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run2_jmeter.log",
+      "service_log": "results/load/qwen2.5-7b/adaptive-stress/service-adaptive_24rpm_s7_run2.jsonl",
+      "stats_csv": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run2_stats.csv",
+      "health_json": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run2_health.json",
+      "sut_audit_log": "results/load/qwen2.5-7b/adaptive-stress/adaptive_24rpm_s7_run2_sut-audit.jsonl",
+      "resource_summary": {
+        "triage-triage-1": {
+          "samples": 178,
+          "mean_cpu_percent": 0.32,
+          "p95_cpu_percent": 0.87,
+          "max_cpu_percent": 2.41
+        },
+        "triage-ollama-1": {
+          "samples": 178,
+          "mean_cpu_percent": 515.55,
+          "p95_cpu_percent": 1013.85,
+          "max_cpu_percent": 1047.73
+        }
+      }
+    }
+  ],
+  "conclusion": {
+    "status": "LIMIT_BRACKETED",
+    "highest_sustained_post_per_min": 22.0,
+    "first_confirmed_overloaded_post_per_min": 24.0,
+    "report_text": "The measured sustainable mixed-load capacity is bracketed above 22 and at or below 24 classification requests per minute, with 7 searches per minute. The higher rate met the predeclared overload rule in two independent reset-and-warm attempts."
+  }
+}

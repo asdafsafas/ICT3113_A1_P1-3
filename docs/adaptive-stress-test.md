@@ -5,8 +5,8 @@ separate Macs. Tze Han's Mac runs Docker, Ollama, the triage service and a
 token-protected evidence agent. Ridwan's Mac runs JMeter and automatically
 increases the open-loop classification arrival rate.
 
-The test starts at 12 POST `/tickets` requests per minute and increases by 2 per
-minute through a maximum of 24 per minute. Every rate also carries 7 GET
+The resumed test starts at 20 POST `/tickets` requests per minute and increases
+by 2 per minute through a maximum of 24 per minute. Every rate also carries 7 GET
 `/search` requests per minute. Each attempt uses 10 active minutes and 10 drain
 minutes. Before every attempt, the SUT agent restarts Ollama and triage, recreates
 the empty database, warms the selected model with invented text, clears the
@@ -121,9 +121,10 @@ python3 scripts/run_adaptive_stress.py \
 ## Expected duration
 
 Each attempted rate takes about 20 minutes plus several minutes for reset and
-warm-up. If 12/min is sustained and 14/min is overloaded twice, allow about one
-hour. If higher rates are required, the worst-case default plan is approximately
-2 hours 20 minutes plus resets. A confirmation attempt adds about 20 minutes.
+warm-up. The default 20, 22 and 24/min sequence takes approximately one hour plus
+resets when no confirmation is needed. A confirmation attempt adds about 20
+minutes, so allow up to approximately one hour 20 minutes if a suspected
+overload is repeated.
 
 ## After completion
 

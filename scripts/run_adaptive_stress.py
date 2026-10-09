@@ -80,7 +80,7 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=REPO / "loadtest" / "data" / "tickets.tsv",
     )
-    parser.add_argument("--start-rate", type=Decimal, default=Decimal("12"))
+    parser.add_argument("--start-rate", type=Decimal, default=Decimal("20"))
     parser.add_argument("--step", type=Decimal, default=Decimal("2"))
     parser.add_argument("--max-rate", type=Decimal, default=Decimal("24"))
     parser.add_argument("--search-rate", type=Decimal, default=Decimal("7"))
@@ -169,8 +169,11 @@ def agent_request(
 
 
 def expected_count(rate: Decimal, duration_min: int) -> set[int]:
+    """Allow one arrival of scheduler jitter at an active-period boundary."""
     exact = rate * Decimal(duration_min)
-    return {math.floor(exact), math.ceil(exact)}
+    lower = max(0, math.floor(exact) - 1)
+    upper = math.ceil(exact) + 1
+    return set(range(lower, upper + 1))
 
 
 def validate_counts(
@@ -475,7 +478,10 @@ def make_conclusion(
         )
         status = "OVERLOAD_FOUND_NO_LOWER_BOUND"
     else:
-        max_tested = float(maximum_rate)
+        max_tested = max(
+            (item["offered_post_per_min"] for item in attempts),
+            default=float(maximum_rate),
+        )
         report_text = (
             f"No repeatable overload was found through the maximum tested rate of "
             f"{max_tested:g} classification requests per minute. The demonstrated "
@@ -548,11 +554,22 @@ def main() -> int:
         return 0
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    collisions = list(output_dir.glob("adaptive_*"))
+    collisions: list[Path] = []
+    for rate in rates:
+        stage_prefix = (
+            f"adaptive_{rate_stem(rate)}rpm_s{rate_stem(args.search_rate)}_run"
+        )
+        collisions.extend(output_dir.glob(f"{stage_prefix}*"))
+        collisions.extend(output_dir.glob(f"service-{stage_prefix}*"))
+    for summary_name in ("adaptive-stress-summary.md", "adaptive-stress-summary.json"):
+        summary_path = output_dir / summary_name
+        if summary_path.exists():
+            collisions.append(summary_path)
     if collisions:
+        names = ", ".join(sorted(path.name for path in collisions))
         raise SystemExit(
-            f"Adaptive evidence already exists in {output_dir}. Preserve or move it before "
-            "starting a new measured test."
+            f"Evidence for the requested rate plan already exists in {output_dir}: {names}. "
+            "Preserve or move those files before starting a new measured test."
         )
 
     agent_health = agent_request(agent_url, args.token, "/agent/health", timeout=20)
