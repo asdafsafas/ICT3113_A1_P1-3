@@ -17,3 +17,4 @@ Changes to apply in `build_deck.js` at the next rebuild of `Group03.pptx`.
 | 1–11 | Plain-language rewording for a non-technical reader (slide 12 unchanged) |
 | 5 | Removed all mention of the untested fourth model (qwen2.5:3b) from caption and notes |
 | 12 + in-text | IEEE references, numbered by first citation; added Ollama, JMeter, Qwen2.5 report, Apache 2.0 and Llama 3.2 licences; fixed FCA glossary link; Brown et al. DOI; CFPB extract credited to SIT via xSiTe |
+| 7–9, 11 | Updated adaptive stress results: 20/min sustained, 22/min mixed, 24/min overloaded twice; procedure, capacity caveat, CPU evidence and prediction comparison updated in both source and PPTX |

@@ -369,15 +369,16 @@ pres.addSection({ title: "Golden set and testing" });
   txt(s, "How results carry over to the bank's servers", MX, 4.6, bw, 0.35, { fontSize: 15, bold: true, color: C.text2, fontFace: "Cambria" });
   s.addText(bullets([
     "82–89% of the model's time goes on reading the ticket, so speed depends mostly on the server's processor and memory",
-    "Capacity ≈ 60 s ÷ time per ticket: 3.1 s here, so about 19 tickets a minute for the large model",
+    "Stress check: 20 tickets/min sustained, 22/min mixed, 24/min overloaded twice, with 7 searches/min",
     "Our estimate: a server up to 3× slower would still meet the 30 s target. Time one ticket on the bank's server first",
   ], { gap: 4 }), { x: MX, y: 5.0, w: bw, h: 1.9, isTextBox: true, fontSize: 12, color: C.text1, margin: 0, valign: "top" });
   txt(s, "What could make our numbers misleading", MX + bw + 0.3, 4.6, bw, 0.35, { fontSize: 15, bold: true, color: C.text2, fontFace: "Cambria" });
   s.addText(bullets([
     "A laptop chip is not a typical bank server chip; laptops slow down when hot; power source was not recorded",
     "Wi-Fi: a search takes under 7 ms inside the system but 0.2–0.5 s as JMeter sees it, so most of that is network",
-    "Each 10-min run has only 14–35 tickets, so the slowest-1% figure (p99) is just the slowest ticket",
+    "Standard load runs have only 14–35 tickets each, so p99 is just the slowest ticket",
   ], { gap: 4 }), { x: MX + bw + 0.3, y: 5.0, w: bw, h: 1.9, isTextBox: true, fontSize: 12, color: C.text1, margin: 0, valign: "top" });
+  s.addNotes("Adaptive stress evidence: results/load/qwen2.5-7b/adaptive-stress/adaptive-stress-summary.json and matching JTL files. At 20/min one 10-minute attempt sustained the offered load. At 22/min one attempt overloaded and one sustained. At 24/min two independent attempts met the predeclared overload rule. These short tests do not establish a production SLA or a reliable 22/min operating rate.");
 }
 
 // =====================================================================
@@ -417,10 +418,10 @@ pres.addSection({ title: "Golden set and testing" });
       "Run on 8 Oct, after the labels were locked; no other test running",
     ]],
     ["Stress test: large model", [
-      "Traffic rises steadily from 3.5 to 12 tickets/min over 30 min, plus 7 searches/min",
-      "Then 15 min at a steady 7.2 and 9.6 tickets/min to confirm",
-      "The limit is where tickets arrive faster than they are sorted and delays keep growing",
-      "Each ticket's time is split into waiting in line vs being processed",
+      "After the first ramp, test higher fixed rates with 7 searches/min and repeat each overload signal",
+      "Each new attempt: 10 min of traffic, 10 min to drain, with the same reset and warm-up",
+      "Overload: failures >1%, ≥15% still in flight, or a growing queue with slower completions or rising latency",
+      "Check queue size at 5 and 10 min, early vs late latency, throughput, failures and processor use",
     ]],
   ];
   tests.forEach(([h, items], i) => {
@@ -429,6 +430,7 @@ pres.addSection({ title: "Golden set and testing" });
     txt(s, h, x + 0.25, ty + 0.15, tw - 0.5, 0.35, { fontSize: 15, bold: true, color: C.accent1, fontFace: "Cambria" });
     s.addText(bullets(items, { gap: 4 }), { x: x + 0.25, y: ty + 0.6, w: tw - 0.5, h: th - 0.75, isTextBox: true, fontSize: 12, color: C.text1, margin: 0, valign: "top" });
   });
+  s.addNotes("Final stress procedure: docs/adaptive-stress-test.md and scripts/run_adaptive_stress.py. Final sequence 20, 22, 24 POST/min plus 7 searches/min. Each stage 10 active minutes, 10 drain minutes, reset and invented warm-up. Overload rules: errors >1%; end backlog >= max(5, ceil(15% of POST count)); growing backlog plus last-half completion throughput <90% offered; or growing backlog plus late-half p50 >=1.5 times early-half p50 with >=2 seconds absolute increase. Repeat an overload signal. Earlier adaptive_14rpm_s7_run1 had connection/socket timeouts and is excluded from the final capacity conclusion.");
 }
 
 // =====================================================================
@@ -466,20 +468,23 @@ pres.addSection({ title: "Results and recommendation" });
     txt(s, t, x + 0.2, vy + 0.55, 2.45, 0.65, { fontSize: 11 });
   });
 
+  // Final adaptive stress: 20/min sustained, 22/min mixed, 24/min overloaded twice.
+  // Raw evidence: results/load/qwen2.5-7b/adaptive-stress/
   // stress panel
   const px = MX + tw + 0.3, pw = W - MX - px;
   card(s, px, 1.4, pw, 5.45, { fill: C.text2 });
   txt(s, "STRESS TEST · large model", px + 0.2, 1.52, pw - 0.4, 0.3, { fontSize: 11, bold: true, color: HEX.accent6, charSpacing: 1 });
-  const sr = [["Rising 3.5 → 12 /min", "232 tickets · 95% within 10.2 s"], ["Steady 7.2 /min", "108 tickets · 95% within 8.7 s"], ["Steady 9.6 /min", "144 tickets · 95% within 17.3 s"]];
+  const sr = [["20 /min: sustained", "200 tickets · p95 21.8 s"], ["22 /min: mixed (2 attempts)", "p95 31.9 / 44.0 s"], ["24 /min: overloaded twice", "p95 53.8 / 71.7 s"]];
   sr.forEach(([a, b], i) => {
     const y = 1.92 + i * 0.6;
     txt(s, a, px + 0.2, y, pw - 0.4, 0.27, { fontSize: 12, bold: true, color: C.background1 });
     txt(s, b + " · 0 failed", px + 0.2, y + 0.27, pw - 0.4, 0.27, { fontSize: 11, color: "CADDDA" });
   });
-  txt(s, "No limit found up to 12 /min", px + 0.2, 3.85, pw - 0.4, 0.35, { fontSize: 14, bold: true, color: C.accent2, fontFace: "Cambria" });
-  txt(s, "It kept up at 9.6 /min, 5.5× the busiest hour, without delays growing. We estimate it tops out near 19 /min (60 s ÷ 3.1 s per ticket); not yet confirmed.", px + 0.2, 4.22, pw - 0.4, 0.95, { fontSize: 11, color: C.background1 });
+  txt(s, "Overload confirmed at 24 /min", px + 0.2, 3.85, pw - 0.4, 0.35, { fontSize: 14, bold: true, color: C.accent2, fontFace: "Cambria" });
+  txt(s, "At 24/min, in-flight tickets grew from 15 to 24 and 13 to 27. Late-half typical latency rose 1.80× and 3.37×. All requests eventually finished.", px + 0.2, 4.22, pw - 0.4, 0.95, { fontSize: 11, color: C.background1 });
   txt(s, "Slow part: the AI model", px + 0.2, 5.15, pw - 0.4, 0.35, { fontSize: 14, bold: true, color: C.accent2, fontFace: "Cambria" });
-  txt(s, "Tickets wait under 0.1 s in our service, but up to 14.6 s (95%) in the model's own queue at 9.6 /min. The model keeps ~10 cores busy; our service under 7% of one.", px + 0.2, 5.52, pw - 0.4, 1.25, { fontSize: 11, color: C.background1 });
+  txt(s, "At 24/min, late-half completions were 23.0 and 22.8/min, below arrivals. Model CPU p95 was about 10 cores; service CPU p95 stayed below 1% of one core.", px + 0.2, 5.52, pw - 0.4, 1.25, { fontSize: 11, color: C.background1 });
+  s.addNotes("Final stress source: results/load/qwen2.5-7b/adaptive-stress/adaptive-stress-summary.json. Independently recomputed from the five final JTLs and reconciled with per-run service logs. All five final attempts have zero POST failures. POST p50/p95/p99 in seconds: 20 run1 9.051/21.831/25.274; 22 run1 16.207/31.897/38.468; 22 run2 25.334/43.972/46.545; 24 run1 26.617/53.816/64.126; 24 run2 34.011/71.663/75.021. Last-half successful completions/min: 20.8, 21.6, 22.4, 23.0, 22.8. Backlog midpoint/end: 1/4, 8/12, 10/7, 15/24, 13/27. At 22/min outcomes were mixed; do not promise reliable sustained capacity there. At 24/min backlog and late-half latency grew in both independent attempts. Ollama CPU p95 1008.62%/1013.85%, triage p95 0.81%/0.87%. Stats summaries include monitoring/drain, so CPU p95 is supporting evidence, not proof of continuous saturation. The earlier 14/min first attempt had timeouts and is not included in this final conclusion.");
 }
 
 // =====================================================================
@@ -534,7 +539,7 @@ pres.addSection({ title: "Results and recommendation" });
     [H("We predicted (before testing)"), H("We measured"), H("")],
     ["Slow part: the model reading each ticket; it keeps ≥ 9 cores busy, our service < 10% of one", "Reading = 82% of the large model's time; ~10.4 cores busy; our service ≤ 6.8%", ok("Right")],
     ["Typical time per ticket: 0.8 / 0.9 / 6.1 s (small Qwen / Llama / large Qwen)", "0.40 / 0.46 / 2.84 s: about half", no("Wrong")],
-    ["Large model overwhelmed near 9.4 /min; delays grow without end at 9.6", "Kept up at 9.6 /min: 95% within 17.3 s, none failed", no("Wrong")],
+    ["Large model overwhelmed near 9.4 /min; delays grow without end at 9.6", "20/min sustained; 22/min mixed; overload at 24/min in both attempts", no("Wrong")],
     ["Accuracy 45% / 55% / 78%", "17.9% / 32.8% / 82.6%", no("2 of 3 wrong")],
     ["Small Qwen over-uses Credit reporting (> 35% of answers)", "It over-uses Credit card instead (79%)", no("Wrong")],
     ["Hardest: Debt collection, Consumer loan; ≥ 25% of money transfers put in Bank account", "Money transfer 66.7% (30% put in Bank account), Consumer loan 70.8%; but Debt collection 82.4%", ok("Mostly right")],
@@ -553,12 +558,13 @@ pres.addSection({ title: "Results and recommendation" });
   txt(s, "qwen2.5:7b", px + 0.25, 1.85, pw - 0.5, 0.5, { fontSize: 26, bold: true, color: C.background1, fontFace: "Cambria" });
   s.addText(bullets([
     { text: "Meets R1–R4: 95% of tickets in 6.1 s (target 30), searches in 0.46 s (target 1), no failures, 82.6% correct (target 80)", options: { color: C.background1 } },
-    { text: "Its licence (Apache 2.0 [11]) allows commercial use; runs on one standard server", options: { color: C.background1 } },
+    { text: "Apache 2.0 [11] permits commercial use. 20/min sustained in the stress check, over 11× our peak load", options: { color: C.background1 } },
     { text: "The small models are 47–62 points short on accuracy. We value correct routing over speed, so being faster does not save them", options: { color: C.background1 } },
   ], { gap: 5 }), { x: px + 0.25, y: 2.45, w: pw - 0.5, h: 2.2, isTextBox: true, fontSize: 12, margin: 0, valign: "top" });
   s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: px + 0.2, y: 4.75, w: pw - 0.4, h: 1.95, rectRadius: 0.08, fill: { color: "1B4A50" }, line: { type: "none" } });
   txt(s, "Stated plainly", px + 0.4, 4.85, pw - 0.8, 0.3, { fontSize: 13, bold: true, color: C.accent2 });
   txt(s, "No model meets every target. All three miss R5: the large model gets 66.7% of money transfers right, one ticket short of 70%. Until better instructions are tried in Assignment 2, staff should double-check tickets sorted into Money transfer or Bank account.", px + 0.4, 5.17, pw - 0.8, 1.5, { fontSize: 11, color: C.background1 });
+  s.addNotes("Final stress evidence revises the old capacity estimate: 20/min sustained in one attempt, 22/min mixed across two, 24/min overloaded in both reset-and-warm attempts. No accuracy or standard peak-load requirement changed. 20/1.73 = 11.56 times the modelled peak. This is test-machine headroom, not a promise for untested bank hardware.");
 }
 
 // =====================================================================
