@@ -42,5 +42,10 @@ Synchronous; no cache; one model call per ticket; no full-text index; **1 uvicor
 One line per request, with: `ts`, `request_id`, `method/path/status`, `latency_ms`, `model`, `model_digest`, `narrative_chars/words`, `ollama_total_ms`, `ollama_load_ms`, `ollama_prompt_eval_ms`, `prompt_tokens`, `ollama_eval_ms`, `output_tokens`, `category`, `ticket_id`, `result_count`, `error`. There is also a startup event line.
 **`latency_ms − ollama_total_ms`** is the time spent queueing plus overhead.
 
-> [!todo] A2 changes
-> `POST /tickets` must run small model → rule → large model, while the caller still sees one category. The log must gain a **final-model** field and an **escalated** flag. See [[Cascade Classification]].
+## A2 changes (PR #13)
+- `MODE=single` (the default) is unchanged from A1.
+- `MODE=cascade` runs small model → rule → large model, and the caller still gets one category.
+- The log gains `escalated`, `final_model`, `final_model_digest`, `small_category` and per-call `calls[]`.
+- `/health` lists every model's digest (`model_digests`) and the rule.
+
+See [[Cascade Classification]] and [[A2 Playbook]].

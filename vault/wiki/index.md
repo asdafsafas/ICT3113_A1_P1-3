@@ -26,6 +26,7 @@ Start with [[overview]], then [[hot]] for recent context. Activity: [[log]].
 - [[Smoke Tests]]: pre-freeze latency fit, CPU, memory
 - [[Codex Chat Summary]]: process record, audit findings
 - [[Project Docs]]: map of the repo docs and scripts
+- [[A2 Playbook]]: A2 limits, tuning-set rule analysis, two-Mac tooling and order of work
 
 ## Entities
 - **Team:** [[Team P1-3]] · [[Zong Han]] · [[Ridwan]] · [[Tze Han]] · [[Kannan]] · [[Natalie]]

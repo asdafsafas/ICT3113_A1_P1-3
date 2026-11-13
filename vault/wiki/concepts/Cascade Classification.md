@@ -53,5 +53,11 @@ Each family has a dial (category list, length cut-off, and so on). A2 tests **tw
 - **No caching**, **no change to Ollama inference settings** between configurations, the same prompt for every call, and the caller cannot tell which model answered.
 - The log must record the final model and an escalation flag per ticket. The escalation fraction is reported from the logs.
 
+## Our implementation (PR #13)
+- `service/app/cascade.py`, configured in `.env`: `MODE=cascade`, `SMALL_MODEL`, `LARGE_MODEL`, `RULE` (`category` | `length` | `agreement`), `RULE_SETTING`, `ACCEPT_CATEGORIES`, `LENGTH_MAX_CHARS`, `AGREE_MODEL`.
+- The **length rule routes long tickets straight to the large model**, with no small-model call (the brief's method 4). The other rules always call the small model first.
+- The response names the configuration (e.g. `cascade:llama3.2:1b…>qwen2.5:7b:category[A]`), never the model that answered.
+- Each log line has `calls[]` (role, model, timings per call), `small_category`, `escalated`, `final_model`. The Ollama time fields are summed across calls.
+
 ## Repo-specific feasibility
-See [[Assignment 2 Planning]].
+See [[Assignment 2 Planning]] and [[A2 Playbook]]. On the tuning set, no rule both stays within the limits and beats the 7B alone.
