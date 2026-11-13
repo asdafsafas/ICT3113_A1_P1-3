@@ -30,8 +30,8 @@ answer_quality: draft
 1. **Machine:** confirmed as the MacBooks. The SUT is Tze Han's M5 MacBook Pro (Docker VM: 10 CPUs, 9.7 GiB). Make sure it is available and its Docker resources are unchanged. See [[Test Environment]].
 2. **`OLLAMA_MAX_LOADED_MODELS=1`.** With it, a cascade reloads models on every escalation. It must be raised to 2, and both models confirmed in `ollama ps`. The brief lists only threads, parallelism and context length as frozen settings, but says to record settings once and hold them constant. So set `MAX_LOADED_MODELS=2` for **all** A2 configurations, including the single-model ones, and state this as a change from A1. *Worth confirming with the lecturer ("ask before collecting measurements").*
 3. **Memory fit:** 7B 4.82 GiB + 1B 1.29 GiB ≈ 6.1 GiB (or + 0.5B ≈ 5.5 GiB), against a 9.7 GiB Docker VM. It looks feasible, but must be proven with `ollama ps` evidence.
-4. **Commit the odd/even split** (98 tuning / 97 test) before anything else. See [[Golden Test Set]].
-5. **The `ICT3113_Assignment_2 - Copy (1).pdf` brief is untracked** in git. Decide whether to commit it.
+4. ~~Commit the odd/even split~~ Done: `a2/golden-split/` (98 tuning / 97 test). See [[Golden Test Set]].
+5. ~~The A2 brief is untracked~~ Done: committed in PR #11.
 
 ## Likely shape of the result
 - **Single small models will fail accuracy.** The overall limit ≈ 7B test accuracy − 10 (likely ~70–75%), and the 0.5B and 1B scored 18% and 33%. Per A2, models that fail accuracy need no speed test.
@@ -44,7 +44,7 @@ answer_quality: draft
 The 7B's single-request p50 was ~2.8 s, so **S ≈ 3 s** → one ticket every ~6 s (~10/min). Runs last 5 min (the minimum) with ~50 tickets each. That is far above the client peak of 1.73/min, so a pass also demonstrates the client's load. S must be **re-measured** as the brief specifies: 3 different typical tickets, and record their row numbers.
 
 ## Deliverables checklist
-- [ ] Split committed
+- [x] Split committed: `a2/golden-split/` via `scripts/split_golden.py` (PR #12, 2026-11-13)
 - [ ] Escalation rule written (reproducible) + 2 settings
 - [ ] A2 prediction record committed before testing
 - [ ] Speed-test row list (outside the golden set; typical and long tickets; fixed order)
