@@ -11,6 +11,12 @@ status: developing
 
 # Wiki Log
 
+## [2026-11-13] ingest | A2 tooling (PRs #12, #13)
+- Sources: `docs/a2-playbook.md`, `a2/limits.md`, `a2/tuning-analysis.md`, `a2/speed-workload/README.md`, `a2/golden-split/SPLIT.md`
+- Pages created: [[A2 Playbook]]
+- Pages updated: [[Cascade Classification]], [[Triage Service]], [[Evidence Reconciliation]], [[Assignment 2 Planning]], [[hot]], [[index]]
+- Key insight: on the tuning set, no escalation rule stays within the limits (overall 73.5%; Mortgage 85.0%) while beating the 7B alone. The 7B alone is the likely recommendation, but the cascade must still be built and measured.
+
 ## [2026-11-13] update | Run register filled
 - Repo change: `results/load/RUNS.md` filled with 40 rows (27 standard, 3 initial stress, 10 adaptive). Built from each JTL and reconciled against its dedicated service log. Orphan log and supplemental whole-day log noted.
 - Pages updated: [[Evidence Reconciliation]], [[Load Test Results]], [[hot]]

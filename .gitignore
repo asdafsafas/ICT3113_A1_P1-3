@@ -17,3 +17,6 @@ Thumbs.db
 # Non-reportable local JMeter dry-run output
 results/dry-run/
 /jmeter.log
+
+# A2: the SUT agent keeps its own copy of the evidence here; the load-generator Mac commits the real copy
+results/a2/sut-copy/

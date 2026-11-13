@@ -1,7 +1,11 @@
-"""Ticket Triage Service (Assignment 1 baseline).
+"""Ticket Triage Service.
 
-Deliberately naive: POST /tickets is synchronous and calls the model once per
-request, with no caching, batching or queueing. Optimisation is Assignment 2.
+Assignment 1 baseline (MODE=single, the default): POST /tickets is synchronous and calls
+one model once per request, with no caching, batching or queueing.
+
+Assignment 2 (MODE=cascade): a small model classifies every ticket and a rule decides
+whether to escalate it to a large model. Still synchronous, still no caching. The response
+looks the same either way; only the service log records which model answered.
 """
 
 import time
@@ -10,19 +14,28 @@ import uuid
 from fastapi import FastAPI, HTTPException, Query, Request
 from pydantic import BaseModel, Field
 
-from . import classifier, config, reqlog, storage
+from . import cascade, classifier, config, reqlog, storage
 
 app = FastAPI(title="Ticket Triage Service")
 
 
+def digests():
+    return {m: classifier.model_digest(m) for m in config.models_in_use()}
+
+
 @app.on_event("startup")
 def startup():
-    if not config.MODEL:
-        raise RuntimeError("MODEL is not set; copy .env.example to .env and choose a model")
+    config.validate()
     storage.init()
-    reqlog.write({"event": "startup", "model": config.MODEL, "model_digest": classifier.model_digest(),
-                  "prompt_file": config.PROMPT_FILE.name, "num_ctx": config.NUM_CTX,
-                  "temperature": config.TEMPERATURE, "seed": config.SEED})
+    entry = {"event": "startup", "mode": config.MODE, "model": config.config_label(),
+             "prompt_file": config.PROMPT_FILE.name, "num_ctx": config.NUM_CTX,
+             "temperature": config.TEMPERATURE, "seed": config.SEED}
+    if config.MODE == "single":
+        entry["model_digest"] = classifier.model_digest()
+    else:
+        entry["model_digests"] = digests()
+        entry["cascade"] = config.rule_description()
+    reqlog.write(entry)
 
 
 @app.middleware("http")
@@ -57,20 +70,33 @@ class TicketIn(BaseModel):
 @app.post("/tickets")
 def create_ticket(ticket: TicketIn, request: Request):
     log = request.state.log
-    log.update({"model": config.MODEL, "model_digest": classifier.model_digest(),
-                "narrative_chars": len(ticket.narrative), "narrative_words": len(ticket.narrative.split())})
-    try:
-        category, stats = classifier.classify(ticket.narrative)
-    except classifier.ClassificationError as e:
-        log["error"] = str(e)
-        raise HTTPException(status_code=502, detail=str(e))
-    log.update(stats)
+    log.update({"narrative_chars": len(ticket.narrative), "narrative_words": len(ticket.narrative.split())})
+
+    if config.MODE == "single":
+        log.update({"model": config.MODEL, "model_digest": classifier.model_digest()})
+        try:
+            category, stats = classifier.classify(ticket.narrative)
+        except classifier.ClassificationError as e:
+            log["error"] = str(e)
+            raise HTTPException(status_code=502, detail=str(e))
+        log.update(stats)
+        final_model = config.MODEL
+    else:
+        log.update({"mode": "cascade", "model": config.config_label(), "model_digests": digests()})
+        try:
+            category, final_model = cascade.run(ticket.narrative, log)
+        except classifier.ClassificationError as e:
+            log["error"] = str(e)
+            raise HTTPException(status_code=502, detail=str(e))
+        log["final_model_digest"] = classifier.model_digest(final_model)
     log["category"] = category
 
-    ticket_id = storage.insert_ticket(ticket.narrative, category, config.MODEL, request.state.request_id,
+    ticket_id = storage.insert_ticket(ticket.narrative, category, final_model, request.state.request_id,
                                       reqlog.utc_now().isoformat(timespec="milliseconds"))
     log["ticket_id"] = ticket_id
-    return {"id": ticket_id, "category": category, "model": config.MODEL, "request_id": request.state.request_id}
+    # The response names the configuration, not the model that answered this ticket.
+    return {"id": ticket_id, "category": category, "model": config.config_label(),
+            "request_id": request.state.request_id}
 
 
 @app.get("/search")
@@ -97,6 +123,13 @@ def stats():
 
 @app.get("/health")
 def health():
-    digest = classifier.model_digest()
-    return {"status": "ok" if digest else "model_missing", "model": config.MODEL, "model_digest": digest,
-            "prompt_file": config.PROMPT_FILE.name}
+    if config.MODE == "single":
+        digest = classifier.model_digest()
+        return {"status": "ok" if digest else "model_missing", "model": config.MODEL, "model_digest": digest,
+                "prompt_file": config.PROMPT_FILE.name}
+    d = digests()
+    ok = all(d.values())
+    return {"status": "ok" if ok else "model_missing", "mode": "cascade", "model": config.config_label(),
+            # One string covering every model, so A1 scripts that require a digest still work.
+            "model_digest": "+".join(d[m] for m in config.models_in_use()) if ok else None,
+            "model_digests": d, "cascade": config.rule_description(), "prompt_file": config.PROMPT_FILE.name}

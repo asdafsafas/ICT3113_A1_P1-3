@@ -32,6 +32,9 @@ The brief requires that **every reported number trace back to a kept log or `.jt
 - Adaptive stress result: **1,468 samples, 0 missing, 0 mismatches**.
 - Invalid or superseded runs are **kept and marked**, never deleted (e.g. `results/archive/macos-attempt-2026-10-06/`, and `adaptive_14rpm_s7_run1`).
 
+## A2
+The A2 runner saves the full evidence set for every run in `results/a2/speed/<config>/` and reconciles each run automatically. It also cross-checks completed requests against the `GET /stats` increase, and counts any model reload. See [[A2 Playbook]].
+
 ## Reporting vocabulary
 Label every figure as one of: **measured** · **predicted (before testing)** · **estimated after testing** · **limit not observed within the tested range**.
 

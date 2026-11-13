@@ -1,0 +1,86 @@
+{
+  "source": "Assignment 1 accuracy runs re-scored on a2/golden-split/test_set.csv",
+  "top_model": "qwen2.5:7b",
+  "top_model_run": "20261008T121609Z_qwen2.5-7b.csv",
+  "test_tickets": 97,
+  "top_overall": {
+    "right": 81,
+    "n": 97,
+    "acc": 0.8350515463917526
+  },
+  "overall_limit": 0.7350515463917526,
+  "per_category": {
+    "Credit reporting": {
+      "n": 20,
+      "top_right": 15,
+      "top_acc": 0.75,
+      "limit": 0.6,
+      "too_small": false
+    },
+    "Debt collection": {
+      "n": 11,
+      "top_right": 9,
+      "top_acc": 0.8181818181818182,
+      "limit": 0.6681818181818182,
+      "too_small": false
+    },
+    "Mortgage": {
+      "n": 9,
+      "top_right": 9,
+      "top_acc": 1.0,
+      "limit": 0.85,
+      "too_small": true
+    },
+    "Credit card": {
+      "n": 7,
+      "top_right": 6,
+      "top_acc": 0.8571428571428571,
+      "limit": 0.7071428571428571,
+      "too_small": true
+    },
+    "Bank account or service": {
+      "n": 20,
+      "top_right": 19,
+      "top_acc": 0.95,
+      "limit": 0.7999999999999999,
+      "too_small": false
+    },
+    "Consumer loan": {
+      "n": 11,
+      "top_right": 8,
+      "top_acc": 0.7272727272727273,
+      "limit": 0.5772727272727273,
+      "too_small": false
+    },
+    "Money transfer or service": {
+      "n": 19,
+      "top_right": 15,
+      "top_acc": 0.7894736842105263,
+      "limit": 0.6394736842105263,
+      "too_small": false
+    }
+  },
+  "single_models": {
+    "qwen2.5:0.5b": {
+      "right": 15,
+      "n": 97,
+      "acc": 0.15463917525773196,
+      "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+      "passes": false
+    },
+    "llama3.2:1b-instruct-q4_K_M": {
+      "right": 32,
+      "n": 97,
+      "acc": 0.32989690721649484,
+      "digest": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02",
+      "passes": false
+    },
+    "qwen2.5:7b": {
+      "right": 81,
+      "n": 97,
+      "acc": 0.8350515463917526,
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "passes": true
+    }
+  }
+}

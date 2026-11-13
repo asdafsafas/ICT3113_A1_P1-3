@@ -40,6 +40,13 @@ answer_quality: draft
 - **The likely recommendation is the 7B alone**, which A2 accepts ("acceptable to conclude the cascade did not improve on it"). The cascade must still be built, accuracy-tested and speed-tested.
 - To give the cascade a real chance, look for a rule with low f: e.g. the 1B's Credit reporting answers when another signal agrees. Measure it on the tuning set and keep f well below 84%.
 
+## Measured inputs (2026-11-13, no machine needed)
+- **Limits** (`a2/limits.md`, from A1 runs re-scored on the test set): 7B 81/97 = **83.5%** → overall limit **73.5%**. Tightest category: **Mortgage 85.0%** (the 7B got 9/9, so the cascade may miss at most 1). The 0.5B (15.5%) and 1B (33.0%) fail alone, so they need no speed test.
+- **Tuning-set rule analysis** (`a2/tuning-analysis.md`): no candidate is both **within the limits** and **faster than the 7B alone**.
+  - Safe category or agreement rules escalate 85–100% of tickets.
+  - Length rules are faster but break a category limit. The closest is the 1B at ≤300 chars: Debt collection −16.7 against −15 allowed, which is 1 ticket out of 6.
+- The tooling for both Macs is in `docs/a2-playbook.md`.
+
 ## Speed-test parameters (estimate)
 The 7B's single-request p50 was ~2.8 s, so **S ≈ 3 s** → one ticket every ~6 s (~10/min). Runs last 5 min (the minimum) with ~50 tickets each. That is far above the client peak of 1.73/min, so a pass also demonstrates the client's load. S must be **re-measured** as the brief specifies: 3 different typical tickets, and record their row numbers.
 

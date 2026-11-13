@@ -11,10 +11,17 @@ status: developing
 
 # Hot Cache (read this first)
 
-**Last update:** 2026-11-13, initial ingest of the whole ICT3113_A1_P1-3 repo.
+**Last update:** 2026-11-13, A2 tooling built (PRs #12 golden split, #13 cascade + two-Mac harness).
 
 ## Current focus
-**Assignment 2**, due **27 Nov 2026**: the fastest configuration within the accuracy floor, built around a cascade. See [[Assignment 2 Planning]].
+**Assignment 2**, due **27 Nov 2026**: the fastest configuration within the accuracy floor, built around a cascade. See [[Assignment 2 Planning]] and [[A2 Playbook]].
+
+**Next steps:**
+1. **SUT Mac:** set `OLLAMA_MAX_LOADED_MODELS` and run the memory check. Ask the lecturer whether changing that setting is acceptable.
+2. **Team:** choose the rule and two settings, write the predictions, and commit both with the `a2-prediction-freeze` tag.
+3. Then the accuracy tests, S, and the speed tests (`docs/a2-playbook.md`).
+
+**A2 limits:** overall **73.5%**; Mortgage **85.0%** is the tightest. Small models fail alone. On the tuning set, no rule is both within the limits and faster than the 7B alone.
 
 ## Key numbers
 - Golden set: 195 tickets. Split for A2: **98 tuning (odd) / 97 test (even)**; smallest test cells are Credit card 7 and Mortgage 9.
