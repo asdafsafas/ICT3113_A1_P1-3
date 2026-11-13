@@ -11,6 +11,7 @@
 | [person3-jmeter-todo.md](person3-jmeter-todo.md) | Checkbox-based execution plan for Person 3's JMeter, evidence and slide work | Ridwan |
 | [ridwan-branch-pr-plan.md](ridwan-branch-pr-plan.md) | Phased checklist for aligning, validating and merging Ridwan's branch | Ridwan |
 | [accuracy-testing.md](accuracy-testing.md) | Accuracy test playbook and reading the report | Zong Han |
+| [a2-playbook.md](a2-playbook.md) | **Assignment 2:** cascade settings, memory check, accuracy, S, speed tests on the two Macs | Everyone |
 
 Planning documents live in [`planning/`](../planning/):
 [workload model](../planning/workload-model.md) and [requirements](../planning/requirements.md) (Zong Han), plus the team [prediction record](../planning/prediction-record.md). Freeze all three before official benchmarks.

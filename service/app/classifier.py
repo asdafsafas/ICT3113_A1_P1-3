@@ -1,4 +1,4 @@
-"""Calls Ollama to classify one narrative. Baseline: one synchronous HTTP call per ticket, no caching."""
+"""Calls Ollama to classify one narrative. One synchronous HTTP call per classification, no caching."""
 
 import json
 
@@ -20,7 +20,7 @@ RESPONSE_SCHEMA = {
 
 _client = httpx.Client(base_url=config.OLLAMA_URL, timeout=config.OLLAMA_TIMEOUT_S)
 _prompt_template = None
-_digest = None
+_digests = {}
 
 
 def prompt_template():
@@ -30,28 +30,28 @@ def prompt_template():
     return _prompt_template
 
 
-def model_digest():
-    """Digest of the configured model as installed in Ollama (None if not pulled yet)."""
-    global _digest
-    if _digest is None:
+def model_digest(model=None):
+    """Digest of a model as installed in Ollama (None if not pulled yet). Defaults to MODEL."""
+    model = model or config.MODEL
+    if model not in _digests:
         try:
             tags = _client.get("/api/tags", timeout=10).json()
         except (httpx.HTTPError, ValueError):
             return None
         for m in tags.get("models", []):
-            if m.get("name") == config.MODEL or m.get("model") == config.MODEL:
-                _digest = m.get("digest")
-    return _digest
+            if m.get("name") == model or m.get("model") == model:
+                _digests[model] = m.get("digest")
+    return _digests.get(model)
 
 
 def ns_to_ms(ns):
     return round(ns / 1e6, 1) if ns is not None else None
 
 
-def classify(narrative):
-    """Returns (category, stats) or raises ClassificationError."""
+def classify(narrative, model=None):
+    """Returns (category, stats) or raises ClassificationError. Uses MODEL unless a model is given."""
     body = {
-        "model": config.MODEL,
+        "model": model or config.MODEL,
         "prompt": prompt_template().replace("{narrative}", narrative),
         "stream": False,
         "format": RESPONSE_SCHEMA,
