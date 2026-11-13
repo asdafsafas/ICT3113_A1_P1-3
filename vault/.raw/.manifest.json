@@ -1,0 +1,242 @@
+{
+  "sources": {
+    "ICT3113_Assignment_1.docx": {
+      "hash": "a838e589f1b9be0d18bc0891a02efb43",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "ICT3113_Assignment_2 - Copy (1).pdf": {
+      "hash": "b0524216ddbb6650ea839146e05297bb",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "README.md": {
+      "hash": "fcc56b9371a9c8a4ea46dc41e961d5e5",
+      "ingested_at": "2026-11-13",
+      "pages_created": [
+        "wiki/comparisons/Candidate Model Comparison.md",
+        "wiki/comparisons/Predictions vs Outcomes.md",
+        "wiki/concepts/Cascade Classification.md",
+        "wiki/concepts/Evidence Reconciliation.md",
+        "wiki/concepts/Golden Test Set.md",
+        "wiki/concepts/Inter-Annotator Agreement.md",
+        "wiki/concepts/Labelling Protocol.md",
+        "wiki/concepts/Misrouting vs Speed Position.md",
+        "wiki/concepts/Ollama Bottleneck.md",
+        "wiki/concepts/Open-Loop Load Testing.md",
+        "wiki/concepts/Prediction Freeze.md",
+        "wiki/concepts/Test Environment.md",
+        "wiki/concepts/Ticket Categories.md",
+        "wiki/entities/Apache JMeter.md",
+        "wiki/entities/CFPB Consumer Complaint Database.md",
+        "wiki/entities/Kannan.md",
+        "wiki/entities/Natalie.md",
+        "wiki/entities/Ollama.md",
+        "wiki/entities/Ridwan.md",
+        "wiki/entities/Team P1-3.md",
+        "wiki/entities/Triage Service.md",
+        "wiki/entities/Tze Han.md",
+        "wiki/entities/Zong Han.md",
+        "wiki/entities/llama3.2-1b.md",
+        "wiki/entities/qwen2.5-0.5b.md",
+        "wiki/entities/qwen2.5-3b.md",
+        "wiki/entities/qwen2.5-7b.md",
+        "wiki/hot.md",
+        "wiki/index.md",
+        "wiki/log.md",
+        "wiki/overview.md",
+        "wiki/questions/Assignment 2 Planning.md",
+        "wiki/sources/Accuracy Results.md",
+        "wiki/sources/Adaptive Stress Test.md",
+        "wiki/sources/Assignment 1 Brief.md",
+        "wiki/sources/Assignment 2 Brief.md",
+        "wiki/sources/Codex Chat Summary.md",
+        "wiki/sources/Golden Set Summary.md",
+        "wiki/sources/Load Test Results.md",
+        "wiki/sources/Prediction Record.md",
+        "wiki/sources/Project Docs.md",
+        "wiki/sources/Requirements.md",
+        "wiki/sources/Smoke Tests.md",
+        "wiki/sources/Workload Model.md"
+      ],
+      "pages_updated": []
+    },
+    "planning/workload-model.md": {
+      "hash": "cb6ea0412105e0e809ea0229221aade3",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "planning/requirements.md": {
+      "hash": "1b1a9943bea6d82f1afcd4ac5be3bfc0",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "planning/prediction-record.md": {
+      "hash": "af62574248b4e0aa6918bafa5c4aa56b",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "golden/SUMMARY.md": {
+      "hash": "82fa8a6f6e0778847da5492e5e70b63f",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "golden/agreement_summary.md": {
+      "hash": "974b66b05fda83f1de8d5d46254d4478",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "golden/golden_set.csv": {
+      "hash": "35722e245db141e33131b1a3bccf7497",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "labeler/protocol.json": {
+      "hash": "47e4d88800059706d75a9c04a57d91c1",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "results/accuracy/comparison.md": {
+      "hash": "a6cead4c9dce12a2802434d2364408a3",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "results/load/RUNS.md": {
+      "hash": "9dfa4d722c2618c934718921942a3a77",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "results/load/qwen2.5-7b/adaptive-stress/adaptive-stress-summary.md": {
+      "hash": "0a0efbab5ce5189326f945bde872f8ab",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "evidence/smoke/SUMMARY.md": {
+      "hash": "daa86aa02596bde02dcaa27a014495d2",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "models/models.lock.json": {
+      "hash": "bd4b596734d20774b05c6aaeef591b28",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "service/prompts/classify_v1.txt": {
+      "hash": "086d9ef919ba1f50cf664446dcf195c0",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    ".env.example": {
+      "hash": "b187ca4d36f1fdedd5b022f3ff021320",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "slides/pending-changes.md": {
+      "hash": "6f0094b630ed912ed5fe334c6eae872e",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/README.md": {
+      "hash": "af750bd1a2441436cfb94f4b730f3fc0",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/accuracy-testing.md": {
+      "hash": "033b4c88fed12a1515104cab6832045b",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/actual-jmeter-test.md": {
+      "hash": "580ec8352a9eceb5d654a55adb99f17b",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/adaptive-stress-test.md": {
+      "hash": "cf51da9f0beb0ae935563ddaee00966e",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/architecture.md": {
+      "hash": "233d2dc5a6a6255aa34311a7a28c98ba",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/assignment-1-chat-summary.md": {
+      "hash": "b96e07f287a9f052d9b55d2af44cf6d6",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/golden-set.md": {
+      "hash": "06eeb3825cff33591dc5650185d6990c",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/load-testing.md": {
+      "hash": "777101e5e2a4eacdbfc487fd88e81abc",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/models.md": {
+      "hash": "052d810a6c9d2fb5a6925924ced4d829",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/person3-jmeter-todo.md": {
+      "hash": "828d35f636e48e55df4d2e126eedd277",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/pre-freeze-steps.md": {
+      "hash": "89a88615de5e2d96fb1b3605ae7c3551",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/ridwan-branch-pr-plan.md": {
+      "hash": "5515e8261e61d8e37fca2e568dbabccc",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/setup.md": {
+      "hash": "0a365d175ee59d75e8f59330a533450b",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    },
+    "docs/team-plan.md": {
+      "hash": "94d0728e0c7e0973df060235b839c77a",
+      "ingested_at": "2026-11-13",
+      "pages_created": [],
+      "pages_updated": []
+    }
+  },
+  "note": "Sources are read in place from the parent repo (paths relative to repo root), not copied into .raw/."
+}

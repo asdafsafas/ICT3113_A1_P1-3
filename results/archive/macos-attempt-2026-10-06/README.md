@@ -1,7 +1,7 @@
 # Archived Mac load-test attempt — 2026-10-06
 
 This directory preserves the first `qwen2.5:0.5b` load-test attempt conducted
-across the two Macs. It was retired before the clean Windows restart because the
+across the two Macs. It was retired before the clean restart on the same two Macs because the
 required per-run Docker/Ollama resource-statistics CSV files were not captured or
 committed.
 
@@ -13,6 +13,6 @@ Contents include:
 - The final `RUNS.md` snapshot from the Mac attempt.
 - A snapshot of the source daily service log.
 
-These files are recoverable historical evidence, not official Windows results.
+These files are recoverable historical evidence, not official results.
 Do not pass this archive to `scripts/summarise_jtl.py`; official summaries should
 read only `results/load/`.
