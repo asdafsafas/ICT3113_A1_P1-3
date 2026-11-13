@@ -96,7 +96,7 @@ def summary(tuning, test, sha):
         lines.append(f"| {c} | {n} | {pts:.1f} | {'No: one ticket is worth more than 10 points' if pts > 10 else 'Yes'} |")
     lines += [
         "",
-        f"Tuning-set categories under 10 tickets: "
+        "Tuning-set categories under 10 tickets: "
         + (", ".join(f"{c} ({t_counts[c]})" for c in CATEGORIES if t_counts[c] < 10) or "none")
         + ". Rules that depend on these categories rest on very few tickets.",
         "",
