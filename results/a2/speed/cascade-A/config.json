@@ -1,0 +1,36 @@
+{
+  "config": "cascade-A",
+  "health": {
+    "status": "ok",
+    "mode": "cascade",
+    "model": "cascade:llama3.2:1b-instruct-q4_K_M>qwen2.5:7b:category[A]",
+    "model_digest": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02+845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "model_digests": {
+      "llama3.2:1b-instruct-q4_K_M": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02",
+      "qwen2.5:7b": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+    },
+    "cascade": {
+      "rule": "category",
+      "setting": "A",
+      "small_model": "llama3.2:1b-instruct-q4_K_M",
+      "large_model": "qwen2.5:7b",
+      "accept_categories": [
+        "Mortgage",
+        "Credit card"
+      ]
+    },
+    "prompt_file": "classify_v1.txt"
+  },
+  "digests": {
+    "llama3.2:1b-instruct-q4_K_M": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02",
+    "qwen2.5:7b": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+  },
+  "speed_params": {
+    "S_s": 3.504,
+    "rate_per_min": 8.5626,
+    "interval_s": 7.007,
+    "duration_s": 300,
+    "timeout_s": 300,
+    "pause_s": 360
+  }
+}
