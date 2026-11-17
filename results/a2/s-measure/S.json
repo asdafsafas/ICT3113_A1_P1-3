@@ -1,0 +1,35 @@
+{
+  "measured_at": "20261117T045401Z",
+  "stage_id": "s-measure_20261117T045401Z",
+  "model": "qwen2.5:7b",
+  "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+  "tickets": [
+    {
+      "row": 3405,
+      "chars": 796,
+      "client_ms": 3503.6,
+      "request_id": "s-measure_20261117T045401Z-3405",
+      "category": "Bank account or service"
+    },
+    {
+      "row": 3530,
+      "chars": 794,
+      "client_ms": 2792.9,
+      "request_id": "s-measure_20261117T045401Z-3530",
+      "category": "Credit reporting"
+    },
+    {
+      "row": 3738,
+      "chars": 792,
+      "client_ms": 4132.7,
+      "request_id": "s-measure_20261117T045401Z-3738",
+      "category": "Credit card"
+    }
+  ],
+  "S_s": 3.504,
+  "rate_per_min": 8.5626,
+  "interval_s": 7.007,
+  "duration_s": 300,
+  "timeout_s": 300,
+  "pause_s": 360
+}

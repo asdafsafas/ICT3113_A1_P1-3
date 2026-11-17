@@ -1,0 +1,13 @@
+epoch_s,container,cpu_percent,memory_usage
+1794891289.390,triage-triage-1,0.15%,36.56MiB / 9.701GiB
+1794891289.390,triage-ollama-1,1014.23%,4.829GiB / 9.701GiB
+1794891289.390,jobwise_nginx,0.00%,0B / 0B
+1794891289.390,jobwise_web,0.01%,161MiB / 9.701GiB
+1794891289.390,jobwise_db,0.00%,21.73MiB / 9.701GiB
+1794891289.390,jobwise_frontend,0.00%,103.2MiB / 9.701GiB
+1794891296.569,triage-triage-1,0.11%,37.03MiB / 9.701GiB
+1794891296.569,triage-ollama-1,1009.90%,4.861GiB / 9.701GiB
+1794891296.569,jobwise_nginx,0.00%,0B / 0B
+1794891296.569,jobwise_web,0.09%,161MiB / 9.701GiB
+1794891296.569,jobwise_db,0.00%,21.86MiB / 9.701GiB
+1794891296.569,jobwise_frontend,0.00%,103.2MiB / 9.701GiB
