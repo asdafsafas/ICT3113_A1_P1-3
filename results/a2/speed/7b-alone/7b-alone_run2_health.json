@@ -1,0 +1,79 @@
+{
+  "captured_at": "2026-11-17T05:09:05.840+00:00",
+  "stage_id": "7b-alone_run2",
+  "health": {
+    "status": "ok",
+    "model": "qwen2.5:7b",
+    "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "prompt_file": "classify_v1.txt"
+  },
+  "ollama_env": {
+    "OLLAMA_KEEP_ALIVE": "30m",
+    "OLLAMA_NUM_PARALLEL": "1",
+    "OLLAMA_MAX_LOADED_MODELS": "2",
+    "OLLAMA_MAX_QUEUE": "512",
+    "OLLAMA_HOST": "0.0.0.0:11434"
+  },
+  "docker": {
+    "NCPU": 10,
+    "MemTotal": 10416644096,
+    "ServerVersion": "29.8.2",
+    "OperatingSystem": "Docker Desktop",
+    "Architecture": "aarch64"
+  },
+  "resident_models": [
+    "qwen2.5:7b"
+  ],
+  "warmup": [
+    {
+      "row": "3273",
+      "status": 200,
+      "client_ms": 25849.8
+    },
+    {
+      "row": "3808",
+      "status": 200,
+      "client_ms": 2677.4
+    },
+    {
+      "row": "3887",
+      "status": 200,
+      "client_ms": 2303.0
+    }
+  ],
+  "direct_warmup": [
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 563.3,
+      "load_ms": 1.0,
+      "total_ms": 556.9
+    }
+  ],
+  "stats_before": {
+    "total": 488,
+    "by_category": {
+      "Credit reporting": 113,
+      "Debt collection": 66,
+      "Mortgage": 57,
+      "Credit card": 53,
+      "Bank account or service": 102,
+      "Consumer loan": 41,
+      "Money transfer or service": 56
+    }
+  },
+  "stats_after": {
+    "total": 530,
+    "by_category": {
+      "Credit reporting": 124,
+      "Debt collection": 74,
+      "Mortgage": 63,
+      "Credit card": 57,
+      "Bank account or service": 109,
+      "Consumer loan": 43,
+      "Money transfer or service": 60
+    }
+  },
+  "resident_models_after": [
+    "qwen2.5:7b"
+  ]
+}

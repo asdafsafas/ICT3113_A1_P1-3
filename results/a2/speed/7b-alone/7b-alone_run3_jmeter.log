@@ -1,0 +1,212 @@
+2026-11-17 13:20:49,486 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2026-11-17 13:20:49,495 INFO o.a.j.JMeter: Loading user properties from: /Users/ridwan/Downloads/apache-jmeter-5.6.3/bin/user.properties
+2026-11-17 13:20:49,495 INFO o.a.j.JMeter: Loading system properties from: /Users/ridwan/Downloads/apache-jmeter-5.6.3/bin/system.properties
+2026-11-17 13:20:49,495 INFO o.a.j.JMeter: Loading additional properties from: /Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3/loadtest/triage.properties
+2026-11-17 13:20:49,496 INFO o.a.j.JMeter: Setting JMeter property: host=172.20.10.2
+2026-11-17 13:20:49,496 INFO o.a.j.JMeter: Setting JMeter property: port=8000
+2026-11-17 13:20:49,496 INFO o.a.j.JMeter: Setting JMeter property: rate=8.5626
+2026-11-17 13:20:49,496 INFO o.a.j.JMeter: Setting JMeter property: duration_s=300
+2026-11-17 13:20:49,496 INFO o.a.j.JMeter: Setting JMeter property: pause_s=360
+2026-11-17 13:20:49,496 INFO o.a.j.JMeter: Setting JMeter property: timeout_ms=300000
+2026-11-17 13:20:49,496 INFO o.a.j.JMeter: Setting JMeter property: data=/Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3/a2/speed-workload/speed_tickets.tsv
+2026-11-17 13:20:49,498 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2026-11-17 13:20:49,498 INFO o.a.j.JMeter: Version 5.6.3
+2026-11-17 13:20:49,498 INFO o.a.j.JMeter: java.version=17.0.17
+2026-11-17 13:20:49,498 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2026-11-17 13:20:49,498 INFO o.a.j.JMeter: os.name=Mac OS X
+2026-11-17 13:20:49,498 INFO o.a.j.JMeter: os.arch=aarch64
+2026-11-17 13:20:49,499 INFO o.a.j.JMeter: os.version=26.5
+2026-11-17 13:20:49,499 INFO o.a.j.JMeter: file.encoding=UTF-8
+2026-11-17 13:20:49,499 INFO o.a.j.JMeter: java.awt.headless=true
+2026-11-17 13:20:49,499 INFO o.a.j.JMeter: Max memory     =1073741824
+2026-11-17 13:20:49,499 INFO o.a.j.JMeter: Available Processors =10
+2026-11-17 13:20:49,502 INFO o.a.j.JMeter: Default Locale=English (EN)
+2026-11-17 13:20:49,502 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2026-11-17 13:20:49,502 INFO o.a.j.JMeter: JMeterHome=/Users/ridwan/Downloads/apache-jmeter-5.6.3
+2026-11-17 13:20:49,502 INFO o.a.j.JMeter: user.dir  =/Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3
+2026-11-17 13:20:49,502 INFO o.a.j.JMeter: PWD       =/Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3
+2026-11-17 13:20:49,504 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: Muhammads-MacBook-Air-4.local FullName: localhost
+2026-11-17 13:20:49,509 INFO o.a.j.s.FileServer: Default base='/Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3'
+2026-11-17 13:20:49,510 INFO o.a.j.s.FileServer: Set new base='/Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3/loadtest'
+2026-11-17 13:20:49,572 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2026-11-17 13:20:49,581 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2026-11-17 13:20:49,582 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2026-11-17 13:20:49,583 INFO o.a.j.s.SaveService: Loading file: /Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3/loadtest/triage_a2.jmx
+2026-11-17 13:20:49,610 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-11-17 13:20:49,610 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-11-17 13:20:49,610 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-11-17 13:20:49,610 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-11-17 13:20:49,610 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2026-11-17 13:20:49,610 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2026-11-17 13:20:49,615 INFO o.a.j.JMeter: Creating summariser <summary>
+2026-11-17 13:20:49,621 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2026-11-17 13:20:49,622 INFO o.a.j.s.SampleEvent: List of sample_variables: [rid, row]
+2026-11-17 13:20:49,622 INFO o.a.j.s.SampleEvent: List of sample_variables: [rid, row]
+2026-11-17 13:20:49,623 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2026-11-17 13:20:49,623 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2026-11-17 13:20:49,712 INFO o.a.j.JMeter: Running test (1794892849712)
+2026-11-17 13:20:49,720 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Ticket intake (POST /tickets)
+2026-11-17 13:20:49,720 INFO o.a.j.e.StandardJMeterEngine: Starting 0 threads for group Ticket intake (POST /tickets).
+2026-11-17 13:20:49,720 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2026-11-17 13:20:49,720 INFO o.a.j.t.o.OpenModelThreadGroup: Starting OpenModelThreadGroup#1 with schedule rate(8.5626/min) random_arrivals(300 sec) rate(8.5626/min) pause(360 sec)
+2026-11-17 13:20:49,734 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2026-11-17 13:20:49,734 INFO o.a.j.t.o.OpenModelThreadGroup: Thread starting init
+2026-11-17 13:20:49,736 INFO o.a.j.t.o.PoissonArrivalsRamp: Generating 42 events, beginRate = 0.14271 / sec, endRate = 0.14271 / sec, duration = 300.0 sec
+2026-11-17 13:20:56,786 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-1
+2026-11-17 13:20:56,787 INFO o.a.j.s.FileServer: Stored: /Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3/a2/speed-workload/speed_tickets.tsv
+2026-11-17 13:20:56,986 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = Muhammads-MacBook-Air-4.local
+2026-11-17 13:20:56,988 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2026-11-17 13:20:56,988 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2026-11-17 13:20:56,989 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2026-11-17 13:20:56,989 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2026-11-17 13:20:56,989 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2026-11-17 13:20:58,736 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-1
+2026-11-17 13:20:58,736 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-1
+2026-11-17 13:21:00,373 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-2
+2026-11-17 13:21:04,149 INFO o.a.j.r.Summariser: summary +      2 in 00:00:14 =    0.1/s Avg:  2745 Min:  1720 Max:  3770 Err:     0 (0.00%) Active: 1 Started: 2 Finished: 1
+2026-11-17 13:21:04,149 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-2
+2026-11-17 13:21:04,149 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-2
+2026-11-17 13:21:15,020 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-3
+2026-11-17 13:21:20,940 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-3
+2026-11-17 13:21:20,941 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-3
+2026-11-17 13:21:25,081 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-4
+2026-11-17 13:21:28,110 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-4
+2026-11-17 13:21:28,111 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-4
+2026-11-17 13:21:35,616 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-5
+2026-11-17 13:21:39,648 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-5
+2026-11-17 13:21:39,648 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-5
+2026-11-17 13:21:43,878 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-6
+2026-11-17 13:21:44,519 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-7
+2026-11-17 13:21:47,281 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-8
+2026-11-17 13:21:47,785 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-6
+2026-11-17 13:21:47,786 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-6
+2026-11-17 13:21:50,011 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-7
+2026-11-17 13:21:50,011 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-7
+2026-11-17 13:21:54,545 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-8
+2026-11-17 13:21:54,545 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-8
+2026-11-17 13:21:56,143 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-9
+2026-11-17 13:22:00,938 INFO o.a.j.r.Summariser: summary +      7 in 00:00:57 =    0.1/s Avg:  4915 Min:  3024 Max:  7258 Err:     0 (0.00%) Active: 1 Started: 9 Finished: 8
+2026-11-17 13:22:00,939 INFO o.a.j.r.Summariser: summary =      9 in 00:01:11 =    0.1/s Avg:  4433 Min:  1720 Max:  7258 Err:     0 (0.00%)
+2026-11-17 13:22:00,940 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-9
+2026-11-17 13:22:00,940 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-9
+2026-11-17 13:22:05,437 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-10
+2026-11-17 13:22:07,070 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-10
+2026-11-17 13:22:07,070 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-10
+2026-11-17 13:22:14,030 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-11
+2026-11-17 13:22:19,096 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-11
+2026-11-17 13:22:19,097 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-11
+2026-11-17 13:22:27,777 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-12
+2026-11-17 13:22:30,694 INFO o.a.j.r.Summariser: summary +      3 in 00:00:30 =    0.1/s Avg:  3201 Min:  1630 Max:  5062 Err:     0 (0.00%) Active: 1 Started: 12 Finished: 11
+2026-11-17 13:22:30,695 INFO o.a.j.r.Summariser: summary =     12 in 00:01:41 =    0.1/s Avg:  4125 Min:  1630 Max:  7258 Err:     0 (0.00%)
+2026-11-17 13:22:30,696 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-12
+2026-11-17 13:22:30,696 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-12
+2026-11-17 13:22:43,771 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-13
+2026-11-17 13:22:45,777 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-13
+2026-11-17 13:22:45,778 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-13
+2026-11-17 13:22:48,819 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-14
+2026-11-17 13:22:49,625 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-15
+2026-11-17 13:22:49,753 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-16
+2026-11-17 13:22:52,433 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-14
+2026-11-17 13:22:52,433 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-14
+2026-11-17 13:22:57,453 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-15
+2026-11-17 13:22:57,454 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-15
+2026-11-17 13:22:59,144 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-16
+2026-11-17 13:22:59,144 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-16
+2026-11-17 13:23:01,294 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-17
+2026-11-17 13:23:04,416 INFO o.a.j.r.Summariser: summary +      5 in 00:00:34 =    0.1/s Avg:  5187 Min:  2001 Max:  9385 Err:     0 (0.00%) Active: 1 Started: 17 Finished: 16
+2026-11-17 13:23:04,417 INFO o.a.j.r.Summariser: summary =     17 in 00:02:15 =    0.1/s Avg:  4437 Min:  1630 Max:  9385 Err:     0 (0.00%)
+2026-11-17 13:23:04,417 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-17
+2026-11-17 13:23:04,418 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-17
+2026-11-17 13:23:22,252 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-18
+2026-11-17 13:23:25,717 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-18
+2026-11-17 13:23:25,717 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-18
+2026-11-17 13:23:28,584 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-19
+2026-11-17 13:23:32,577 INFO o.a.j.r.Summariser: summary +      2 in 00:00:28 =    0.1/s Avg:  3724 Min:  3461 Max:  3988 Err:     0 (0.00%) Active: 1 Started: 19 Finished: 18
+2026-11-17 13:23:32,578 INFO o.a.j.r.Summariser: summary =     19 in 00:02:43 =    0.1/s Avg:  4362 Min:  1630 Max:  9385 Err:     0 (0.00%)
+2026-11-17 13:23:32,578 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-19
+2026-11-17 13:23:32,578 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-19
+2026-11-17 13:23:35,349 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-20
+2026-11-17 13:23:38,540 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-21
+2026-11-17 13:23:41,129 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-20
+2026-11-17 13:23:41,129 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-20
+2026-11-17 13:23:41,872 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-22
+2026-11-17 13:23:43,533 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-21
+2026-11-17 13:23:43,534 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-21
+2026-11-17 13:23:43,595 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-23
+2026-11-17 13:23:45,223 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-24
+2026-11-17 13:23:45,326 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-22
+2026-11-17 13:23:45,327 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-22
+2026-11-17 13:23:47,730 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-23
+2026-11-17 13:23:47,730 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-23
+2026-11-17 13:23:50,930 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-25
+2026-11-17 13:23:53,055 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-24
+2026-11-17 13:23:53,055 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-24
+2026-11-17 13:23:55,813 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-26
+2026-11-17 13:23:56,428 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-27
+2026-11-17 13:23:56,608 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-25
+2026-11-17 13:23:56,609 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-25
+2026-11-17 13:23:56,885 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-28
+2026-11-17 13:23:57,701 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-29
+2026-11-17 13:23:57,975 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-30
+2026-11-17 13:24:00,839 INFO o.a.j.r.Summariser: summary +      7 in 00:00:28 =    0.2/s Avg:  5267 Min:  3450 Max:  7827 Err:     0 (0.00%) Active: 5 Started: 30 Finished: 25
+2026-11-17 13:24:00,840 INFO o.a.j.r.Summariser: summary =     26 in 00:03:11 =    0.1/s Avg:  4606 Min:  1630 Max:  9385 Err:     0 (0.00%)
+2026-11-17 13:24:00,840 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-26
+2026-11-17 13:24:00,841 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-26
+2026-11-17 13:24:02,982 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-31
+2026-11-17 13:24:03,660 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-27
+2026-11-17 13:24:03,661 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-27
+2026-11-17 13:24:06,572 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-32
+2026-11-17 13:24:06,885 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-28
+2026-11-17 13:24:06,885 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-28
+2026-11-17 13:24:10,488 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-33
+2026-11-17 13:24:11,245 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-34
+2026-11-17 13:24:11,324 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-29
+2026-11-17 13:24:11,324 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-29
+2026-11-17 13:24:13,151 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-35
+2026-11-17 13:24:13,428 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-36
+2026-11-17 13:24:14,166 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-30
+2026-11-17 13:24:14,166 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-30
+2026-11-17 13:24:17,553 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-31
+2026-11-17 13:24:17,553 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-31
+2026-11-17 13:24:19,839 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-32
+2026-11-17 13:24:19,840 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-32
+2026-11-17 13:24:22,531 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-33
+2026-11-17 13:24:22,532 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-33
+2026-11-17 13:24:28,856 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-34
+2026-11-17 13:24:28,856 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-34
+2026-11-17 13:24:30,442 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-37
+2026-11-17 13:24:31,096 INFO o.a.j.r.Summariser: summary +      9 in 00:00:30 =    0.3/s Avg: 13605 Min:  7228 Max: 17941 Err:     0 (0.00%) Active: 3 Started: 37 Finished: 34
+2026-11-17 13:24:31,096 INFO o.a.j.r.Summariser: summary =     35 in 00:03:41 =    0.2/s Avg:  6920 Min:  1630 Max: 17941 Err:     0 (0.00%)
+2026-11-17 13:24:31,096 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-35
+2026-11-17 13:24:31,096 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-35
+2026-11-17 13:24:34,322 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-36
+2026-11-17 13:24:34,322 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-36
+2026-11-17 13:24:39,821 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-37
+2026-11-17 13:24:39,822 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-37
+2026-11-17 13:24:55,039 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-38
+2026-11-17 13:24:55,477 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-39
+2026-11-17 13:24:59,249 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-38
+2026-11-17 13:24:59,249 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-38
+2026-11-17 13:25:00,851 INFO o.a.j.r.Summariser: summary +      4 in 00:00:30 =    0.1/s Avg:  9959 Min:  4204 Max: 20890 Err:     0 (0.00%) Active: 1 Started: 39 Finished: 38
+2026-11-17 13:25:00,851 INFO o.a.j.r.Summariser: summary =     39 in 00:04:11 =    0.2/s Avg:  7232 Min:  1630 Max: 20890 Err:     0 (0.00%)
+2026-11-17 13:25:00,852 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-39
+2026-11-17 13:25:00,852 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-39
+2026-11-17 13:25:12,612 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-40
+2026-11-17 13:25:14,227 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-40
+2026-11-17 13:25:14,227 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-40
+2026-11-17 13:25:24,075 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-41
+2026-11-17 13:25:26,076 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-41
+2026-11-17 13:25:26,077 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-41
+2026-11-17 13:25:32,663 INFO o.a.j.t.o.EvenArrivalsRamp: Generating 0 events, beginRate = 0.0 / sec, endRate = 0.0 / sec, duration = 360.0 sec
+2026-11-17 13:25:32,663 INFO o.a.j.t.JMeterThread: Thread started: Ticket intake (POST /tickets) 1-42
+2026-11-17 13:25:32,664 INFO o.a.j.t.o.OpenModelThreadGroup: There will be no more events, so will wait for 376 sec till the end of the schedule
+2026-11-17 13:25:34,296 INFO o.a.j.r.Summariser: summary +      3 in 00:00:33 =    0.1/s Avg:  1744 Min:  1611 Max:  1996 Err:     0 (0.00%) Active: 1 Started: 42 Finished: 41
+2026-11-17 13:25:34,296 INFO o.a.j.r.Summariser: summary =     42 in 00:04:45 =    0.1/s Avg:  6840 Min:  1611 Max: 20890 Err:     0 (0.00%)
+2026-11-17 13:25:34,297 INFO o.a.j.t.JMeterThread: Thread is done: Ticket intake (POST /tickets) 1-42
+2026-11-17 13:25:34,297 INFO o.a.j.t.JMeterThread: Thread finished: Ticket intake (POST /tickets) 1-42
+2026-11-17 13:31:49,610 INFO o.a.j.t.o.OpenModelThreadGroup: There will be no more events, will shutdown the thread pool
+2026-11-17 13:31:49,615 INFO o.a.j.t.o.OpenModelThreadGroup: Thread starting done
+2026-11-17 13:31:49,615 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2026-11-17 13:31:49,616 INFO o.a.j.s.FileServer: Close: /Users/ridwan/Documents/GitHub/ICT3113_A1_P1-3/a2/speed-workload/speed_tickets.tsv
+2026-11-17 13:31:49,631 INFO o.a.j.r.Summariser: summary =     42 in 00:11:00 =    0.1/s Avg:  6840 Min:  1611 Max: 20890 Err:     0 (0.00%)
+2026-11-17 13:31:49,631 INFO o.a.j.e.StandardJMeterEngine: Forced JVM shutdown requested at end of test
