@@ -1,0 +1,101 @@
+{
+  "checked_at": "2026-11-17T03:32:10.538+00:00",
+  "models": [
+    "qwen2.5:7b",
+    "qwen2.5:0.5b"
+  ],
+  "passed": true,
+  "ollama_env": {
+    "OLLAMA_KEEP_ALIVE": "30m",
+    "OLLAMA_NUM_PARALLEL": "1",
+    "OLLAMA_MAX_LOADED_MODELS": "2",
+    "OLLAMA_MAX_QUEUE": "512",
+    "OLLAMA_HOST": "0.0.0.0:11434"
+  },
+  "docker": {
+    "NCPU": 10,
+    "MemTotal": 10416644096,
+    "ServerVersion": "29.8.2",
+    "OperatingSystem": "Docker Desktop",
+    "Architecture": "aarch64"
+  },
+  "resident_at_end": [
+    "qwen2.5:0.5b",
+    "qwen2.5:7b"
+  ],
+  "missing_at_end": [],
+  "reload_threshold_ms": 1000.0,
+  "alternate_calls_with_reload": 0,
+  "calls": [
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 11958.4,
+      "load_ms": 8394.4,
+      "total_ms": 11914.3,
+      "phase": "load",
+      "ticket": 0
+    },
+    {
+      "model": "qwen2.5:0.5b",
+      "client_ms": 1589.9,
+      "load_ms": 1043.6,
+      "total_ms": 1583.1,
+      "phase": "load",
+      "ticket": 1
+    },
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 2374.1,
+      "load_ms": 1.0,
+      "total_ms": 2370.7,
+      "phase": "alternate",
+      "round": 1,
+      "ticket": 1
+    },
+    {
+      "model": "qwen2.5:0.5b",
+      "client_ms": 575.6,
+      "load_ms": 0.7,
+      "total_ms": 567.6,
+      "phase": "alternate",
+      "round": 1,
+      "ticket": 2
+    },
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 4830.4,
+      "load_ms": 1.9,
+      "total_ms": 4813.5,
+      "phase": "alternate",
+      "round": 2,
+      "ticket": 3
+    },
+    {
+      "model": "qwen2.5:0.5b",
+      "client_ms": 958.6,
+      "load_ms": 1.6,
+      "total_ms": 953.8,
+      "phase": "alternate",
+      "round": 2,
+      "ticket": 4
+    },
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 6459.2,
+      "load_ms": 1.0,
+      "total_ms": 6434.6,
+      "phase": "alternate",
+      "round": 3,
+      "ticket": 5
+    },
+    {
+      "model": "qwen2.5:0.5b",
+      "client_ms": 318.6,
+      "load_ms": 4.4,
+      "total_ms": 311.8,
+      "phase": "alternate",
+      "round": 3,
+      "ticket": 0
+    }
+  ]
+}

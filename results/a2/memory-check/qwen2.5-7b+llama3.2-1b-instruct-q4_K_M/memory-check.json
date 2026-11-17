@@ -1,0 +1,101 @@
+{
+  "checked_at": "2026-11-17T03:31:33.170+00:00",
+  "models": [
+    "qwen2.5:7b",
+    "llama3.2:1b-instruct-q4_K_M"
+  ],
+  "passed": true,
+  "ollama_env": {
+    "OLLAMA_KEEP_ALIVE": "30m",
+    "OLLAMA_NUM_PARALLEL": "1",
+    "OLLAMA_MAX_LOADED_MODELS": "2",
+    "OLLAMA_MAX_QUEUE": "512",
+    "OLLAMA_HOST": "0.0.0.0:11434"
+  },
+  "docker": {
+    "NCPU": 10,
+    "MemTotal": 10416644096,
+    "ServerVersion": "29.8.2",
+    "OperatingSystem": "Docker Desktop",
+    "Architecture": "aarch64"
+  },
+  "resident_at_end": [
+    "qwen2.5:7b",
+    "llama3.2:1b-instruct-q4_K_M"
+  ],
+  "missing_at_end": [],
+  "reload_threshold_ms": 1000.0,
+  "alternate_calls_with_reload": 0,
+  "calls": [
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 8789.3,
+      "load_ms": 6611.6,
+      "total_ms": 8762.6,
+      "phase": "load",
+      "ticket": 0
+    },
+    {
+      "model": "llama3.2:1b-instruct-q4_K_M",
+      "client_ms": 2385.3,
+      "load_ms": 1807.9,
+      "total_ms": 2377.2,
+      "phase": "load",
+      "ticket": 1
+    },
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 3009.9,
+      "load_ms": 0.9,
+      "total_ms": 3004.3,
+      "phase": "alternate",
+      "round": 1,
+      "ticket": 1
+    },
+    {
+      "model": "llama3.2:1b-instruct-q4_K_M",
+      "client_ms": 773.0,
+      "load_ms": 5.1,
+      "total_ms": 767.8,
+      "phase": "alternate",
+      "round": 1,
+      "ticket": 2
+    },
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 3918.5,
+      "load_ms": 0.9,
+      "total_ms": 3910.6,
+      "phase": "alternate",
+      "round": 2,
+      "ticket": 3
+    },
+    {
+      "model": "llama3.2:1b-instruct-q4_K_M",
+      "client_ms": 1115.2,
+      "load_ms": 1.6,
+      "total_ms": 1110.8,
+      "phase": "alternate",
+      "round": 2,
+      "ticket": 4
+    },
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 6870.2,
+      "load_ms": 2.3,
+      "total_ms": 6854.1,
+      "phase": "alternate",
+      "round": 3,
+      "ticket": 5
+    },
+    {
+      "model": "llama3.2:1b-instruct-q4_K_M",
+      "client_ms": 456.6,
+      "load_ms": 1.4,
+      "total_ms": 450.6,
+      "phase": "alternate",
+      "round": 3,
+      "ticket": 0
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+triage-triage-1,0.34%,36.72MiB / 9.701GiB
+triage-ollama-1,6.45%,5.483GiB / 9.701GiB
+jobwise_nginx,0.00%,0B / 0B
+jobwise_web,0.04%,162MiB / 9.701GiB
+jobwise_db,0.03%,20.94MiB / 9.701GiB
+jobwise_frontend,0.00%,104.2MiB / 9.701GiB
