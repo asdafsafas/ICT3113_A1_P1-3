@@ -1,0 +1,103 @@
+{
+  "captured_at": "2026-11-17T06:19:59.834+00:00",
+  "stage_id": "cascade-B_run1",
+  "health": {
+    "status": "ok",
+    "mode": "cascade",
+    "model": "cascade:llama3.2:1b-instruct-q4_K_M>qwen2.5:7b:category[B]",
+    "model_digest": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02+845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "model_digests": {
+      "llama3.2:1b-instruct-q4_K_M": "22bc6b92eb0160c4629782fca05a9032c59d306ab2058b7dacc8a4644fbafa02",
+      "qwen2.5:7b": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+    },
+    "cascade": {
+      "rule": "category",
+      "setting": "B",
+      "small_model": "llama3.2:1b-instruct-q4_K_M",
+      "large_model": "qwen2.5:7b",
+      "accept_categories": [
+        "Mortgage",
+        "Credit card",
+        "Bank account or service"
+      ]
+    },
+    "prompt_file": "classify_v1.txt"
+  },
+  "ollama_env": {
+    "OLLAMA_KEEP_ALIVE": "30m",
+    "OLLAMA_NUM_PARALLEL": "1",
+    "OLLAMA_MAX_LOADED_MODELS": "2",
+    "OLLAMA_MAX_QUEUE": "512",
+    "OLLAMA_HOST": "0.0.0.0:11434"
+  },
+  "docker": {
+    "NCPU": 10,
+    "MemTotal": 10416644096,
+    "ServerVersion": "29.8.2",
+    "OperatingSystem": "Docker Desktop",
+    "Architecture": "aarch64"
+  },
+  "resident_models": [
+    "qwen2.5:7b",
+    "llama3.2:1b-instruct-q4_K_M"
+  ],
+  "warmup": [
+    {
+      "row": "3273",
+      "status": 200,
+      "client_ms": 24950.0
+    },
+    {
+      "row": "3808",
+      "status": 200,
+      "client_ms": 762.8
+    },
+    {
+      "row": "3887",
+      "status": 200,
+      "client_ms": 4098.3
+    }
+  ],
+  "direct_warmup": [
+    {
+      "model": "llama3.2:1b-instruct-q4_K_M",
+      "client_ms": 407.7,
+      "load_ms": 4.9,
+      "total_ms": 399.7
+    },
+    {
+      "model": "qwen2.5:7b",
+      "client_ms": 579.2,
+      "load_ms": 3.0,
+      "total_ms": 575.4
+    }
+  ],
+  "stats_before": {
+    "total": 698,
+    "by_category": {
+      "Credit reporting": 164,
+      "Debt collection": 106,
+      "Mortgage": 92,
+      "Credit card": 73,
+      "Bank account or service": 139,
+      "Consumer loan": 50,
+      "Money transfer or service": 74
+    }
+  },
+  "stats_after": {
+    "total": 728,
+    "by_category": {
+      "Credit reporting": 172,
+      "Debt collection": 111,
+      "Mortgage": 98,
+      "Credit card": 77,
+      "Bank account or service": 143,
+      "Consumer loan": 51,
+      "Money transfer or service": 76
+    }
+  },
+  "resident_models_after": [
+    "llama3.2:1b-instruct-q4_K_M",
+    "qwen2.5:7b"
+  ]
+}

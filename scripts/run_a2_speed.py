@@ -318,8 +318,13 @@ def summarise(_args) -> int:
              "(a single run of ~30 requests is too small for p95). No p99, as the brief asks.",
              "- Throughput = completed requests ÷ seconds from the first request sent to the last response received.",
              "- *Unfinished* = requests with no HTTP response (timeout or cut off). *Stored by service* = increase in "
-             "GET /stats total; it should equal *Completed*.",
-             "- Escalation fraction comes from the service log (`escalated` field) for the run's requests.",
+             "GET /stats total. With client timeouts it can exceed *Completed* when the service finishes after JMeter "
+             "times out, or be below *Sent* when the controlled reset ends requests that had not produced a log line. "
+             "These mismatches are retained rather than discarded or retried.",
+             "- Escalation fraction comes from the available service-log records (`escalated` field). Where timed-out "
+             "requests have no service-log line, the displayed denominator is therefore smaller than *Sent*.",
+             "- Both cascade configurations saturated at the fixed 7B-derived offered rate: latency grew during each "
+             "run and requests reached the 300 s client timeout. The 7B-alone runs completed without timeouts.",
              "- *Reloads* counts model calls whose Ollama load time exceeded 1 s: any non-zero value means a model "
              "was unloaded during the run, so that run measures loading, not the cascade.", ""]
     text = "\n".join(lines + detail + notes)
