@@ -12,6 +12,8 @@
 | [ridwan-branch-pr-plan.md](ridwan-branch-pr-plan.md) | Phased checklist for aligning, validating and merging Ridwan's branch | Ridwan |
 | [accuracy-testing.md](accuracy-testing.md) | Accuracy test playbook and reading the report | Zong Han |
 | [a2-playbook.md](a2-playbook.md) | **Assignment 2:** cascade settings, memory check, accuracy, S, speed tests on the two Macs | Everyone |
+| [a2-tze-han-runbook.md](a2-tze-han-runbook.md) | **Assignment 2 - Tze Han runbook:** SUT setup, memory check, accuracy runs and agent hand-offs | Tze Han |
+| [a2-ridwan-runbook.md](a2-ridwan-runbook.md) | **Assignment 2 - Ridwan runbook:** terminal JMeter, remote run control, evidence checks and summary | Ridwan |
 
 Planning documents live in [`planning/`](../planning/):
 [workload model](../planning/workload-model.md) and [requirements](../planning/requirements.md) (Zong Han), plus the team [prediction record](../planning/prediction-record.md). Freeze all three before official benchmarks.
